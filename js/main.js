@@ -27,25 +27,15 @@ function loadJSON(path) {
 
 function boldStatsAndUnderlineTimes(text) {
   if (!text) return '';
-  // Keywords to bold
   const keywords = statsKeywords.map(k => k.replace(/<number>/g, '\\d+'));
   const regexKeywords = new RegExp(`\\b(${keywords.join('|')})\\b`, 'gi');
-  // Percentage numbers to bold
   const regexPercent = /(\d+%)/g;
-  // Time durations to underline (like 0.5s, 3s, 1.5m)
   const regexTime = /(\d+(\.\d+)?[smh])/gi;
 
-  // Escape HTML entities to prevent injection
   let escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-  // Apply bold keywords
   escaped = escaped.replace(regexKeywords, '<b>$1</b>');
-  // Apply bold percentages
   escaped = escaped.replace(regexPercent, '<b>$1</b>');
-  // Underline time durations
   escaped = escaped.replace(regexTime, '<u>$1</u>');
-
-  // Keep line breaks for newlines
   escaped = escaped.replace(/\n/g, '<br>');
 
   return escaped;
@@ -76,7 +66,6 @@ function renderDropdown(matches) {
   }).join('');
   dropdown.style.display = 'block';
 
-  // Add click listeners on dropdown items
   [...dropdown.children].forEach(item => {
     item.addEventListener('click', () => {
       const charId = item.getAttribute('data-id');
@@ -113,14 +102,37 @@ function renderCharacterDetails(character) {
     </div>`;
 }
 
+function clearDropdown() {
+  dropdown.innerHTML = '';
+  dropdown.style.display = 'none';
+}
+
+// Search logic on button click
+searchButton.addEventListener('click', () => {
+  const query = searchInput.value.trim().toLowerCase();
+  characterDetails.innerHTML = ''; // Clear previous result
+
+  if (!query) {
+    clearDropdown();
+    return;
+  }
+
+  // Filter characters whose name includes query
+  const matches = characters.filter(c =>
+    c.name.toLowerCase().includes(query)
+  );
+
+  renderDropdown(matches);
+});
+
 // Hide dropdown when clicking outside
 document.addEventListener('click', e => {
   if (!dropdown.contains(e.target) && e.target !== searchInput && e.target !== searchButton) {
-    dropdown.style.display = 'none';
+    clearDropdown();
   }
 });
 
-// Load all data on startup
+// Load data at start
 Promise.all([
   loadJSON('database/characters.json'),
   loadJSON('database/stats.json')
@@ -130,9 +142,3 @@ Promise.all([
 }).catch(err => {
   console.error('Failed to load data:', err);
 });
-
-// Clear dropdown helper
-function clearDropdown() {
-  dropdown.innerHTML = '';
-  dropdown.style.display = 'none';
-}
