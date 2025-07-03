@@ -2,58 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>7DSIA Fan Community</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <div class="logo">7DSIA Fan Community</div>
-      <ul class="nav-links">
-        <li><a href="#characters">Characters</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-      <div class="social-buttons">
-        <a href="https://discord.gg/ze58eJw64M" target="_blank" rel="noopener" class="btn discord-btn" aria-label="Discord">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" />
-          Discord
-        </a>
-        <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank" rel="noopener" class="btn reddit-btn" aria-label="Reddit">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/reddit.svg" alt="Reddit" />
-          Reddit
-        </a>
+    <img src="assets/ForumBanner.png" alt="Banner" class="banner" />
+    <nav>
+      <h1>7DSIA Fan Community</h1>
+      <div class="nav-links">
+        <a href="https://discord.gg/ze58eJw64M" target="_blank">Discord</a>
+        <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank">Reddit</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <section id="characters" class="characters-section">
-      <h1>Character Database</h1>
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search characters by name, attribute, or type..."
-        aria-label="Search characters"
-      />
-      <div id="results" class="results-container">
-        <!-- Characters will be rendered here -->
-      </div>
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search characters..." />
+      <button id="searchButton">Search</button>
     </section>
-
-    <section id="about" class="about-section">
-      <h2>About 7DSIA Fan Community</h2>
-      <p>
-        Welcome to the official 7DSIA Fan Community website! Explore
-        characters, stats, and join discussions on Discord and Reddit.
-      </p>
-    </section>
+    <section id="results" class="results-container"></section>
   </main>
 
-  <footer>
-    <p>© 2025 7DSIA Fan Community</p>
-  </footer>
-
-  <script src="main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
