@@ -1,39 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
-  let characters = [];
+// --- Load characters.json and stats.json ---
+let characters = [];
+let stats = [];
 
-  // Fetch character data
-  fetch("database/characters.json")
-    .then((response) => response.json())
-    .then((data) => {
-      characters = data;
-    })
-    .catch((error) => {
-      console.error("Error fetching characters:", error);
-    });
+async function loadData() {
+  try {
+    const charResponse = await fetch("database/characters.json");
+    characters = await charResponse.json();
 
-  // Set up search handler
-  const searchInput = document.getElementById("search-input");
-  const searchButton = document.getElementById("search-button");
+    const statsResponse = await fetch("database/stats.json");
+    const statsData = await statsResponse.json();
+    stats = statsData.keywords || [];
+  } catch (error) {
+    console.error("Error loading data:", error);
+  }
+}
 
-  searchButton.addEventListener("click", () => {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) return;
+// --- Highlight keywords and stats ---
+function highlightStats(text) {
+  if (!text) return "";
 
-    const result = characters.find((char) => char.name.toLowerCase() === query);
-    if (result) {
-      displayCharacter(result);
-    } else {
-      displayNotFound();
-    }
-  });
+  // Highlight keywords from stats.json
+  const keywordRegex = new RegExp(`\\b(${stats.join("|")})\\b`, "gi");
+  text = text.replace(keywordRegex, "<strong>$1</strong>");
 
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      searchButton.click();
-    }
-  });
-});
+  // Highlight percentage numbers like 15%, 100%
+  text = text.replace(/(\d+(\.\d+)?%)/g, "<strong>$1</strong>");
 
+  // Underline time durations like 0.5s
+  text = text.replace(/(\d+(\.\d+)?s)/g, "<u>$1</u>");
+
+  return text;
+}
+
+// --- Display a character's full details ---
 function displayCharacter(character) {
   const container = document.getElementById("character-results");
   container.innerHTML = "";
@@ -41,15 +40,13 @@ function displayCharacter(character) {
   const card = document.createElement("div");
   card.className = "character-card";
 
-  // Name
   const name = document.createElement("h2");
   name.textContent = character.name;
 
-  // Info section
   const info = document.createElement("p");
   info.innerHTML = `
-    <strong>Attribute:</strong> ${character.Attribute}<br>
-    <strong>Type:</strong> ${character.Type}<br>
+    <strong>Attribute:</strong> ${character.Attribute || "N/A"}<br>
+    <strong>Type:</strong> ${character.Type || "N/A"}<br>
     <strong>Affiliation:</strong> ${character.Affiliation || "N/A"}<br>
     <strong>Rank:</strong> ${character.Rank || "N/A"}<br><br>
 
@@ -58,12 +55,10 @@ function displayCharacter(character) {
     <strong>Ultimate Move:</strong><br>${highlightStats(character.Ultimate_Move || "N/A")}
   `;
 
-  // Image
   if (character.image_path) {
     const img = document.createElement("img");
     img.src = character.image_path;
     img.alt = character.name;
-    img.classList.add("character-image");
     card.appendChild(img);
   }
 
@@ -72,29 +67,47 @@ function displayCharacter(character) {
   container.appendChild(card);
 }
 
-function displayNotFound() {
+// --- Handle the search ---
+function searchCharacters(term) {
+  term = term.toLowerCase().trim();
+  if (!term) return [];
+
+  return characters.filter(char => {
+    return (
+      (char.name && char.name.toLowerCase().includes(term)) ||
+      (char.Attribute && char.Attribute.toLowerCase().includes(term)) ||
+      (char.Type && char.Type.toLowerCase().includes(term))
+    );
+  });
+}
+
+// --- Handle form submit ---
+document.getElementById("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchTerm = document.getElementById("search-input").value;
+  const results = searchCharacters(searchTerm);
+
   const container = document.getElementById("character-results");
-  container.innerHTML = "<p>No character found. Try a different name.</p>";
-}
+  container.innerHTML = "";
 
-function highlightStats(text) {
-  if (!text) return "";
+  if (results.length === 0) {
+    container.textContent = "No characters found.";
+  } else if (results.length === 1) {
+    displayCharacter(results[0]);
+  } else {
+    // Multiple results: display list with clickable names
+    const list = document.createElement("ul");
+    results.forEach((char) => {
+      const li = document.createElement("li");
+      li.textContent = `${char.name} — ${char.Attribute || "N/A"} | ${char.Type || "N/A"}`;
+      li.className = "character-list-item";
+      li.style.cursor = "pointer";
+      li.addEventListener("click", () => displayCharacter(char));
+      list.appendChild(li);
+    });
+    container.appendChild(list);
+  }
+});
 
-  const keywords = [
-    "Attack", "Attack Speed", "Accuracy", "Crit Chance", "Crit Damage",
-    "Movement Speed", "Defense", "HP", "Evasion", "Crit Resistance", 
-    "Crit Defense", "Lv\\.\\s?\\d+"
-  ];
-
-  // Highlight keywords
-  const keywordRegex = new RegExp(`\\b(${keywords.join("|")})\\b`, "gi");
-  text = text.replace(keywordRegex, '<strong>$1</strong>');
-
-  // Highlight percentages
-  text = text.replace(/(\d+(\.\d+)?%)/g, "<strong>$1</strong>");
-
-  // Underline durations
-  text = text.replace(/(\d+(\.\d+)?s)/g, "<u>$1</u>");
-
-  return text;
-}
+// --- Initialize ---
+loadData();
