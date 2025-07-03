@@ -1,62 +1,100 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  let characters = [];
+
+  // Fetch character data
   fetch("database/characters.json")
-    .then((res) => {
-      if (!res.ok) throw new Error("Failed to fetch characters");
-      return res.json();
+    .then((response) => response.json())
+    .then((data) => {
+      characters = data;
     })
-    .then((characters) => {
-      setupSearch(characters);
-    })
-    .catch((err) => {
-      console.error(err);
-      document.getElementById("results").innerHTML = "<p>Error loading characters.</p>";
+    .catch((error) => {
+      console.error("Error fetching characters:", error);
     });
 
-  function setupSearch(characters) {
-    const input = document.getElementById("searchInput");
-    const button = document.getElementById("searchButton");
-    const results = document.getElementById("results");
+  // Set up search handler
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
 
-    button.addEventListener("click", () => {
-      const query = input.value.trim().toLowerCase();
-      results.innerHTML = "";
+  searchButton.addEventListener("click", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) return;
 
-      if (!query) return;
+    const result = characters.find((char) => char.name.toLowerCase() === query);
+    if (result) {
+      displayCharacter(result);
+    } else {
+      displayNotFound();
+    }
+  });
 
-      const matches = characters.filter((char) =>
-        char.name.toLowerCase().includes(query)
-      );
-
-      if (matches.length === 0) {
-        results.innerHTML = "<p>No characters found.</p>";
-        return;
-      }
-
-      matches.forEach((char) => {
-        const card = document.createElement("div");
-        card.className = "character-card";
-
-        const attributeColor = {
-          DEX: "🔵 DEX",
-          VIT: "🟢 VIT",
-          STR: "🔴 STR",
-          INT: "🟠 INT",
-        };
-
-        const typeEmoji = {
-          DPS: "🗡️ DPS",
-          VIT: "❤️ VIT",
-          Tank: "🛡️ Tank",
-          Debuffer: "🌙 Debuffer",
-        };
-
-        card.innerHTML = `
-          <h2>${char.name}</h2>
-          <p><strong>${attributeColor[char.Attribute] || char.Attribute}</strong></p>
-          <p><strong>${typeEmoji[char.Type] || char.Type}</strong></p>
-        `;
-        results.appendChild(card);
-      });
-    });
-  }
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      searchButton.click();
+    }
+  });
 });
+
+function displayCharacter(character) {
+  const container = document.getElementById("character-results");
+  container.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "character-card";
+
+  // Name
+  const name = document.createElement("h2");
+  name.textContent = character.name;
+
+  // Info section
+  const info = document.createElement("p");
+  info.innerHTML = `
+    <strong>Attribute:</strong> ${character.Attribute}<br>
+    <strong>Type:</strong> ${character.Type}<br>
+    <strong>Affiliation:</strong> ${character.Affiliation || "N/A"}<br>
+    <strong>Rank:</strong> ${character.Rank || "N/A"}<br><br>
+
+    <strong>Normal Skill:</strong><br>${highlightStats(character.Normal_Skill || "N/A")}<br><br>
+    <strong>Special Skill:</strong><br>${highlightStats(character.Special_Skill || "N/A")}<br><br>
+    <strong>Ultimate Move:</strong><br>${highlightStats(character.Ultimate_Move || "N/A")}
+  `;
+
+  // Image
+  if (character.image_path) {
+    const img = document.createElement("img");
+    img.src = character.image_path;
+    img.alt = character.name;
+    img.classList.add("character-image");
+    card.appendChild(img);
+  }
+
+  card.appendChild(name);
+  card.appendChild(info);
+  container.appendChild(card);
+}
+
+function displayNotFound() {
+  const container = document.getElementById("character-results");
+  container.innerHTML = "<p>No character found. Try a different name.</p>";
+}
+
+function highlightStats(text) {
+  if (!text) return "";
+
+  const keywords = [
+    "Attack", "Attack Speed", "Accuracy", "Crit Chance", "Crit Damage",
+    "Movement Speed", "Defense", "HP", "Evasion", "Crit Resistance", 
+    "Crit Defense", "Lv\\.\\s?\\d+"
+  ];
+
+  // Highlight keywords
+  const keywordRegex = new RegExp(`\\b(${keywords.join("|")})\\b`, "gi");
+  text = text.replace(keywordRegex, '<strong>$1</strong>');
+
+  // Highlight percentages
+  text = text.replace(/(\d+(\.\d+)?%)/g, "<strong>$1</strong>");
+
+  // Underline durations
+  text = text.replace(/(\d+(\.\d+)?s)/g, "<u>$1</u>");
+
+  return text;
+}
