@@ -92,9 +92,9 @@ nav h1 {
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1em 1.2em;
+  padding: 1.5em 2em;      /* more padding */
   border-radius: 12px;
-  width: 260px;
+  width: 340px;            /* wider */
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -106,8 +106,8 @@ nav h1 {
 }
 
 .character-card h3 {
-  margin: 0 0 0.3em 0;
-  font-size: 1.4em;
+  margin: 0 0 0.5em 0;
+  font-size: 1.6em;        /* slightly bigger */
   text-align: center;
   color: #ffd700;
 }
@@ -136,16 +136,16 @@ nav h1 {
 .character-card img {
   max-width: 100%;
   border-radius: 10px;
-  margin-bottom: 1em;
+  margin-bottom: 1.2em;    /* more margin */
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
 
 /* Skill paragraphs */
 .character-card p {
   text-align: left;
-  font-size: 0.9em;
-  line-height: 1.3;
-  margin-bottom: 0.8em;
+  font-size: 1em;          /* bigger text */
+  line-height: 1.5;        /* more line spacing */
+  margin-bottom: 1em;      /* more spacing below */
   white-space: normal;
   word-break: break-word;
 }
