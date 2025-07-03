@@ -1,0 +1,218 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  background-color: #161b22;
+  padding: 1rem 2rem;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f97316; /* Orange, echoing INT attribute */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #8b949e;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #30363d;
+  color: #f97316;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.discord-btn {
+  background-color: #5865F2; /* Discord blurple */
+}
+
+.discord-btn:hover,
+.discord-btn:focus {
+  background-color: #4752C4;
+  outline: none;
+}
+
+.reddit-btn {
+  background-color: #FF4500; /* Reddit orange */
+}
+
+.reddit-btn:hover,
+.reddit-btn:focus {
+  background-color: #CC3700;
+  outline: none;
+}
+
+.btn img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+main {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.characters-section h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f97316;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background-color: #161b22;
+  color: #c9d1d9;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 5px #f97316;
+}
+
+.results-container {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.character-card {
+  background-color: #161b22;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.character-card:hover,
+.character-card:focus {
+  box-shadow: 0 0 15px #f97316;
+  outline: none;
+}
+
+.character-card img {
+  max-width: 150px;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.character-card .name {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+  color: #f97316;
+}
+
+.character-card .attribute-type {
+  font-size: 1rem;
+  color: #8b949e;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.attribute {
+  font-weight: bold;
+}
+
+.type {
+  font-weight: bold;
+}
+
+/* Attribute colors */
+.attribute-DEX { color: #3b82f6; } /* Blue */
+.attribute-VIT { color: #22c55e; } /* Green */
+.attribute-STR { color: #ef4444; } /* Red */
+.attribute-INT { color: #f97316; } /* Orange */
+
+/* Type emojis */
+.type-DPS::before { content: "🗡️ "; }
+.type-VIT::before { content: "❤️ "; }
+.type-Tank::before { content: "🛡️ "; }
+.type-Debuffer::before { content: "🌙 "; }
+
+.about-section {
+  margin-top: 3rem;
+  background-color: #161b22;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #161b22;
+  color: #8b949e;
+  font-size: 0.9rem;
+}
