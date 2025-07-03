@@ -5,88 +5,99 @@ const resultsContainer = document.getElementById('results');
 let characters = [];
 let stats = [];
 
-// Load data from JSON files
+// Load characters and stats JSON
 async function loadData() {
   try {
-    const charResponse = await fetch('database/characters.json');
-    characters = await charResponse.json();
+    const charactersResponse = await fetch('database/characters.json');
+    characters = await charactersResponse.json();
 
     const statsResponse = await fetch('database/stats.json');
-    stats = await statsResponse.json();
+    const statsData = await statsResponse.json();
+    stats = statsData.keywords.map(k => k.toLowerCase());
   } catch (error) {
     console.error('Error loading data:', error);
   }
 }
 
-function highlightKeywords(text) {
+// Highlight keywords and underline time durations
+function highlightText(text) {
   if (!text) return '';
 
-  // Highlight percentage numbers (bold)
-  text = text.replace(/(\d+(\.\d+)?%)/g, '<strong>$1</strong>');
+  // Escape HTML special characters
+  text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // Underline time durations (e.g., 0.5s)
+  // Highlight keywords (case-insensitive)
+  stats.forEach(keyword => {
+    const regex = new RegExp(`\\b(${keyword.replace('<number>', '\\d+')})\\b`, 'gi');
+    text = text.replace(regex, '<strong>$1</strong>');
+  });
+
+  // Underline time durations like "0.5s"
   text = text.replace(/(\d+(\.\d+)?s)/g, '<u>$1</u>');
 
-  // Highlight keywords from stats.json (bold)
-  stats.keywords.forEach(keyword => {
-    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // escape regex
-    const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'gi');
-    text = text.replace(regex, match => `<strong>${match}</strong>`);
-  });
+  // Replace newlines with <br>
+  text = text.replace(/\n/g, '<br>');
 
   return text;
 }
 
-function createCharacterCard(character) {
-  const card = document.createElement('div');
-  card.classList.add('character-card');
+function renderCharacterCard(character) {
+  // Make sure image path works for web hosting (assumes you updated paths accordingly)
+  let imgPath = character.image_path;
+  if (!imgPath.startsWith('http')) {
+    imgPath = imgPath.replace(/\\/g, '/');
+  }
 
-  card.innerHTML = `
-    <img src="${character.image_path}" alt="${character.name}" />
-    <h3>${character.name}</h3>
-    <p><strong>Attribute:</strong> ${character.Attribute} | <strong>Type:</strong> ${character.Type}</p>
+  return `
+    <div class="character-card">
+      <h2>${character.name}</h2>
+      <p><strong>${character.Attribute} | ${character.Type}</strong></p>
+      <img src="${imgPath}" alt="${character.name}" class="character-image" />
 
-    <h4>Normal Skill</h4>
-    <p>${highlightKeywords(character.Normal_Skill).replace(/\n/g, '<br>')}</p>
+      <h3>Normal Skill</h3>
+      <p>${highlightText(character.Normal_Skill)}</p>
 
-    <h4>Special Skill</h4>
-    <p>${highlightKeywords(character.Special_Skill).replace(/\n/g, '<br>')}</p>
+      <h3>Special Skill</h3>
+      <p>${highlightText(character.Special_Skill)}</p>
 
-    <h4>Ultimate Move</h4>
-    <p>${highlightKeywords(character.Ultimate_Move).replace(/\n/g, '<br>')}</p>
+      <h3>Ultimate Move</h3>
+      <p>${highlightText(character.Ultimate_Move)}</p>
+    </div>
   `;
+}
 
-  return card;
+function displayResults(filteredCharacters) {
+  if (filteredCharacters.length === 0) {
+    resultsContainer.innerHTML = '<p>No characters found.</p>';
+    return;
+  }
+
+  resultsContainer.innerHTML = filteredCharacters.map(renderCharacterCard).join('');
 }
 
 function searchCharacters() {
   const query = searchInput.value.trim().toLowerCase();
-  resultsContainer.innerHTML = '';
-
-  if (!query) return;
-
-  const filtered = characters.filter(char =>
-    char.name.toLowerCase().includes(query) ||
-    char.Attribute.toLowerCase().includes(query) ||
-    char.Type.toLowerCase().includes(query)
-  );
-
-  if (filtered.length === 0) {
-    resultsContainer.textContent = 'No characters found.';
+  if (!query) {
+    resultsContainer.innerHTML = '';
     return;
   }
 
-  filtered.forEach(character => {
-    const card = createCharacterCard(character);
-    resultsContainer.appendChild(card);
-  });
+  const filtered = characters.filter(char => 
+    char.name.toLowerCase().includes(query) ||
+    (char.Attribute && char.Attribute.toLowerCase().includes(query)) ||
+    (char.Type && char.Type.toLowerCase().includes(query)) ||
+    (char.Affiliation && char.Affiliation.toLowerCase().includes(query))
+  );
+
+  displayResults(filtered);
 }
 
 searchButton.addEventListener('click', searchCharacters);
 
-searchInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') searchCharacters();
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    searchCharacters();
+  }
 });
 
-// Load data on page load
 loadData();
