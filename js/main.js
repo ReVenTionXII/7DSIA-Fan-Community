@@ -1,62 +1,89 @@
+// main.js
+
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const resultsContainer = document.getElementById("results");
 
-let characters = [];
-let statsKeywords = [];
+// Load stats keywords (hardcoded here or fetch from stats.json if you want)
+const statsKeywords = [
+  "Attack",
+  "Attack Speed",
+  "Accuracy",
+  "Crit Chance",
+  "Crit Damage",
+  "Movement Speed",
+  "Defense",
+  "HP",
+  "Evasion",
+  "Crit Resistance",
+  "Crit Defense",
+  "Lv."
+];
 
-// Load stats.json first
-fetch("database/stats.json")
-  .then((res) => res.json())
-  .then((data) => {
-    statsKeywords = data.keywords || [];
-  })
-  .catch((err) => {
-    console.error("Failed to load stats.json:", err);
-  });
+// Helper: map Attribute to color
+function getColorByAttribute(attr) {
+  switch (attr) {
+    case "DEX": return "#1E90FF"; // Blue
+    case "VIT": return "#32CD32"; // Green
+    case "STR": return "#FF4500"; // Red
+    case "INT": return "#FFA500"; // Orange
+    default: return "#FFFFFF"; // white fallback
+  }
+}
 
-// Load characters.json
-fetch("database/characters.json")
-  .then((response) => response.json())
-  .then((data) => {
-    characters = data.characters || data;
-  })
-  .catch((err) => {
-    console.error("Failed to load characters.json:", err);
-    resultsContainer.innerHTML = "<p style='color:red;'>Failed to load character data.</p>";
-  });
+// Helper: map Type to emoji
+function getEmojiByType(type) {
+  switch(type) {
+    case "DPS": return "⚔️";     // Sword
+    case "VIT": return "❤️";     // Heart
+    case "Tank": return "🛡️";    // Shield
+    case "Debuffer": return "🌙"; // Moon
+    default: return "";
+  }
+}
 
-// Function to highlight stats keywords and underline time durations
+// Highlight keywords bold and underline time durations like "0.5s"
 function highlightText(text) {
   if (!text) return "";
 
-  // Escape special regex characters in keywords for safety
+  // Escape regex special chars in keywords
   const escapedKeywords = statsKeywords.map(k => k.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-
-  // Create regex for keywords (case insensitive, whole words)
+  // Match whole keywords ignoring case
   const keywordsRegex = new RegExp(`\\b(${escapedKeywords.join("|")})\\b`, "gi");
 
-  // Replace stats keywords with bold text
-  let highlighted = text.replace(keywordsRegex, (match) => `<strong>${match}</strong>`);
+  // Replace keywords with bold
+  let highlighted = text.replace(keywordsRegex, match => `<strong>${match}</strong>`);
 
-  // Regex to underline time durations (e.g. 0.5s, 3s, 10.25s)
+  // Underline time durations like 0.5s, 3s etc.
   const timeRegex = /(\b\d+(\.\d+)?s\b)/gi;
-
-  // Replace time durations with underline
-  highlighted = highlighted.replace(timeRegex, (match) => `<u>${match}</u>`);
+  highlighted = highlighted.replace(timeRegex, match => `<u>${match}</u>`);
 
   return highlighted;
 }
 
+let characters = [];
+
+// Load characters.json from your GitHub Pages /database folder
+fetch("database/characters.json")
+  .then(res => res.json())
+  .then(data => {
+    characters = data;
+  })
+  .catch(err => {
+    resultsContainer.innerHTML = `<p>Error loading characters database.</p>`;
+    console.error(err);
+  });
+
+// Display search results
 function displayResults(filtered) {
   resultsContainer.innerHTML = "";
 
-  if (filtered.length === 0) {
+  if (!filtered.length) {
     resultsContainer.innerHTML = "<p>No characters found.</p>";
     return;
   }
 
-  filtered.forEach((char) => {
+  filtered.forEach(char => {
     const card = document.createElement("div");
     card.classList.add("character-card");
 
@@ -65,52 +92,75 @@ function displayResults(filtered) {
     nameEl.textContent = char.name;
     card.appendChild(nameEl);
 
-    // Attribute and Type
+    // Attribute and Type with color & emoji
     const attrType = document.createElement("div");
     attrType.classList.add("character-attr-type");
 
     const attrSpan = document.createElement("span");
-    attrSpan.textContent = char.attribute;
-    attrSpan.classList.add(`attr-${char.attribute}`);
+    attrSpan.textContent = char.Attribute;
+    attrSpan.style.color = getColorByAttribute(char.Attribute);
     attrSpan.style.fontWeight = "bold";
 
     const typeSpan = document.createElement("span");
-    typeSpan.textContent = char.type;
-    typeSpan.classList.add(`type-${char.type}`);
+    typeSpan.textContent = `${getEmojiByType(char.Type)} ${char.Type}`;
     typeSpan.style.fontWeight = "bold";
     typeSpan.style.marginLeft = "8px";
 
     attrType.appendChild(attrSpan);
     attrType.appendChild(document.createTextNode(" | "));
     attrType.appendChild(typeSpan);
-
     card.appendChild(attrType);
 
-    // Character Details (optional - if you have a description or stats text)
-    if (char.details) {
-      const detailsEl = document.createElement("p");
-      // Highlight stats keywords and underline time durations in details
-      detailsEl.innerHTML = highlightText(char.details);
-      card.appendChild(detailsEl);
+    // Image (adjust path if needed)
+    if(char.image_path) {
+      const img = document.createElement("img");
+      // Convert Windows path to relative web path (example)
+      // Change accordingly to where your images are hosted
+      const filename = char.image_path.split("\\").pop();
+      img.src = `assets/characters/${filename}`;
+      img.alt = char.name;
+      img.style.width = "100%";
+      img.style.borderRadius = "8px";
+      img.style.marginTop = "8px";
+      card.appendChild(img);
     }
+
+    // Skills: Normal_Skill, Special_Skill, Ultimate_Move
+    ['Normal_Skill', 'Special_Skill', 'Ultimate_Move'].forEach(skillKey => {
+      if(char[skillKey]){
+        const skillEl = document.createElement("p");
+        // convert \n to <br> and highlight text
+        const formatted = highlightText(char[skillKey].replace(/\n/g, "<br>"));
+        skillEl.innerHTML = formatted;
+        card.appendChild(skillEl);
+      }
+    });
 
     resultsContainer.appendChild(card);
   });
 }
 
+// Search handler
 searchButton.addEventListener("click", () => {
   const query = searchInput.value.trim().toLowerCase();
   if (!query) {
     resultsContainer.innerHTML = "<p>Please enter a search term.</p>";
     return;
   }
-  const filtered = characters.filter((char) =>
-    char.name.toLowerCase().includes(query)
+
+  const filtered = characters.filter(char =>
+    char.name.toLowerCase().includes(query) ||
+    (char.Attribute && char.Attribute.toLowerCase().includes(query)) ||
+    (char.Type && char.Type.toLowerCase().includes(query)) ||
+    (char.Affiliation && char.Affiliation.toLowerCase().includes(query)) ||
+    (char.Rank && char.Rank.toLowerCase().includes(query))
   );
+
   displayResults(filtered);
 });
 
-searchInput.addEventListener("keydown", (e) => {
+// Optional: allow search on pressing Enter key
+searchInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     searchButton.click();
   }
