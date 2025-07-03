@@ -1,131 +1,108 @@
-/* Base styling */
+/* Reset and base */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #121212; /* dark background */
+  background: #121212;
   color: #fff;
 }
 
-/* Header styling */
+/* Header and banner */
 header {
-  background: #000;
   text-align: center;
+  background: #000;
+  padding-bottom: 10px;
 }
 
-/* Banner image */
 .banner {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
   display: block;
+  margin: 0 auto;
 }
 
 /* Navigation */
 nav {
-  padding: 1em;
+  padding: 1em 0 0.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #111; /* subtle dark bg */
 }
 
-/* Site title */
 nav h1 {
-  margin: 0.5em 0;
+  margin: 0 0 0.5em 0;
   font-size: 2.5em;
-  color: #FFD700; /* Gold color like 7DS logo */
+  color: #ffd700;
   font-weight: 900;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px #FFD700;
 }
 
-/* Navigation links container */
 .nav-links {
-  margin-top: 0.5em;
+  display: flex;
+  gap: 1.5em;
 }
 
-/* Navigation buttons (Discord, Reddit) */
 .nav-links a {
-  display: inline-block;
-  margin: 0 15px;
-  padding: 10px 20px;
-  background: linear-gradient(45deg, #ff3c00, #ff9c00); /* fiery orange gradient */
-  color: #fff;
+  color: #ffd700;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 25px;
-  box-shadow: 0 0 10px rgba(255, 156, 0, 0.8);
-  transition: background 0.3s ease;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  background: linear-gradient(45deg, #ff9c00, #ff3c00);
-  box-shadow: 0 0 20px rgba(255, 60, 0, 0.8);
+  color: #fff;
 }
 
-/* Search section */
+/* Search Section */
 .search-section {
   margin: 2em auto;
   text-align: center;
 }
 
-/* Search input */
 #searchInput {
-  padding: 0.7em 1em;
+  padding: 0.6em 1em;
   width: 320px;
-  border-radius: 30px;
-  border: 2px solid #FFD700;
-  background: #222;
-  color: #fff;
-  font-size: 1em;
-  transition: border-color 0.3s ease;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #FF6F00; /* orange highlight */
-  box-shadow: 0 0 8px #FF6F00;
-}
-
-/* Search button */
-#searchButton {
-  padding: 0.7em 1.5em;
-  margin-left: 0.7em;
+  border-radius: 4px;
   border: none;
-  background: #FFD700;
+  font-size: 1em;
+}
+
+#searchButton {
+  padding: 0.6em 1.2em;
+  margin-left: 0.5em;
+  border: none;
+  background: #ffd700;
   color: #000;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 4px;
   font-weight: bold;
   font-size: 1em;
-  box-shadow: 0 0 12px #FFD700;
   transition: background 0.3s ease;
 }
 
 #searchButton:hover {
-  background: #FFB300;
-  box-shadow: 0 0 20px #FFB300;
+  background: #e6c200;
 }
 
-/* Results container */
+/* Results Container */
 .results-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
-  padding: 2em;
+  padding: 1em 2em 3em;
 }
 
-/* Character card */
+/* Character Card */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1.5em 1em;
-  border-radius: 12px;
+  padding: 1.2em;
+  border-radius: 10px;
   width: 260px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
   transition: transform 0.2s ease;
 }
 
@@ -133,53 +110,27 @@ nav h1 {
   transform: scale(1.05);
 }
 
-/* Character Name */
 .character-card h3 {
-  color: #FFD700;
-  font-weight: 900;
-  margin-bottom: 0.5em;
-  text-shadow: 0 0 8px #FFD700;
+  margin: 0 0 0.5em;
+  font-size: 1.5em;
+  color: #ffd700;
 }
 
-/* Attribute and Type styling inside the card */
+/* Attribute and Type styling */
 .character-attr-type {
-  margin-bottom: 1em;
-  font-weight: bold;
   font-size: 1.1em;
-  color: #fff;
-  letter-spacing: 1px;
+  margin-top: 0.4em;
+  font-weight: bold;
 }
 
-/* Attribute colors */
-.attr-STR {
-  color: #FF3B3B; /* Red */
-}
+/* Attribute Colors */
+.attr-STR { color: #ff3b3b; } /* Red */
+.attr-DEX { color: #3b82ff; } /* Blue */
+.attr-VIT { color: #3bff50; } /* Green */
+.attr-INT { color: #ff9c3b; } /* Orange */
 
-.attr-DEX {
-  color: #3B82FF; /* Blue */
-}
-
-.attr-VIT {
-  color: #3BFF57; /* Green */
-}
-
-.attr-INT {
-  color: #FFA500; /* Orange */
-}
-
-/* Type emojis */
-.type-DPS::before {
-  content: "🗡️ ";
-}
-
-.type-VIT::before {
-  content: "❤️ ";
-}
-
-.type-Tank::before {
-  content: "🛡️ ";
-}
-
-.type-Debuffer::before {
-  content: "🌙 ";
-}
+/* Type with emoji before text */
+.type-DPS::before { content: "⚔️ "; }
+.type-VIT::before { content: "❤️ "; }
+.type-Tank::before { content: "🛡️ "; }
+.type-Debuffer::before { content: "🌙 "; }

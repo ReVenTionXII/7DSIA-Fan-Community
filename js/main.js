@@ -1,113 +1,117 @@
-// --- Load characters.json and stats.json ---
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const resultsContainer = document.getElementById("results");
+
 let characters = [];
-let stats = [];
+let statsKeywords = [];
 
-async function loadData() {
-  try {
-    const charResponse = await fetch("database/characters.json");
-    characters = await charResponse.json();
+// Load stats.json first
+fetch("database/stats.json")
+  .then((res) => res.json())
+  .then((data) => {
+    statsKeywords = data.keywords || [];
+  })
+  .catch((err) => {
+    console.error("Failed to load stats.json:", err);
+  });
 
-    const statsResponse = await fetch("database/stats.json");
-    const statsData = await statsResponse.json();
-    stats = statsData.keywords || [];
-  } catch (error) {
-    console.error("Error loading data:", error);
-  }
-}
+// Load characters.json
+fetch("database/characters.json")
+  .then((response) => response.json())
+  .then((data) => {
+    characters = data.characters || data;
+  })
+  .catch((err) => {
+    console.error("Failed to load characters.json:", err);
+    resultsContainer.innerHTML = "<p style='color:red;'>Failed to load character data.</p>";
+  });
 
-// --- Highlight keywords and stats ---
-function highlightStats(text) {
+// Function to highlight stats keywords and underline time durations
+function highlightText(text) {
   if (!text) return "";
 
-  // Highlight keywords from stats.json
-  const keywordRegex = new RegExp(`\\b(${stats.join("|")})\\b`, "gi");
-  text = text.replace(keywordRegex, "<strong>$1</strong>");
+  // Escape special regex characters in keywords for safety
+  const escapedKeywords = statsKeywords.map(k => k.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
 
-  // Highlight percentage numbers like 15%, 100%
-  text = text.replace(/(\d+(\.\d+)?%)/g, "<strong>$1</strong>");
+  // Create regex for keywords (case insensitive, whole words)
+  const keywordsRegex = new RegExp(`\\b(${escapedKeywords.join("|")})\\b`, "gi");
 
-  // Underline time durations like 0.5s
-  text = text.replace(/(\d+(\.\d+)?s)/g, "<u>$1</u>");
+  // Replace stats keywords with bold text
+  let highlighted = text.replace(keywordsRegex, (match) => `<strong>${match}</strong>`);
 
-  return text;
+  // Regex to underline time durations (e.g. 0.5s, 3s, 10.25s)
+  const timeRegex = /(\b\d+(\.\d+)?s\b)/gi;
+
+  // Replace time durations with underline
+  highlighted = highlighted.replace(timeRegex, (match) => `<u>${match}</u>`);
+
+  return highlighted;
 }
 
-// --- Display a character's full details ---
-function displayCharacter(character) {
-  const container = document.getElementById("character-results");
-  container.innerHTML = "";
+function displayResults(filtered) {
+  resultsContainer.innerHTML = "";
 
-  const card = document.createElement("div");
-  card.className = "character-card";
-
-  const name = document.createElement("h2");
-  name.textContent = character.name;
-
-  const info = document.createElement("p");
-  info.innerHTML = `
-    <strong>Attribute:</strong> ${character.Attribute || "N/A"}<br>
-    <strong>Type:</strong> ${character.Type || "N/A"}<br>
-    <strong>Affiliation:</strong> ${character.Affiliation || "N/A"}<br>
-    <strong>Rank:</strong> ${character.Rank || "N/A"}<br><br>
-
-    <strong>Normal Skill:</strong><br>${highlightStats(character.Normal_Skill || "N/A")}<br><br>
-    <strong>Special Skill:</strong><br>${highlightStats(character.Special_Skill || "N/A")}<br><br>
-    <strong>Ultimate Move:</strong><br>${highlightStats(character.Ultimate_Move || "N/A")}
-  `;
-
-  if (character.image_path) {
-    const img = document.createElement("img");
-    img.src = character.image_path;
-    img.alt = character.name;
-    card.appendChild(img);
+  if (filtered.length === 0) {
+    resultsContainer.innerHTML = "<p>No characters found.</p>";
+    return;
   }
 
-  card.appendChild(name);
-  card.appendChild(info);
-  container.appendChild(card);
-}
+  filtered.forEach((char) => {
+    const card = document.createElement("div");
+    card.classList.add("character-card");
 
-// --- Handle the search ---
-function searchCharacters(term) {
-  term = term.toLowerCase().trim();
-  if (!term) return [];
+    // Name
+    const nameEl = document.createElement("h3");
+    nameEl.textContent = char.name;
+    card.appendChild(nameEl);
 
-  return characters.filter(char => {
-    return (
-      (char.name && char.name.toLowerCase().includes(term)) ||
-      (char.Attribute && char.Attribute.toLowerCase().includes(term)) ||
-      (char.Type && char.Type.toLowerCase().includes(term))
-    );
+    // Attribute and Type
+    const attrType = document.createElement("div");
+    attrType.classList.add("character-attr-type");
+
+    const attrSpan = document.createElement("span");
+    attrSpan.textContent = char.attribute;
+    attrSpan.classList.add(`attr-${char.attribute}`);
+    attrSpan.style.fontWeight = "bold";
+
+    const typeSpan = document.createElement("span");
+    typeSpan.textContent = char.type;
+    typeSpan.classList.add(`type-${char.type}`);
+    typeSpan.style.fontWeight = "bold";
+    typeSpan.style.marginLeft = "8px";
+
+    attrType.appendChild(attrSpan);
+    attrType.appendChild(document.createTextNode(" | "));
+    attrType.appendChild(typeSpan);
+
+    card.appendChild(attrType);
+
+    // Character Details (optional - if you have a description or stats text)
+    if (char.details) {
+      const detailsEl = document.createElement("p");
+      // Highlight stats keywords and underline time durations in details
+      detailsEl.innerHTML = highlightText(char.details);
+      card.appendChild(detailsEl);
+    }
+
+    resultsContainer.appendChild(card);
   });
 }
 
-// --- Handle form submit ---
-document.getElementById("search-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const searchTerm = document.getElementById("search-input").value;
-  const results = searchCharacters(searchTerm);
-
-  const container = document.getElementById("character-results");
-  container.innerHTML = "";
-
-  if (results.length === 0) {
-    container.textContent = "No characters found.";
-  } else if (results.length === 1) {
-    displayCharacter(results[0]);
-  } else {
-    // Multiple results: display list with clickable names
-    const list = document.createElement("ul");
-    results.forEach((char) => {
-      const li = document.createElement("li");
-      li.textContent = `${char.name} — ${char.Attribute || "N/A"} | ${char.Type || "N/A"}`;
-      li.className = "character-list-item";
-      li.style.cursor = "pointer";
-      li.addEventListener("click", () => displayCharacter(char));
-      list.appendChild(li);
-    });
-    container.appendChild(list);
+searchButton.addEventListener("click", () => {
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) {
+    resultsContainer.innerHTML = "<p>Please enter a search term.</p>";
+    return;
   }
+  const filtered = characters.filter((char) =>
+    char.name.toLowerCase().includes(query)
+  );
+  displayResults(filtered);
 });
 
-// --- Initialize ---
-loadData();
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    searchButton.click();
+  }
+});
