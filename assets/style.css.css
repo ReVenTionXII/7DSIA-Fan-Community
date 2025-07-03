@@ -11,8 +11,9 @@ header {
 }
 .banner {
   width: 100%;
-  max-height: 200px;
+  max-height: 150px; /* smaller max height */
   object-fit: cover;
+  display: block; /* removes inline gap */
 }
 nav {
   padding: 1em;
