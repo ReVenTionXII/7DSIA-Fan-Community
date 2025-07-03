@@ -1,12 +1,9 @@
-/* Reset and base */
-* {
-  box-sizing: border-box;
-}
+/* General */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #121212;
+  background: #121212;
   color: #fff;
 }
 
@@ -17,37 +14,34 @@ header {
 }
 .banner {
   width: 100%;
-  max-height: 180px;
+  max-height: 200px;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 nav {
-  padding: 1em 0.5em;
-  background: #1a1a1a;
+  padding: 1em;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 2em;
-  flex-wrap: wrap;
+  background: #1a1a1a;
 }
 nav h1 {
-  margin: 0;
-  font-size: 2em;
+  margin: 0.5em 0;
+  font-size: 2.5em;
   color: #ffd700;
-  flex-grow: 1;
-  text-align: left;
+  text-shadow: 0 0 10px #ffd700;
 }
 .nav-links a {
+  margin: 0 15px;
   color: #ffd700;
-  font-weight: 700;
   text-decoration: none;
-  padding: 0.5em 1em;
-  border: 2px solid #ffd700;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
 }
 .nav-links a:hover {
-  background-color: #ffd700;
-  color: #000;
+  color: #fff;
 }
 
 /* Search Section */
@@ -56,22 +50,25 @@ nav h1 {
   text-align: center;
 }
 #searchInput {
-  padding: 0.5em 1em;
-  width: 280px;
-  border-radius: 8px;
+  padding: 0.6em;
+  width: 320px;
+  max-width: 90vw;
+  border-radius: 4px;
   border: none;
   font-size: 1em;
+  outline: none;
 }
 #searchButton {
-  padding: 0.5em 1.2em;
-  margin-left: 0.6em;
+  padding: 0.6em 1.2em;
+  margin-left: 0.5em;
   border: none;
   background: #ffd700;
   color: #000;
-  font-weight: 700;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background 0.3s ease;
 }
 #searchButton:hover {
   background: #e6c200;
@@ -79,84 +76,58 @@ nav h1 {
 
 /* Results container */
 .results-container {
-  max-width: 1200px;
-  margin: 0 auto 3em auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.3em;
-  padding: 0 1em;
+  gap: 1.5em;
+  padding: 2em;
 }
 
-/* Character Card */
+/* Character card */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1.5em 2em;      /* more padding */
-  border-radius: 12px;
-  width: 340px;            /* wider */
+  padding: 1.5em;
+  border-radius: 10px;
+  width: 320px;
+  text-align: center;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease;
+  gap: 1em;
 }
-.character-card:hover {
-  transform: scale(1.03);
-}
-
-.character-card h3 {
-  margin: 0 0 0.5em 0;
-  font-size: 1.6em;        /* slightly bigger */
-  text-align: center;
-  color: #ffd700;
-}
-
-.character-attr-type {
-  margin-bottom: 0.8em;
-  font-size: 1em;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  gap: 0.4em;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.character-attr-type span:first-child {
-  font-weight: 700;
-}
-
-.character-attr-type span:last-child {
-  font-weight: 700;
-  margin-left: 4px;
-}
-
-/* Character Image */
 .character-card img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1.2em;    /* more margin */
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  max-width: 200px;
+  border-radius: 8px;
+  object-fit: contain;
 }
-
-/* Skill paragraphs */
+.character-card h3 {
+  margin: 0;
+  color: #ffd700;
+  text-shadow: 0 0 8px #ffd700;
+}
+.character-card h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 1.1em;
+  align-self: flex-start;
+}
 .character-card p {
   text-align: left;
-  font-size: 1em;          /* bigger text */
-  line-height: 1.5;        /* more line spacing */
-  margin-bottom: 1em;      /* more spacing below */
+  line-height: 1.4;
+  font-size: 0.95em;
+  color: #ddd;
   white-space: normal;
-  word-break: break-word;
 }
-
-/* Highlight bold keywords */
-strong {
+.character-card strong {
   color: #ffd700;
 }
 
-/* Underline time durations */
-u {
+/* Highlight time duration underline */
+.character-card u {
+  text-decoration: underline;
   text-decoration-color: #ffd700;
-  text-decoration-thickness: 2px;
 }

@@ -1,143 +1,92 @@
-const searchInput = document.getElementById("searchInput");
-const searchButton = document.getElementById("searchButton");
-const resultsContainer = document.getElementById("results");
-
-const statsKeywords = [
-  "Attack",
-  "Attack Speed",
-  "Accuracy",
-  "Crit Chance",
-  "Crit Damage",
-  "Movement Speed",
-  "Defense",
-  "HP",
-  "Evasion",
-  "Crit Resistance",
-  "Crit Defense",
-  "Lv."
-];
-
-// Attribute colors
-function getColorByAttribute(attr) {
-  switch (attr) {
-    case "DEX": return "#1E90FF"; // Blue
-    case "VIT": return "#32CD32"; // Green
-    case "STR": return "#FF4500"; // Red
-    case "INT": return "#FFA500"; // Orange
-    default: return "#fff";
-  }
-}
-
-// Type emojis
-function getEmojiByType(type) {
-  switch(type) {
-    case "DPS": return "⚔️";
-    case "VIT": return "❤️";
-    case "Tank": return "🛡️";
-    case "Debuffer": return "🌙";
-    default: return "";
-  }
-}
-
-// Highlight keywords bold and underline durations
-function highlightText(text) {
-  if (!text) return "";
-  const escapedKeywords = statsKeywords.map(k => k.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-  const keywordsRegex = new RegExp(`\\b(${escapedKeywords.join("|")})\\b`, "gi");
-  let highlighted = text.replace(keywordsRegex, match => `<strong>${match}</strong>`);
-  const timeRegex = /(\b\d+(\.\d+)?s\b)/gi;
-  highlighted = highlighted.replace(timeRegex, match => `<u>${match}</u>`);
-  return highlighted;
-}
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const resultsContainer = document.getElementById('results');
 
 let characters = [];
+let stats = [];
 
-fetch("database/characters.json")
-  .then(res => res.json())
-  .then(data => {
-    characters = data;
-  })
-  .catch(err => {
-    resultsContainer.innerHTML = `<p>Error loading characters database.</p>`;
-    console.error(err);
+// Load data from JSON files
+async function loadData() {
+  try {
+    const charResponse = await fetch('database/characters.json');
+    characters = await charResponse.json();
+
+    const statsResponse = await fetch('database/stats.json');
+    stats = await statsResponse.json();
+  } catch (error) {
+    console.error('Error loading data:', error);
+  }
+}
+
+function highlightKeywords(text) {
+  if (!text) return '';
+
+  // Highlight percentage numbers (bold)
+  text = text.replace(/(\d+(\.\d+)?%)/g, '<strong>$1</strong>');
+
+  // Underline time durations (e.g., 0.5s)
+  text = text.replace(/(\d+(\.\d+)?s)/g, '<u>$1</u>');
+
+  // Highlight keywords from stats.json (bold)
+  stats.keywords.forEach(keyword => {
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // escape regex
+    const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'gi');
+    text = text.replace(regex, match => `<strong>${match}</strong>`);
   });
 
-function displayResults(filtered) {
-  resultsContainer.innerHTML = "";
+  return text;
+}
 
-  if (!filtered.length) {
-    resultsContainer.innerHTML = "<p>No characters found.</p>";
+function createCharacterCard(character) {
+  const card = document.createElement('div');
+  card.classList.add('character-card');
+
+  card.innerHTML = `
+    <img src="${character.image_path}" alt="${character.name}" />
+    <h3>${character.name}</h3>
+    <p><strong>Attribute:</strong> ${character.Attribute} | <strong>Type:</strong> ${character.Type}</p>
+
+    <h4>Normal Skill</h4>
+    <p>${highlightKeywords(character.Normal_Skill).replace(/\n/g, '<br>')}</p>
+
+    <h4>Special Skill</h4>
+    <p>${highlightKeywords(character.Special_Skill).replace(/\n/g, '<br>')}</p>
+
+    <h4>Ultimate Move</h4>
+    <p>${highlightKeywords(character.Ultimate_Move).replace(/\n/g, '<br>')}</p>
+  `;
+
+  return card;
+}
+
+function searchCharacters() {
+  const query = searchInput.value.trim().toLowerCase();
+  resultsContainer.innerHTML = '';
+
+  if (!query) return;
+
+  const filtered = characters.filter(char =>
+    char.name.toLowerCase().includes(query) ||
+    char.Attribute.toLowerCase().includes(query) ||
+    char.Type.toLowerCase().includes(query)
+  );
+
+  if (filtered.length === 0) {
+    resultsContainer.textContent = 'No characters found.';
     return;
   }
 
-  filtered.forEach(char => {
-    const card = document.createElement("div");
-    card.classList.add("character-card");
-
-    // Name
-    const nameEl = document.createElement("h3");
-    nameEl.textContent = char.name;
-    card.appendChild(nameEl);
-
-    // Attribute | Type with colors and emoji
-    const attrType = document.createElement("div");
-    attrType.classList.add("character-attr-type");
-
-    const attrSpan = document.createElement("span");
-    attrSpan.textContent = char.Attribute;
-    attrSpan.style.color = getColorByAttribute(char.Attribute);
-    attrSpan.style.fontWeight = "bold";
-
-    const typeSpan = document.createElement("span");
-    typeSpan.textContent = `${getEmojiByType(char.Type)} ${char.Type}`;
-    typeSpan.style.fontWeight = "normal";  // not bold in dropdown, but bold here you can switch to bold if preferred
-    typeSpan.style.marginLeft = "6px";
-
-    attrType.appendChild(attrSpan);
-    attrType.appendChild(document.createTextNode(" | "));
-    attrType.appendChild(typeSpan);
-    card.appendChild(attrType);
-
-    // Image
-    if (char.image_path) {
-      const img = document.createElement("img");
-      const filename = char.image_path.split("\\").pop();
-      img.src = `assets/characters/${filename}`;
-      img.alt = char.name;
-      card.appendChild(img);
-    }
-
-    // Skills
-    ["Normal_Skill", "Special_Skill", "Ultimate_Move"].forEach(skillKey => {
-      if (char[skillKey]) {
-        const p = document.createElement("p");
-        p.innerHTML = highlightText(char[skillKey].replace(/\n/g, "<br>"));
-        card.appendChild(p);
-      }
-    });
-
+  filtered.forEach(character => {
+    const card = createCharacterCard(character);
     resultsContainer.appendChild(card);
   });
 }
 
-searchButton.addEventListener("click", () => {
-  const query = searchInput.value.trim().toLowerCase();
-  if (!query) {
-    resultsContainer.innerHTML = "<p>Please enter a search term.</p>";
-    return;
-  }
+searchButton.addEventListener('click', searchCharacters);
 
-  const filtered = characters.filter(char =>
-    (char.name && char.name.toLowerCase().includes(query)) ||
-    (char.Attribute && char.Attribute.toLowerCase().includes(query)) ||
-    (char.Type && char.Type.toLowerCase().includes(query)) ||
-    (char.Affiliation && char.Affiliation.toLowerCase().includes(query)) ||
-    (char.Rank && char.Rank.toLowerCase().includes(query))
-  );
-
-  displayResults(filtered);
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') searchCharacters();
 });
 
-searchInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") searchButton.click();
-});
+// Load data on page load
+loadData();
