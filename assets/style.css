@@ -1,133 +1,207 @@
-/* General */
+/* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #121212;
+  background-color: #121212;
   color: #fff;
 }
 
-/* Header & Nav */
 header {
-  background: #000;
   text-align: center;
+  background-color: #000;
+  padding-bottom: 10px;
 }
+
 .banner {
   width: 100%;
-  max-height: 200px;
+  max-height: 180px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
 }
+
 nav {
   padding: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #1a1a1a;
 }
+
 nav h1 {
   margin: 0.5em 0;
-  font-size: 2.5em;
+  font-size: 2.2rem;
   color: #ffd700;
-  text-shadow: 0 0 10px #ffd700;
+  font-weight: bold;
 }
+
 .nav-links a {
-  margin: 0 15px;
+  margin: 0 10px;
   color: #ffd700;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
-}
-.nav-links a:hover {
-  color: #fff;
 }
 
-/* Search Section */
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
 .search-section {
   margin: 2em auto;
   text-align: center;
+  position: relative;
+  max-width: 400px;
 }
+
 #searchInput {
-  padding: 0.6em;
-  width: 320px;
-  max-width: 90vw;
-  border-radius: 4px;
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 6px;
   border: none;
-  font-size: 1em;
-  outline: none;
-}
-#searchButton {
-  padding: 0.6em 1.2em;
-  margin-left: 0.5em;
-  border: none;
-  background: #ffd700;
-  color: #000;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 1em;
-  transition: background 0.3s ease;
-}
-#searchButton:hover {
-  background: #e6c200;
+  font-size: 1.1rem;
+  box-sizing: border-box;
 }
 
-/* Results container */
-.results-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5em;
-  padding: 2em;
-}
-
-/* Character card */
-.character-card {
-  background: #1e1e1e;
+/* Dropdown styles */
+.dropdown {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  background-color: #222;
   border: 1px solid #444;
-  padding: 1.5em;
-  border-radius: 10px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 0 0 6px 6px;
+  z-index: 10;
+  display: none;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #444;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 1em;
-}
-.character-card img {
-  max-width: 200px;
-  border-radius: 8px;
-  object-fit: contain;
-}
-.character-card h3 {
-  margin: 0;
-  color: #ffd700;
-  text-shadow: 0 0 8px #ffd700;
-}
-.character-card h4 {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-  color: #ffd700;
-  font-weight: bold;
-  font-size: 1.1em;
-  align-self: flex-start;
-}
-.character-card p {
-  text-align: left;
-  line-height: 1.4;
-  font-size: 0.95em;
   color: #ddd;
-  white-space: normal;
+  font-size: 1rem;
 }
-.character-card strong {
+
+.dropdown-item:hover {
+  background-color: #333;
+}
+
+.dropdown-item .name {
+  font-weight: bold;
+}
+
+.dropdown-item .info {
+  font-size: 0.9rem;
+  color: #bbb;
+  min-width: 90px;
+  text-align: right;
+}
+
+/* Character Details Section */
+.character-details {
+  max-width: 900px;
+  margin: 2em auto;
+  background-color: #1e1e1e;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+  font-size: 1rem;
+}
+
+.character-details h2 {
+  margin-top: 0;
   color: #ffd700;
 }
 
-/* Highlight time duration underline */
-.character-card u {
+.character-attribute,
+.character-type {
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-size: 1.1rem;
+}
+
+/* Attribute colors */
+.attribute-DEX {
+  color: #007bff; /* Blue */
+}
+
+.attribute-VIT {
+  color: #28a745; /* Green */
+}
+
+.attribute-STR {
+  color: #dc3545; /* Red */
+}
+
+.attribute-INT {
+  color: #fd7e14; /* Orange */
+}
+
+/* Type styles with emoji before text */
+.type-DPS::before {
+  content: "⚔️ ";
+  font-weight: normal;
+}
+
+.type-VIT::before {
+  content: "❤️ ";
+  font-weight: normal;
+}
+
+.type-Tank::before {
+  content: "🛡️ ";
+  font-weight: normal;
+}
+
+.type-Debuffer::before {
+  content: "🌙 ";
+  font-weight: normal;
+}
+
+.type-Support::before {
+  content: "🚑 ";
+  font-weight: normal;
+}
+
+/* Character image */
+.character-image {
+  max-width: 220px;
+  max-height: 320px;
+  float: right;
+  margin-left: 1em;
+  border-radius: 6px;
+  border: 2px solid #ffd700;
+}
+
+/* Skill titles */
+.skill-title {
+  font-weight: bold;
+  margin-top: 1em;
+  color: #ffd700;
   text-decoration: underline;
-  text-decoration-color: #ffd700;
+  margin-bottom: 0.5em;
+}
+
+/* Highlight % and underlined time duration */
+.highlight-percent {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.highlight-time {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #ffd700;
+  font-style: italic;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }

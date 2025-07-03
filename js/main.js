@@ -1,39 +1,63 @@
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
-const resultsContainer = document.getElementById('results');
+// Path to your data files
+const CHARACTERS_URL = './database/characters.json';
+const STATS_URL = './database/stats.json';
 
 let characters = [];
-let stats = [];
+let statsKeywords = [];
 
-// Load characters and stats JSON
-async function loadData() {
+const searchInput = document.getElementById('searchInput');
+const dropdown = document.getElementById('dropdown');
+const characterDetails = document.getElementById('characterDetails');
+
+// Load stats keywords from stats.json for highlighting
+async function loadStatsKeywords() {
   try {
-    const charactersResponse = await fetch('database/characters.json');
-    characters = await charactersResponse.json();
-
-    const statsResponse = await fetch('database/stats.json');
-    const statsData = await statsResponse.json();
-    stats = statsData.keywords.map(k => k.toLowerCase());
+    const res = await fetch(STATS_URL);
+    const data = await res.json();
+    statsKeywords = data.keywords || [];
   } catch (error) {
-    console.error('Error loading data:', error);
+    console.error('Error loading stats.json:', error);
   }
 }
 
-// Highlight keywords and underline time durations
-function highlightText(text) {
+// Load characters from JSON
+async function loadCharacters() {
+  try {
+    const res = await fetch(CHARACTERS_URL);
+    characters = await res.json();
+  } catch (error) {
+    console.error('Error loading characters.json:', error);
+  }
+}
+
+// Highlight percentages and times in text
+function highlightStats(text) {
   if (!text) return '';
 
-  // Escape HTML special characters
-  text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Escape HTML characters
+  text = text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;");
 
-  // Highlight keywords (case-insensitive)
-  stats.forEach(keyword => {
-    const regex = new RegExp(`\\b(${keyword.replace('<number>', '\\d+')})\\b`, 'gi');
-    text = text.replace(regex, '<strong>$1</strong>');
+  // Highlight stats keywords (case-insensitive)
+  statsKeywords.forEach(keyword => {
+    if (keyword.includes('<number>')) {
+      // Special case for patterns like "Lv. <number>"
+      const base = keyword.replace('<number>', '');
+      const regex = new RegExp(`(${base}\\.?\\s*\\d+)`, 'gi');
+      text = text.replace(regex, '<span class="highlight-percent">$1</span>');
+    } else {
+      const regex = new RegExp(`(${keyword})`, 'gi');
+      text = text.replace(regex, '<span class="highlight-percent">$1</span>');
+    }
   });
 
-  // Underline time durations like "0.5s"
-  text = text.replace(/(\d+(\.\d+)?s)/g, '<u>$1</u>');
+  // Highlight percentages (e.g. 72%, 42.5%)
+  text = text.replace(/(\d+(\.\d+)?%)/g, '<span class="highlight-percent">$1</span>');
+
+  // Underline time durations like 0.5s, 3s, 1 second(s)
+  text = text.replace(/(\d+(\.\d+)?\s?(s|seconds?|second\(s\)))/gi,
+    '<span class="highlight-time">$1</span>');
 
   // Replace newlines with <br>
   text = text.replace(/\n/g, '<br>');
@@ -41,63 +65,138 @@ function highlightText(text) {
   return text;
 }
 
-function renderCharacterCard(character) {
-  // Make sure image path works for web hosting (assumes you updated paths accordingly)
-  let imgPath = character.image_path;
-  if (!imgPath.startsWith('http')) {
-    imgPath = imgPath.replace(/\\/g, '/');
-  }
-
-  return `
-    <div class="character-card">
-      <h2>${character.name}</h2>
-      <p><strong>${character.Attribute} | ${character.Type}</strong></p>
-      <img src="${imgPath}" alt="${character.name}" class="character-image" />
-
-      <h3>Normal Skill</h3>
-      <p>${highlightText(character.Normal_Skill)}</p>
-
-      <h3>Special Skill</h3>
-      <p>${highlightText(character.Special_Skill)}</p>
-
-      <h3>Ultimate Move</h3>
-      <p>${highlightText(character.Ultimate_Move)}</p>
-    </div>
-  `;
+// Clear dropdown and hide
+function clearDropdown() {
+  dropdown.innerHTML = '';
+  dropdown.style.display = 'none';
 }
 
-function displayResults(filteredCharacters) {
-  if (filteredCharacters.length === 0) {
-    resultsContainer.innerHTML = '<p>No characters found.</p>';
+// Render dropdown items
+function renderDropdown(matches) {
+  dropdown.innerHTML = '';
+  if (matches.length === 0) {
+    clearDropdown();
     return;
   }
+  matches.forEach(char => {
+    const item = document.createElement('div');
+    item.className = 'dropdown-item';
 
-  resultsContainer.innerHTML = filteredCharacters.map(renderCharacterCard).join('');
+    // Character name bold
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'name';
+    nameSpan.textContent = char.name;
+
+    // Attribute with color class
+    const attrSpan = document.createElement('span');
+    attrSpan.className = `character-attribute attribute-${char.Attribute}`;
+    attrSpan.textContent = char.Attribute;
+
+    // Type with emoji
+    const typeSpan = document.createElement('span');
+    typeSpan.className = `character-type type-${char.Type}`;
+    typeSpan.textContent = char.Type;
+
+    // Container for attr | type
+    const infoSpan = document.createElement('span');
+    infoSpan.className = 'info';
+    infoSpan.appendChild(attrSpan);
+    infoSpan.appendChild(document.createTextNode(' | '));
+    infoSpan.appendChild(typeSpan);
+
+    item.appendChild(nameSpan);
+    item.appendChild(infoSpan);
+
+    item.addEventListener('click', () => {
+      clearDropdown();
+      searchInput.value = char.name;
+      showCharacterDetails(char);
+    });
+
+    dropdown.appendChild(item);
+  });
+  dropdown.style.display = 'block';
 }
 
-function searchCharacters() {
+// Show character details on page
+function showCharacterDetails(char) {
+  characterDetails.innerHTML = '';
+
+  const title = document.createElement('h2');
+  title.textContent = char.name;
+  characterDetails.appendChild(title);
+
+  // Attribute and Type with styles
+  const attrTypeDiv = document.createElement('div');
+  const attrSpan = document.createElement('span');
+  attrSpan.className = `character-attribute attribute-${char.Attribute}`;
+  attrSpan.textContent = char.Attribute;
+  attrSpan.style.marginRight = '10px';
+
+  const typeSpan = document.createElement('span');
+  typeSpan.className = `character-type type-${char.Type}`;
+  typeSpan.textContent = char.Type;
+
+  attrTypeDiv.appendChild(attrSpan);
+  attrTypeDiv.appendChild(typeSpan);
+  characterDetails.appendChild(attrTypeDiv);
+
+  // Character Image
+  if (char.image_path) {
+    const img = document.createElement('img');
+    img.className = 'character-image';
+    // Use relative path from assets folder (assumed)
+    // Make sure images are correctly referenced relative to site root
+    img.src = char.image_path.replace(/\\/g, '/');
+    img.alt = char.name;
+    characterDetails.appendChild(img);
+  }
+
+  // Helper to create skill section
+  function createSkillSection(title, content) {
+    if (!content) return;
+    const skillTitle = document.createElement('div');
+    skillTitle.className = 'skill-title';
+    skillTitle.textContent = title;
+    characterDetails.appendChild(skillTitle);
+
+    const skillContent = document.createElement('p');
+    skillContent.innerHTML = highlightStats(content);
+    characterDetails.appendChild(skillContent);
+  }
+
+  createSkillSection('Normal Skill', char.Normal_Skill);
+  createSkillSection('Special Skill', char.Special_Skill);
+  createSkillSection('Ultimate Move', char.Ultimate_Move);
+}
+
+// On search input change
+searchInput.addEventListener('input', () => {
   const query = searchInput.value.trim().toLowerCase();
   if (!query) {
-    resultsContainer.innerHTML = '';
+    clearDropdown();
+    characterDetails.innerHTML = '';
     return;
   }
-
-  const filtered = characters.filter(char => 
-    char.name.toLowerCase().includes(query) ||
-    (char.Attribute && char.Attribute.toLowerCase().includes(query)) ||
-    (char.Type && char.Type.toLowerCase().includes(query)) ||
-    (char.Affiliation && char.Affiliation.toLowerCase().includes(query))
+  const matches = characters.filter(c =>
+    c.name.toLowerCase().includes(query) ||
+    (c.Attribute && c.Attribute.toLowerCase().includes(query)) ||
+    (c.Type && c.Type.toLowerCase().includes(query))
   );
+  renderDropdown(matches.slice(0, 15)); // Limit to 15 results max
+});
 
-  displayResults(filtered);
-}
-
-searchButton.addEventListener('click', searchCharacters);
-
-searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    searchCharacters();
+// Hide dropdown if clicking outside
+document.addEventListener('click', (e) => {
+  if (!dropdown.contains(e.target) && e.target !== searchInput) {
+    clearDropdown();
   }
 });
 
-loadData();
+// Initialization
+async function init() {
+  await loadStatsKeywords();
+  await loadCharacters();
+}
+
+init();
