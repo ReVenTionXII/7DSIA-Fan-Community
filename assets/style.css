@@ -1,207 +1,144 @@
-/* General Styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #121212;
+  background: #121212;
   color: #fff;
 }
-
 header {
   text-align: center;
-  background-color: #000;
-  padding-bottom: 10px;
+  background: #000;
 }
-
 .banner {
   width: 100%;
-  max-height: 180px;
+  max-height: 200px;
   object-fit: cover;
 }
-
 nav {
   padding: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 nav h1 {
   margin: 0.5em 0;
-  font-size: 2.2rem;
-  color: #ffd700;
-  font-weight: bold;
+  font-size: 2em;
 }
-
 .nav-links a {
   margin: 0 10px;
   color: #ffd700;
   text-decoration: none;
   font-weight: bold;
 }
-
 .nav-links a:hover {
   text-decoration: underline;
 }
-
 .search-section {
   margin: 2em auto;
   text-align: center;
   position: relative;
   max-width: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
 }
-
 #searchInput {
+  flex: 1;
   padding: 0.5em;
-  width: 100%;
   border-radius: 6px;
   border: none;
   font-size: 1.1rem;
   box-sizing: border-box;
+  color: #000;
 }
-
-/* Dropdown styles */
+#searchButton {
+  padding: 0.5em 1.2em;
+  border: none;
+  background-color: #ffd700;
+  color: #000;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#searchButton:hover {
+  background-color: #e6c200;
+}
 .dropdown {
   position: absolute;
-  top: 42px;
-  width: 100%;
-  background-color: #222;
-  border: 1px solid #444;
-  max-height: 250px;
+  top: 48px;
+  left: 0;
+  right: 0;
+  max-height: 220px;
   overflow-y: auto;
-  border-radius: 0 0 6px 6px;
-  z-index: 10;
-  display: none;
-}
-
-.dropdown-item {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #444;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #ddd;
-  font-size: 1rem;
-}
-
-.dropdown-item:hover {
-  background-color: #333;
-}
-
-.dropdown-item .name {
-  font-weight: bold;
-}
-
-.dropdown-item .info {
-  font-size: 0.9rem;
-  color: #bbb;
-  min-width: 90px;
-  text-align: right;
-}
-
-/* Character Details Section */
-.character-details {
-  max-width: 900px;
-  margin: 2em auto;
-  background-color: #1e1e1e;
-  padding: 1.5em;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
-  font-size: 1rem;
-}
-
-.character-details h2 {
-  margin-top: 0;
-  color: #ffd700;
-}
-
-.character-attribute,
-.character-type {
-  font-weight: bold;
-  margin-left: 8px;
-  vertical-align: middle;
-  font-size: 1.1rem;
-}
-
-/* Attribute colors */
-.attribute-DEX {
-  color: #007bff; /* Blue */
-}
-
-.attribute-VIT {
-  color: #28a745; /* Green */
-}
-
-.attribute-STR {
-  color: #dc3545; /* Red */
-}
-
-.attribute-INT {
-  color: #fd7e14; /* Orange */
-}
-
-/* Type styles with emoji before text */
-.type-DPS::before {
-  content: "⚔️ ";
-  font-weight: normal;
-}
-
-.type-VIT::before {
-  content: "❤️ ";
-  font-weight: normal;
-}
-
-.type-Tank::before {
-  content: "🛡️ ";
-  font-weight: normal;
-}
-
-.type-Debuffer::before {
-  content: "🌙 ";
-  font-weight: normal;
-}
-
-.type-Support::before {
-  content: "🚑 ";
-  font-weight: normal;
-}
-
-/* Character image */
-.character-image {
-  max-width: 220px;
-  max-height: 320px;
-  float: right;
-  margin-left: 1em;
+  background: #222;
+  border: 1px solid #444;
   border-radius: 6px;
-  border: 2px solid #ffd700;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+  z-index: 1000;
+  font-size: 0.9rem;
+  color: #eee;
 }
+.dropdown-item {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+.dropdown-item:hover {
+  background-color: #444;
+}
+.attribute-red { color: #ff5555; }
+.attribute-green { color: #55ff55; }
+.attribute-blue { color: #5599ff; }
+.attribute-orange { color: #ffaa00; }
+.type-sword { }
+.type-heart { }
+.type-shield { }
+.type-moon { }
+.type-ambulance { }
 
-/* Skill titles */
-.skill-title {
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em;
+}
+.character-card {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  padding: 1em;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+.character-card img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1em;
+}
+.character-title {
   font-weight: bold;
   margin-top: 1em;
+  margin-bottom: 0.3em;
+  text-align: left;
+  font-size: 1.1rem;
   color: #ffd700;
-  text-decoration: underline;
-  margin-bottom: 0.5em;
+  text-shadow: 0 0 3px #ffd700;
 }
-
-/* Highlight % and underlined time duration */
-.highlight-percent {
+.bold-yellow {
   font-weight: bold;
   color: #ffd700;
+  text-shadow: 0 0 3px #ffd700;
 }
-
-.highlight-time {
-  text-decoration: underline;
-  font-weight: bold;
-  color: #ffd700;
-  font-style: italic;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
-}
+.attribute-red { color: #ff5555; }
+.attribute-green { color: #55ff55; }
+.attribute-blue { color: #5599ff; }
+.attribute-orange { color: #ffaa00; }
+.type-sword::before { content: "🗡️ "; }
+.type-heart::before { content: "❤️ "; }
+.type-shield::before { content: "🛡️ "; }
+.type-moon::before { content: "🌙 "; }
+.type-ambulance::before { content: "🚑 "; }
