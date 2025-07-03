@@ -1,52 +1,68 @@
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const dropdown = document.getElementById('dropdown');
-const characterDetails = document.getElementById('results');
+const resultsContainer = document.getElementById('results');
 
 let characters = [];
 let statsKeywords = [];
 
 const attributeColors = {
-  DEX: 'attribute-blue',
-  VIT: 'attribute-green',
-  STR: 'attribute-red',
-  INT: 'attribute-orange',
+  DEX: 'blue',
+  VIT: 'green',
+  STR: 'red',
+  INT: 'orange',
 };
 
 const typeEmojis = {
-  DPS: 'type-sword',
-  VIT: 'type-heart',
-  Tank: 'type-shield',
-  Debuffer: 'type-moon',
-  Support: 'type-ambulance',
+  DPS: '🗡️',
+  VIT: '❤️',
+  Tank: '🛡️',
+  Debuffer: '🌙',
+  Support: '🚑',
 };
 
-function loadJSON(path) {
-  return fetch(path).then(res => res.json());
+// Load character and stats JSON
+async function loadData() {
+  try {
+    const [charsResp, statsResp] = await Promise.all([
+      fetch('database/characters.json'),
+      fetch('database/stats.json')
+    ]);
+    characters = await charsResp.json();
+    const statsData = await statsResp.json();
+    statsKeywords = statsData.keywords || [];
+  } catch (e) {
+    console.error('Error loading JSON:', e);
+  }
 }
 
-function boldStatsAndUnderlineTimes(text) {
+// Highlight stats and underline durations
+function formatText(text) {
   if (!text) return '';
-  const keywords = statsKeywords.map(k => k.replace(/<number>/g, '\\d+'));
-  const regexKeywords = new RegExp(`\\b(${keywords.join('|')})\\b`, 'gi');
-  const regexPercent = /(\d+%)/g;
-  const regexTime = /(\d+(\.\d+)?[smh])/gi;
+  let safeText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  let escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  escaped = escaped.replace(regexKeywords, '<b>$1</b>');
-  escaped = escaped.replace(regexPercent, '<b>$1</b>');
-  escaped = escaped.replace(regexTime, '<u>$1</u>');
-  escaped = escaped.replace(/\n/g, '<br>');
+  const keywordsPattern = statsKeywords
+    .map(k => k.replace(/<number>/g, '\\d+'))
+    .join('|');
+  const keywordsRegex = new RegExp(keywordsPattern, 'gi');
+  const percentRegex = /(\d+%)/g;
+  const timeRegex = /(\d+(\.\d+)?s)/gi;
 
-  return escaped;
+  safeText = safeText.replace(keywordsRegex, '<b>$&</b>');
+  safeText = safeText.replace(percentRegex, '<b>$&</b>');
+  safeText = safeText.replace(timeRegex, '<u>$&</u>');
+  safeText = safeText.replace(/\n/g, '<br>');
+
+  return safeText;
 }
 
-function getAttributeClass(attr) {
-  return attributeColors[attr] || '';
+function getColoredAttribute(attr) {
+  const color = attributeColors[attr] || 'white';
+  return `<span style="color:${color}; font-weight:bold;">${attr}</span>`;
 }
 
-function getTypeClass(type) {
-  return typeEmojis[type] || '';
+function getEmojiType(type) {
+  return `${typeEmojis[type] || ''} ${type || ''}`;
 }
 
 function renderDropdown(matches) {
@@ -56,89 +72,60 @@ function renderDropdown(matches) {
     return;
   }
   dropdown.innerHTML = matches.map(c => {
-    const attrClass = getAttributeClass(c.Attribute);
-    const typeClass = getTypeClass(c.Type);
-    return `
-      <div class="dropdown-item" data-id="${c.id}">
-        <span>${c.name}</span>
-        <small><span class="${attrClass}">${c.Attribute || ''}</span> | <span class="${typeClass}">${c.Type || ''}</span></small>
-      </div>`;
+    return `<div class="dropdown-item" data-id="${c.id}" style="cursor:pointer; padding:5px;">
+      ${c.name}<br>
+      <small>${getColoredAttribute(c.Attribute)} | ${getEmojiType(c.Type)}</small>
+    </div>`;
   }).join('');
   dropdown.style.display = 'block';
 
+  // Add click listeners to dropdown items
   [...dropdown.children].forEach(item => {
     item.addEventListener('click', () => {
-      const charId = item.getAttribute('data-id');
-      const character = characters.find(c => c.id.toString() === charId);
-      if (character) {
-        renderCharacterDetails(character);
+      const id = item.getAttribute('data-id');
+      const char = characters.find(c => c.id.toString() === id);
+      if (char) {
+        renderCharacterDetails(char);
       }
       dropdown.style.display = 'none';
     });
   });
 }
 
-function renderCharacterDetails(character) {
-  const attrClass = getAttributeClass(character.Attribute);
-  const typeClass = getTypeClass(character.Type);
-
-  characterDetails.innerHTML = `
-    <div class="character-card">
-      <h2>${character.name}</h2>
-      <p><span class="${attrClass}"><b>${character.Attribute || ''}</b></span> | <span class="${typeClass}"><b>${character.Type || ''}</b></span></p>
-      <img src="assets/characters/${encodeURIComponent(character.name)}.jpg" alt="${character.name}" />
-      <div>
-        <div class="character-title">Normal Skill</div>
-        <p>${boldStatsAndUnderlineTimes(character.Normal_Skill)}</p>
-      </div>
-      <div>
-        <div class="character-title">Special Skill</div>
-        <p>${boldStatsAndUnderlineTimes(character.Special_Skill)}</p>
-      </div>
-      <div>
-        <div class="character-title">Ultimate Move</div>
-        <p>${boldStatsAndUnderlineTimes(character.Ultimate_Move)}</p>
-      </div>
-    </div>`;
+function renderCharacterDetails(c) {
+  resultsContainer.innerHTML = `
+    <div class="character-card" style="max-width:600px; margin:auto; background:#222; padding:1em; border-radius:8px; box-shadow:0 0 10px gold;">
+      <h2>${c.name}</h2>
+      <p>${getColoredAttribute(c.Attribute)} | <b>${getEmojiType(c.Type)}</b></p>
+      <img src="assets/characters/${encodeURIComponent(c.name)}.jpg" alt="${c.name}" style="max-width:100%; border-radius:8px;" />
+      <h3>Normal Skill</h3>
+      <p>${formatText(c.Normal_Skill)}</p>
+      <h3>Special Skill</h3>
+      <p>${formatText(c.Special_Skill)}</p>
+      <h3>Ultimate Move</h3>
+      <p>${formatText(c.Ultimate_Move)}</p>
+    </div>
+  `;
 }
 
-function clearDropdown() {
-  dropdown.innerHTML = '';
-  dropdown.style.display = 'none';
-}
-
-// Search logic on button click
+// Search button click handler
 searchButton.addEventListener('click', () => {
   const query = searchInput.value.trim().toLowerCase();
-  characterDetails.innerHTML = ''; // Clear previous result
-
+  resultsContainer.innerHTML = '';
   if (!query) {
-    clearDropdown();
+    dropdown.style.display = 'none';
     return;
   }
-
-  // Filter characters whose name includes query
-  const matches = characters.filter(c =>
-    c.name.toLowerCase().includes(query)
-  );
-
+  const matches = characters.filter(c => c.name.toLowerCase().includes(query));
   renderDropdown(matches);
 });
 
 // Hide dropdown when clicking outside
 document.addEventListener('click', e => {
   if (!dropdown.contains(e.target) && e.target !== searchInput && e.target !== searchButton) {
-    clearDropdown();
+    dropdown.style.display = 'none';
   }
 });
 
-// Load data at start
-Promise.all([
-  loadJSON('database/characters.json'),
-  loadJSON('database/stats.json')
-]).then(([chars, statsData]) => {
-  characters = chars;
-  statsKeywords = statsData.keywords || [];
-}).catch(err => {
-  console.error('Failed to load data:', err);
-});
+// Load data on page load
+loadData();
