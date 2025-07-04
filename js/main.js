@@ -1,16 +1,9 @@
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
-const dropdown = document.getElementById('dropdown');
-const resultsContainer = document.getElementById('results');
-
-let characters = [];
-let statsKeywords = [];
-
-const attributeColors = {
-  DEX: 'blue',
-  VIT: 'green',
-  STR: 'red',
-  INT: 'orange',
+// Mapping emojis for attributes and types
+const attributeEmojis = {
+  DEX: "🔵",
+  VIT: "🟢",
+  STR: "🔴",
+  INT: "🟠",
 };
 
 const typeEmojis = {
@@ -21,111 +14,131 @@ const typeEmojis = {
   Support: '🚑',
 };
 
-// Load character and stats JSON
+// Load characters and stats JSON
+let characters = [];
+let statsKeywords = [];
+
 async function loadData() {
   try {
-    const [charsResp, statsResp] = await Promise.all([
-      fetch('database/characters.json'),
-      fetch('database/stats.json')
-    ]);
-    characters = await charsResp.json();
+    const charResp = await fetch('database/characters.json');
+    characters = await charResp.json();
+
+    const statsResp = await fetch('database/stats.json');
     const statsData = await statsResp.json();
-    statsKeywords = statsData.keywords || [];
+    statsKeywords = statsData.keywords.map(k => k.toLowerCase());
+
   } catch (e) {
-    console.error('Error loading JSON:', e);
+    console.error('Error loading data:', e);
   }
 }
 
-// Highlight stats and underline durations
-function formatText(text) {
+function highlightStats(text) {
   if (!text) return '';
-  let safeText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  const keywordsPattern = statsKeywords
-    .map(k => k.replace(/<number>/g, '\\d+'))
-    .join('|');
-  const keywordsRegex = new RegExp(keywordsPattern, 'gi');
-  const percentRegex = /(\d+%)/g;
-  const timeRegex = /(\d+(\.\d+)?s)/gi;
+  // Highlight percentage numbers (bold)
+  text = text.replace(/(\d+%)/g, '<b>$1</b>');
 
-  safeText = safeText.replace(keywordsRegex, '<b>$&</b>');
-  safeText = safeText.replace(percentRegex, '<b>$&</b>');
-  safeText = safeText.replace(timeRegex, '<u>$&</u>');
-  safeText = safeText.replace(/\n/g, '<br>');
-
-  return safeText;
-}
-
-function getColoredAttribute(attr) {
-  const color = attributeColors[attr] || 'white';
-  return `<span style="color:${color}; font-weight:bold;">${attr}</span>`;
-}
-
-function getEmojiType(type) {
-  return `${typeEmojis[type] || ''} ${type || ''}`;
-}
-
-function renderDropdown(matches) {
-  if (matches.length === 0) {
-    dropdown.innerHTML = '<div class="dropdown-item">No results found</div>';
-    dropdown.style.display = 'block';
-    return;
-  }
-  dropdown.innerHTML = matches.map(c => {
-    return `<div class="dropdown-item" data-id="${c.id}" style="cursor:pointer; padding:5px;">
-      ${c.name}<br>
-      <small>${getColoredAttribute(c.Attribute)} | ${getEmojiType(c.Type)}</small>
-    </div>`;
-  }).join('');
-  dropdown.style.display = 'block';
-
-  // Add click listeners to dropdown items
-  [...dropdown.children].forEach(item => {
-    item.addEventListener('click', () => {
-      const id = item.getAttribute('data-id');
-      const char = characters.find(c => c.id.toString() === id);
-      if (char) {
-        renderCharacterDetails(char);
-      }
-      dropdown.style.display = 'none';
-    });
+  // Highlight stats keywords (bold)
+  statsKeywords.forEach(keyword => {
+    const regex = new RegExp(`\\b(${keyword.replace('<number>', '\\d+')})\\b`, 'gi');
+    text = text.replace(regex, '<b>$1</b>');
   });
+
+  // Underline time durations (e.g. 0.5s, 3s)
+  text = text.replace(/(\d+(\.\d+)?s)/g, '<u>$1</u>');
+
+  return text;
 }
 
-function renderCharacterDetails(c) {
-  resultsContainer.innerHTML = `
-    <div class="character-card" style="max-width:600px; margin:auto; background:#222; padding:1em; border-radius:8px; box-shadow:0 0 10px gold;">
-      <h2>${c.name}</h2>
-      <p>${getColoredAttribute(c.Attribute)} | <b>${getEmojiType(c.Type)}</b></p>
-      <img src="${imagePath}" alt="${character.name}" style="max-width:100%; border-radius:8px;">
-      <h3>Normal Skill</h3>
-      <p>${formatText(c.Normal_Skill)}</p>
-      <h3>Special Skill</h3>
-      <p>${formatText(c.Special_Skill)}</p>
-      <h3>Ultimate Move</h3>
-      <p>${formatText(c.Ultimate_Move)}</p>
+function createCharacterCard(character) {
+  const attr = character.Attribute || '';
+  const type = character.Type || '';
+
+  const attrEmoji = attributeEmojis[attr] || '';
+  const typeEmoji = typeEmojis[type] || '';
+
+  // Fix image path for web (filename only, stored in assets/characters/)
+  let imgName = character.image_path ? character.image_path.split('\\').pop() : '';
+  // Remove spaces and replace with underscores for filenames if needed (you can customize based on your naming)
+  imgName = imgName.replace(/\s/g, '_');
+
+  return `
+    <div class="character-card">
+      <img src="assets/characters/${imgName}" alt="${character.name}" />
+      <h2>${character.name}</h2>
+      <p><b>Attribute:</b> <span>${attrEmoji} <b>${attr}</b></span></p>
+      <p><b>Type:</b> ${typeEmoji} <b>${type}</b></p>
+      <p><b>Special Move:</b><br>${highlightStats(character.Special_Skill)}</p>
+      <p><b>Normal Skill:</b><br>${highlightStats(character.Normal_Skill)}</p>
+      <p><b>Ultimate Move:</b><br>${highlightStats(character.Ultimate_Move)}</p>
     </div>
   `;
 }
 
-// Search button click handler
-searchButton.addEventListener('click', () => {
-  const query = searchInput.value.trim().toLowerCase();
+// Search & dropdown logic
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const dropdown = document.getElementById('dropdown');
+const resultsContainer = document.getElementById('results');
+
+function filterCharacters(query) {
+  const lowerQ = query.toLowerCase();
+  return characters.filter(c => c.name.toLowerCase().includes(lowerQ));
+}
+
+function clearResults() {
   resultsContainer.innerHTML = '';
-  if (!query) {
+  dropdown.style.display = 'none';
+  dropdown.innerHTML = '';
+}
+
+function showDropdown(matches) {
+  dropdown.innerHTML = '';
+  if (matches.length === 0) {
     dropdown.style.display = 'none';
     return;
   }
-  const matches = characters.filter(c => c.name.toLowerCase().includes(query));
-  renderDropdown(matches);
-});
+  matches.forEach(character => {
+    const option = document.createElement('option');
+    const attrEmoji = attributeEmojis[character.Attribute] || '';
+    const typeEmoji = typeEmojis[character.Type] || '';
+    option.text = `${character.name} — ${attrEmoji} ${character.Attribute} | ${typeEmoji} ${character.Type}`;
+    option.value = character.id;
+    dropdown.appendChild(option);
+  });
+  dropdown.style.display = 'block';
+}
 
-// Hide dropdown when clicking outside
-document.addEventListener('click', e => {
-  if (!dropdown.contains(e.target) && e.target !== searchInput && e.target !== searchButton) {
+function showCharacterDetailsById(id) {
+  clearResults();
+  const character = characters.find(c => c.id == id);
+  if (character) {
+    resultsContainer.innerHTML = createCharacterCard(character);
+  }
+}
+
+searchButton.addEventListener('click', () => {
+  const query = searchInput.value.trim();
+  clearResults();
+  if (!query) return;
+
+  const matches = filterCharacters(query);
+  if (matches.length === 1) {
+    resultsContainer.innerHTML = createCharacterCard(matches[0]);
     dropdown.style.display = 'none';
+  } else if (matches.length > 1) {
+    showDropdown(matches);
+  } else {
+    resultsContainer.innerHTML = `<p>No characters found for "${query}"</p>`;
   }
 });
 
-// Load data on page load
+dropdown.addEventListener('change', () => {
+  const selectedId = dropdown.value;
+  if (selectedId) {
+    showCharacterDetailsById(selectedId);
+  }
+});
+
+// Initialize
 loadData();
