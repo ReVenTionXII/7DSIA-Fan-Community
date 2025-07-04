@@ -1296,15 +1296,27 @@
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg"
   },
   {
+    "id": 379,
     "name": "Test",
-    "Affiliation": "Test",
-    "Attribute": "DEX",
-    "Type": "DPS",
-    "image_path": "",
-    "Normal_Skill": "\"test\"1242341234123",
-    "Special_Skill": "\"test\"13241324",
-    "Ultimate_Move": "\"test\"1223432",
-    "Mentor_Recommendations": "test",
-    "id": 379
-  }
+    "Affiliation": "Absolute Testiness",
+    "Rank": "Legendary",
+    "Attribute": "STR",
+    "Type": "Debuffer",
+    "Normal_Skill": {
+      "Category": "Normal Skill",
+      "Name": "“Hand of God”",
+      "Description": "Deals damage equal to 999% of Attack to the target."
+    },
+    "Special_Skill": {
+      "Category": "Special Move",
+      "Name": "“Calamities End”",
+      "Description": "Deals damage equal to 9999% of Attack to the target every 5s .  Inflicts the target with Lv. 5 Slow for 3s upon successful attack.  [Lv. 5 Slow]  Decreases Attack Speed by 12%"
+    },
+    "Ultimate_Move": {
+      "Category": "Ultimate Move",
+      "Name": "“Final Erase”",
+      "Description": "Obliterates the game after dealing 999999% of Attack."
+    },
+    "image_path": "#"
+  },
 ]
