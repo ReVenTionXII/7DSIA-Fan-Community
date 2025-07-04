@@ -1,132 +1,176 @@
+/* Reset and base */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   background: #121212;
   color: #fff;
+  min-height: 100vh;
 }
 
 header {
   text-align: center;
   background: #000;
+  padding-bottom: 10px;
 }
 
 .banner {
   width: 100%;
-  max-height: 150px;
+  max-height: 160px;
   object-fit: cover;
+  border-bottom: 3px solid #ffd700;
 }
 
 nav {
-  padding: 1em;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px;
 }
 
 nav h1 {
-  margin: 0.5em 0;
-  font-size: 2em;
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin: 0;
 }
 
 .nav-links a {
-  margin: 0 10px;
+  margin-left: 20px;
   color: #ffd700;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffa500;
 }
 
 .search-section {
   margin: 2em auto;
   text-align: center;
-  position: relative;
-  width: 340px;
 }
 
 #searchInput {
-  padding: 0.5em;
-  width: 200px;
-  border-radius: 4px;
+  padding: 0.6em 1em;
+  width: 320px;
+  border-radius: 6px 0 0 6px;
   border: none;
+  font-size: 1rem;
+  outline: none;
 }
 
 #searchButton {
-  padding: 0.5em 1em;
-  margin-left: 0.5em;
+  padding: 0.6em 1.5em;
   border: none;
   background: #ffd700;
   color: #000;
   cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 0 6px 6px 0;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+#searchButton:hover {
+  background: #ffa500;
 }
 
 .results-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
-  padding: 2em;
+  gap: 1.4em;
+  padding: 1em 20px 3em;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Character Card Styles */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1em;
-  border-radius: 8px;
-  width: 360px;
+  padding: 1.2em;
+  border-radius: 12px;
+  width: 280px;
   text-align: center;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.character-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px #ffd700;
+  border-color: #ffd700;
 }
 
 .character-card img {
   max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1em;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  object-fit: contain;
+  height: 180px;
 }
 
-/* Custom dropdown styling */
-
-.custom-dropdown {
-  margin: 0 auto;
-  width: 320px;
-  max-height: 200px;
-  overflow-y: auto;
-  background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 4px;
+.character-card h2 {
+  margin: 0 0 10px 0;
   color: #ffd700;
+  font-size: 1.4rem;
+}
+
+.character-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
   text-align: left;
-  cursor: pointer;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-  position: absolute;
-  top: 3em;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
 }
 
-.custom-dropdown-item {
-  padding: 0.5em 1em;
-  border-bottom: 1px solid #444;
-  font-weight: normal;
+.character-card b {
+  color: #ffd700;
 }
 
-.custom-dropdown-item:hover {
-  background-color: #444;
-  color: #fff;
+/* Color-coded attribute */
+.attribute-dex {
+  color: #3a83f1; /* blue */
 }
 
-.custom-dropdown-item:last-child {
-  border-bottom: none;
+.attribute-vit {
+  color: #3bb143; /* green */
 }
 
-/* Highlighting and underline styles */
-
-b {
-  font-weight: bold;
+.attribute-str {
+  color: #e14b4b; /* red */
 }
 
-u {
+.attribute-int {
+  color: #f39c12; /* orange */
+}
+
+/* Highlight % numbers and keywords */
+.highlight-keyword {
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.highlight-percent {
+  font-weight: 700;
+  color: #ff7f50;
+}
+
+/* Underline time durations */
+.underline-time {
   text-decoration: underline;
+  font-weight: 700;
+  color: #00bfff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
