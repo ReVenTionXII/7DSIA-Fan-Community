@@ -47,7 +47,7 @@ function mentorHTML(data) {
   return `
     <div class="skill-section mentor-highlight">
       <p class="skill-header" style="font-size:1.15rem;color:#ffd700;">
-        ${icon} Mentor Recommendation
+        ${icon} Mentor Recommendations
       </p>
       <p class="skill-desc">${content}</p>
     </div>`;
@@ -87,7 +87,7 @@ function renderCharacters(characters) {
       ${skillHTML(char.Normal_Skill, "Normal Skill")}
       ${skillHTML(char.Special_Skill, "Special Move")}
       ${skillHTML(char.Ultimate_Move, "Ultimate Move")}
-      ${mentorHTML(char.Mentor_Recommendations, "Mentor Recommendation")}
+      ${mentorHTML(char.Mentor_Recommendations, "Mentor Recommendations")}
     `;
 
     results.appendChild(card);
