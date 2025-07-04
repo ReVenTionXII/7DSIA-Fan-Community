@@ -1296,8 +1296,7 @@
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg"
   },
   {
-    "id": 379,
-	"name": "Test",
+    "name": "Test",
     "Affiliation": "Absolute Testiness",
     "Attribute": "STR",
     "Type": "Debuffer",
@@ -1317,6 +1316,7 @@
       "Name": "“Final Erase”",
       "Description": "Obliterates the game after dealing 999999% of Attack."
     },
-    "Mentor_Recommendations": "Nothing to show at this time."
+    "Mentor_Recommendations": 12345,
+    "id": 379
   }
 ]
