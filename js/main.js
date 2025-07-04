@@ -97,7 +97,7 @@ function renderCharacterDetails(c) {
     <div class="character-card" style="max-width:600px; margin:auto; background:#222; padding:1em; border-radius:8px; box-shadow:0 0 10px gold;">
       <h2>${c.name}</h2>
       <p>${getColoredAttribute(c.Attribute)} | <b>${getEmojiType(c.Type)}</b></p>
-      <img src="assets/characters/${encodeURIComponent(c.name)}.jpg" alt="${c.name}" style="max-width:100%; border-radius:8px;" />
+      <img src="${imagePath}" alt="${character.name}" style="max-width:100%; border-radius:8px;">
       <h3>Normal Skill</h3>
       <p>${formatText(c.Normal_Skill)}</p>
       <h3>Special Skill</h3>
