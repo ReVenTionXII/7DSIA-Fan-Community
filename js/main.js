@@ -57,13 +57,29 @@ document.getElementById("searchButton").addEventListener("click", () => {
 
       // Helper to safely format Mentor Recommendation
       function formatMentorRecommendation(data) {
+  const icon = "🎓";
+  let content = "";
+
   if (!data) {
-    return `
-      <div class="skill-section">
-        <p class="skill-header">Mentor Recommendation</p>
-        <p class="skill-desc"><em>No mentor recommendation.</em></p>
-      </div>`;
+    content = `<em>No mentor recommendation.</em>`;
+  } else if (typeof data === "string") {
+    content = data.replace(/\n/g, "<br>");
+  } else {
+    try {
+      content = `<pre style="white-space: pre-wrap;">${JSON.stringify(data, null, 2)}</pre>`;
+    } catch {
+      content = `<em>Invalid mentor recommendation data.</em>`;
+    }
   }
+
+  return `
+    <div class="mentor-highlight skill-section" style="text-align: left;">
+      <p class="skill-header" style="font-size: 1.15rem; color: #ffd700;">
+        ${icon} Mentor Recommendation
+      </p>
+      <p class="skill-desc">${content}</p>
+    </div>`;
+}
 
   let content = "";
 
