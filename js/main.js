@@ -45,7 +45,6 @@ document.getElementById("searchButton").addEventListener("click", () => {
       /* ── boxed skill section helper ───────────────────────── */
       const skillHTML = obj => {
         if (!obj) return "";
-        const cat = obj.Category || "";
         const nm  = obj.Name     || "";
         const des = highlight(obj.Description || "");
         return `
