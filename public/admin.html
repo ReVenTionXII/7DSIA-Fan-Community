@@ -77,6 +77,18 @@
   .character-item > button:hover {
     background: #666;
   }
+  .character-item > button.edit-btn {
+    background: #2ecc40; /* green for edit */
+  }
+  .character-item > button.edit-btn:hover {
+    background: #27ae38;
+  }
+  .character-item > button.delete-btn {
+    background: #ff4444; /* red for delete */
+  }
+  .character-item > button.delete-btn:hover {
+    background: #cc3333;
+  }
   img.preview {
     max-width: 100px;
     border-radius: 6px;
@@ -154,6 +166,9 @@
     <label for="ultimateMove">Ultimate Move Description</label>
     <textarea id="ultimateMove" placeholder="JSON or plain text"></textarea>
 
+    <label for="mentorRecommendation">Mentor Recommendation(s)</label>
+    <textarea id="mentorRecommendation" placeholder="Mentor recommendation text or JSON"></textarea>
+
     <button type="submit">Save Character</button>
   </form>
 
@@ -178,6 +193,7 @@
   const normalSkillInput = document.getElementById('normalSkill');
   const specialSkillInput = document.getElementById('specialSkill');
   const ultimateMoveInput = document.getElementById('ultimateMove');
+  const mentorRecommendationInput = document.getElementById('mentorRecommendation');
 
   let characters = [];
 
@@ -194,10 +210,19 @@
     characters.forEach(c => {
       const div = document.createElement('div');
       div.className = 'character-item';
+      // Show name + attribute + type + mentor snippet (optional)
+      const mentorSnippet = c.Mentor_Recommendations
+        ? (typeof c.Mentor_Recommendations === 'string'
+           ? c.Mentor_Recommendations.substring(0, 60) + (c.Mentor_Recommendations.length > 60 ? '...' : '')
+           : JSON.stringify(c.Mentor_Recommendations).substring(0, 60) + '...')
+        : '';
+
       div.innerHTML = `
-        <strong>${c.name}</strong> (${c.Attribute || '-'} / ${c.Type || '-'}) 
-        <button onclick="editCharacter(${c.id})">Edit</button>
-        <button onclick="deleteCharacter(${c.id})">Delete</button>
+        <strong>${c.name}</strong> (${c.Attribute || '-'} / ${c.Type || '-'})<br/>
+        <em>Mentor Recommendation(s):</em> ${mentorSnippet}
+        <br/>
+        <button class="edit-btn" onclick="editCharacter(${c.id})">Edit</button>
+        <button class="delete-btn" onclick="deleteCharacter(${c.id})">Delete</button>
       `;
       characterList.appendChild(div);
     });
@@ -218,6 +243,7 @@
     normalSkillInput.value = char.Normal_Skill ? JSON.stringify(char.Normal_Skill, null, 2) : '';
     specialSkillInput.value = char.Special_Skill ? JSON.stringify(char.Special_Skill, null, 2) : '';
     ultimateMoveInput.value = char.Ultimate_Move ? JSON.stringify(char.Ultimate_Move, null, 2) : '';
+    mentorRecommendationInput.value = char.Mentor_Recommendations ? JSON.stringify(char.Mentor_Recommendations, null, 2) : '';
   };
 
   // Delete character
@@ -301,6 +327,7 @@
       Normal_Skill: parseJsonSafe(normalSkillInput.value),
       Special_Skill: parseJsonSafe(specialSkillInput.value),
       Ultimate_Move: parseJsonSafe(ultimateMoveInput.value),
+      Mentor_Recommendations: parseJsonSafe(mentorRecommendationInput.value),
     };
 
     const id = charIdInput.value;
