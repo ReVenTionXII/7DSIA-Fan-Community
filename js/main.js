@@ -57,17 +57,32 @@ document.getElementById("searchButton").addEventListener("click", () => {
 
       // Helper to safely format Mentor Recommendation
       function formatMentorRecommendation(data) {
-        if (!data) return `<em>No mentor recommendation.</em>`;
+  if (!data) {
+    return `
+      <div class="skill-section">
+        <p class="skill-header">Mentor Recommendation</p>
+        <p class="skill-desc"><em>No mentor recommendation.</em></p>
+      </div>`;
+  }
 
-        if (typeof data === "string") {
-          return data.replace(/\n/g, "<br>");
-        }
-        try {
-          return `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-        } catch {
-          return `<em>Invalid mentor recommendation data.</em>`;
-        }
-      }
+  let content = "";
+
+  if (typeof data === "string") {
+    content = data.replace(/\n/g, "<br>");
+  } else {
+    try {
+      content = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    } catch {
+      content = `<em>Invalid mentor recommendation data.</em>`;
+    }
+  }
+
+  return `
+    <div class="skill-section">
+      <p class="skill-header">Mentor Recommendation(s)</p>
+      <p class="skill-desc">${content}</p>
+    </div>`;
+}
 
       filtered.forEach(char => {
         const imgFile = char.image_path
