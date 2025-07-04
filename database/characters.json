@@ -22,7 +22,7 @@
       "Description": "Deals damage equal to 654% of Attack to all enemies within 1.5m of the initial target. Inflicts targets hit with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%"
     },
     "image_path": "assets/characters/Acid_Hendrickson.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Acid Hendrickson here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Acid Hendrickson here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -50,7 +50,7 @@
       "Description": "Deals damage equal to 620% of Attack to all enemies in a 2m x 8.5m area in front of self. Inflicts targets hit with Lv. 4 Resistance Down for 10s upon successful attack. [Lv. 4 Resistance Down] Decreases Crit Resistance by 18%"
     },
     "image_path": "assets/characters/Break_Dreyfus.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Break Dreyfus here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Break Dreyfus here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -78,7 +78,7 @@
       "Description": "Deals damage equal to 1014% of Attack to the target. Inflicts the target with Heart Destruction upon successful attack. [Heart Destruction] Increases final damage taken by 20% . (Stacks up to 3 times )"
     },
     "image_path": "assets/characters/Dark_Fighter_Ban.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Dark Fighter Ban here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Dark Fighter Ban here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -106,7 +106,7 @@
       "Description": "Deals damage equal to 781% of Attack to all enemies in a 3m x 8m area in front of self. Grants Lv. 5 Concentration to allies for 10s and decreases Ten Commandments allies\u2019 cooldowns by 2s upon successful attack. [Lv. 5 Concentration] Increases final Accuracy by 15%"
     },
     "image_path": "assets/characters/Demonic_Love_Melascula.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Demonic Love Melascula here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Demonic Love Melascula here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -134,7 +134,7 @@
       "Description": "Prioritizes Support heroes and deals damage equal to 876% of Attack to all enemies within 3m of self. Grants Combo Star to self for 2s each time this skill deals damage to an enemy. [Combo Star] Increases final Attack by 1.5% and Attack Speed by 2.5% (Stacks up to 20 times)"
     },
     "image_path": "assets/characters/Derieri_of_Purity.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Derieri of Purity here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Derieri of Purity here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -162,7 +162,7 @@
       "Description": "Deals damage equal to 658% of Attack to the target. Inflicts the target with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%"
     },
     "image_path": "assets/characters/Diamond_Holy_Knight_Gilthunder.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Diamond Holy Knight Gilthunder here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Diamond Holy Knight Gilthunder here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -190,7 +190,7 @@
       "Description": "Deals damage equal to 772% of Attack to the target. Inflicts the target with Lv. 3 Resistance Down for 10s and grants Lv. 3 Swiftness to self for 10s upon successful attack. [Lv. 3 Resistance Down] Decreases Crit Resistance by 14% [Lv. 3 Swiftness] Increases Attack Speed by 6%"
     },
     "image_path": "assets/characters/Diamond_Holy_Knight_Howzer.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Diamond Holy Knight Howzer here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Diamond Holy Knight Howzer here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -218,7 +218,7 @@
       "Description": "Deals damage equal to 815% of Attack to the target. Grants Triple Step to self for 7s upon successful attack. [Triple Step] Increases Crit Chance by 15% and Attack Speed by 10%"
     },
     "image_path": "assets/characters/Dragon_Sin_of_Wrath_Meliodas.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Dragon Sin of Wrath Meliodas here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Dragon Sin of Wrath Meliodas here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -246,7 +246,7 @@
       "Description": "Deals damage equal to 944% of Attack to all enemies within 5m of the initial target. Grants Dragon Scales to Tank allies for 5s and reduces their cooldowns by 2s upon successful attack. [Dragon Scales] Increases final Attack by 20% and final Defense by 20% ."
     },
     "image_path": "assets/characters/Dragon_Slayer_Derieri.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Dragon Slayer Derieri here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Dragon Slayer Derieri here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -274,7 +274,7 @@
       "Description": "Deals damage equal to 619% of Attack to all enemies within 4m of self. Inflicts targets hit with Infect for 6s upon successful attack. [Infect] Unable to Recover HP for the duration of the effect"
     },
     "image_path": "assets/characters/Drole_of_Patience.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Drole of Patience here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Drole of Patience here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -302,7 +302,7 @@
       "Description": "Grants Lv. 2 Absolute Defense to allies for 10s and removes all debuffs from allies. [Lv. 2 Absolute Defense] Nullifies damage taken 2 time(s)"
     },
     "image_path": "assets/characters/Elizabeth_of_Eternal_Rebirth.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Elizabeth of Eternal Rebirth here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Elizabeth of Eternal Rebirth here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -330,7 +330,7 @@
       "Description": "Deals damage equal to 880% of Attack to all enemies within 6m of the initial target. Inflicts targets hit with Lv. 5 Burn for 10s upon successful attack. [Lv. 5 Burn] Deals damage equal to 25% of the caster\u2019s Attack every 1 second(s) and decreases Crit Resistance by 10%"
     },
     "image_path": "assets/characters/Emperor_of_Light_Escanor.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Emperor of Light Escanor here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Emperor of Light Escanor here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -358,7 +358,7 @@
       "Description": "Deals damage equal to 1016% of Attack to the target. Grants Lv. 2 Regeneration to Ten Commandments allies for 10s upon successful attack. [Lv. 2 Regeneration] Restores HP by an amount equal to 13% of the caster\u2019s Attack every 1 second(s)"
     },
     "image_path": "assets/characters/Estarossa_of_Love.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Estarossa of Love here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Estarossa of Love here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -386,7 +386,7 @@
       "Description": "Deals damage equal to 576% of Attack to all enemies within 2m of the initial target. Inflicts targets hit with Lv. 4 Petrify for 2s upon successful attack. [Lv. 4 Petrify] Unable to move or attack for the duration of the effect and decreases Crit Resistance by 14%"
     },
     "image_path": "assets/characters/Fairy_Helbram.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Fairy Helbram here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Fairy Helbram here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -414,7 +414,7 @@
       "Description": "Deals damage equal to 710% of Attack to the target. Grants Lv. 5 Evasion to STR-attribute allies for 10s upon successful attack. [Lv. 5 Evasion] Increases final Evasion by 15%"
     },
     "image_path": "assets/characters/Fighter_Diane.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Fighter Diane here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Fighter Diane here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -442,7 +442,7 @@
       "Description": "Deals damage equal to 900% of Attack to all enemies within 6m of the initial target. Inflicts the target with Wither for 3s 10s and grants Lv. 5 Sever to self for 10s upon successful attack. [Wither] Deals damage equal to 95% of the caster\u2019s Defense every 1s and decreases final Defense by 30% (Treated as Destruction ) [Lv. 5 Sever] Increase Crit Chance by 20%"
     },
     "image_path": "assets/characters/First_Fairy_King_Gloxinia.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for First Fairy King Gloxinia here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for First Fairy King Gloxinia here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -470,7 +470,7 @@
       "Description": "Deals damage equal to 620% of Attack to all enemies in a 3m x 6m area in front of self. Inflicts targets hit with Lv. 4 Disperse for 10s upon successful attack. [Lv. 4 Disperse] Decreases Crit Chance by 18%"
     },
     "image_path": "assets/characters/Fountain_of_Youth_Saint_Elaine.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Fountain of Youth Saint Elaine here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Fountain of Youth Saint Elaine here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -498,7 +498,7 @@
       "Description": "Deals damage equal to 912% of Attack to the target. Inflicts the target with Snatch for 10s and grants Snatch to self for 10s upon successful attack. [Snatch] Decreases final Attack by 15% [Snatch] Increases final Attack by 15%"
     },
     "image_path": "assets/characters/Fox_Sin_of_Greed_Ban.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Fox Sin of Greed Ban here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Fox Sin of Greed Ban here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -526,7 +526,7 @@
       "Description": "Deals damage equal to 602% of Attack to all enemies within 2.5m of self. Taunts nearby enemies for 10s upon successful attack. [Taunt] Taunted targets will temporarily prioritize attacking the caster of the Taunt"
     },
     "image_path": "assets/characters/Fraudrin_of_Selflessness.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Fraudrin of Selflessness here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Fraudrin of Selflessness here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -554,7 +554,7 @@
       "Description": "Deals damage equal to 951% of Attack to the target. Grants \u201dCritical Over\u201d to self for 10s before activating this skill. [\u201dCritical Over\u201d] Increases Attack Speed by 16%"
     },
     "image_path": "assets/characters/Galland_of_Truth.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Galland of Truth here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Galland of Truth here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -582,7 +582,7 @@
       "Description": "Deals damage equal to 543% of Attack to all enemies within 2m of the initial target. Inflicts targets hit with Lv. 4 Petrify for 2s upon successful attack. [Lv. 4 Petrify] Unable to move or attack for the duration of the effect and decreases Crit Resistance by 14%"
     },
     "image_path": "assets/characters/Giant_Girl_Diane.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Giant Girl Diane here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Giant Girl Diane here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -610,7 +610,7 @@
       "Description": "Restores allie\u2019s HP by an amount equal to 625% of Attack. Grants DoT Immunity to allies for 3s . Additionally, removes all debuffs from allies. [DoT Immunity] Shock, Acid, Bleed, and Burn Immunity"
     },
     "image_path": "assets/characters/Gloxinia_of_Repose.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Gloxinia of Repose here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Gloxinia of Repose here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -638,7 +638,7 @@
       "Description": "Deals damage equal to 717% of Attack to the target. Inflicts the target with Lv. 5 Acid for 10s upon successful attack. [Lv. 5 Acid] Deals damage equal to 25% of the caster\u2019s Attack every 1 second(s) and decreases final Defense by 10%"
     },
     "image_path": "assets/characters/Grandmaster_Hendrickson.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Grandmaster Hendrickson here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Grandmaster Hendrickson here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -666,7 +666,7 @@
       "Description": "Deals damage equal to 735% of Attack to the target. Inflicts the target with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%"
     },
     "image_path": "assets/characters/Grayroad_of_Pacifism.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Grayroad of Pacifism here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Grayroad of Pacifism here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -694,7 +694,7 @@
       "Description": "Deals damage equal to 702% of Attack to all enemies in a 4m x 7.5m area in front of self. Grants Lv.5 Onslaught to DEX-attribute and [Seven Deadly Sins] allies for 10s upon successful attack. [Lv.5 Onslaught] Increases final Attack by 20%"
     },
     "image_path": "assets/characters/Grizzly_Sloth_King.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Grizzly Sloth King here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Grizzly Sloth King here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -722,7 +722,7 @@
       "Description": "Deals damage equal to 596% of Attack to the target. Removes all buffs on the target upon successful attack."
     },
     "image_path": "assets/characters/Guardian_of_Istal_Jenna.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Guardian of Istal Jenna here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Guardian of Istal Jenna here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -750,7 +750,7 @@
       "Description": "Restores allies; HP by an amount equal to 482% of Attack. Additionally, removes all debuffs from allies."
     },
     "image_path": "assets/characters/Guardian_of_Istal_Zaneri.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Guardian of Istal Zaneri here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Guardian of Istal Zaneri here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -778,7 +778,7 @@
       "Description": "Deals damage equal to 885% of Attack to all enemies in a 3m x 12m area in front of self. Final damage is increased by 20% per every 1 stack(s) of Disaster on the target upon successful attack."
     },
     "image_path": "assets/characters/Guardian_of_the_Fairies_Old_Fart_King.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Guardian of the Fairies Old Fart King here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Guardian of the Fairies Old Fart King here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -806,7 +806,7 @@
       "Description": "Deals damage equal to 902% of Attack to all enemies in a 4m x 8m area in front of self. Inflicts targets hit with Shiver for 5s upon successful attack. * If the target is a Stage Boss , final damage increases\u00a0by an additional 500 1000% . [Shiver] Decreases final Evasion by 25% and final Crit Chance by 25%"
     },
     "image_path": "assets/characters/Holy_Knight_of_Ice_Jericho.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Holy Knight of Ice Jericho here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Holy Knight of Ice Jericho here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -834,7 +834,7 @@
       "Description": "Deals damage equal to 851% of Attack to all enemies within 4m of the initial target. Grants Ignore Attribute Damage to allies for 10s upon successful attack. [Ignore Attribute Damage] Ignores additional attribute damage from disadvantaged attributes"
     },
     "image_path": "assets/characters/Holy_Maiden_of_the_Forest_Elaine.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Holy Maiden of the Forest Elaine here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Holy Maiden of the Forest Elaine here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -862,7 +862,7 @@
       "Description": "Deals damage equal to 712% of Attack to all enemies within 4m of the initial target. Grants Star Force to allies for 10s and reduces the cooldowns of the ally with the lowest HP by 3.5s upon successful attack. [Star Force] Increases final Accuracy by 30% . Increases damage dealt by Normal Skills by 30% ."
     },
     "image_path": "assets/characters/Holy_Night's_Illusion_Lillia.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Holy Night's Illusion Lillia here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Holy Night's Illusion Lillia here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -890,7 +890,7 @@
       "Description": "Deals damage equal to 830% of Attack to all enemies in a 4m x 9m area in front of self. Upon successful attack, inflicts Tank/DPS targets with Tampered Memories for 5s and Support/Debuffer targets with Memory Distortion for 5s . [Memory Distortion] Decreases final Defense by 30% and increases damage taken by 20% . [Tampered Memories] Decreases final Attack by 30% and Crit Chance by 20% ."
     },
     "image_path": "assets/characters/Invasion_Arrow_Gowther.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Invasion Arrow Gowther here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Invasion Arrow Gowther here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -918,7 +918,7 @@
       "Description": "Deals damage equal to 627% of Attack to the target. Decreases allies\u2019 cooldowns by 2s upon successful attack."
     },
     "image_path": "assets/characters/Knight_of_Danafor_Liz.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Knight of Danafor Liz here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Knight of Danafor Liz here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -946,7 +946,7 @@
       "Description": "Deals damage equal to 926% of Attack to all enemies in a 4m x 7m area in front of self. Grants Overwhelmed to self for 10s upon successful attack. This skill deals damage as if the hero has an attribute advantage against all attributes. [Overwhelmed] Increases final Attack by 15%"
     },
     "image_path": "assets/characters/Lion_Sin_of_Pride_Escanor.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Lion Sin of Pride Escanor here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Lion Sin of Pride Escanor here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -974,7 +974,7 @@
       "Description": "Deals damage equal to 886% of Attack to all enemies within 6m of the initial target. Inflicts target with Electromagnetic Field for 10s upon successful attack. [Electromagnetic Field] Deals damage equal to 50% of the caster\u2019s Attack every 1s and decreases Attack Speed by 15% (Treated as Shock )"
     },
     "image_path": "assets/characters/Mad_Scientist_Valenti.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Mad Scientist Valenti here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Mad Scientist Valenti here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -1002,7 +1002,7 @@
       "Description": "Deals damage equal to 1093% of Attack to all enemies in a 4m x 12m area in front of self. Applies debuff to enemies as listed below upon successful attack for 2s . - Tank ( Petrify ): Unable to move or attack for the duration of the effect and decreases Crit Resistance by 20% - DPS ( Stun ): Unable to move or attack for the duration of the effect - Support ( Silence ): Unable to use Special Skills or Ultimates for the duration of the effect - Debuffer ( Paralysis ): Unable to move or attack for the duration of the effect"
     },
     "image_path": "assets/characters/Mage_of_Infinity_Merlin.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Mage of Infinity Merlin here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Mage of Infinity Merlin here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1030,7 +1030,7 @@
       "Description": "Deals damage equal to 721% of Attack to the target. Grants Lv. 4 Concentration to allies for 10s upon successful attack. [Lv. 4 Concentration] Increases final Accuracy\u00a0 by 12%"
     },
     "image_path": "assets/characters/Melascula_of_Faith.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Melascula of Faith here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Melascula of Faith here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1058,7 +1058,7 @@
       "Description": "Deals damage equal to 685% of Attack to all enemies in a 3m x 11m area in front of self. Inflicts targets with Hellblaze for 10s upon successful attack. [Hellblaze] Decreases Crit Resistance by 18% , Crit Defense by 32% , and deals damage equal to 50% of Attack every 1 second (s)"
     },
     "image_path": "assets/characters/Monspeet_of_Reticence.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Monspeet of Reticence here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for Monspeet of Reticence here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -1086,7 +1086,7 @@
       "Description": "Deals damage equal to 644% of Attack to the target. Grants Lv.3 Swiftness to allies for 10s upon successful attack. [Lv.3 Swiftness] Increases Attack Speed by 6%"
     },
     "image_path": "assets/characters/New_Generation_Holy_Knight_Jericho.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for New Generation Holy Knight Jericho here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for New Generation Holy Knight Jericho here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1114,7 +1114,7 @@
       "Description": "Deals damage equal to 688% of Attack to the target. Inflicts the target with Lv. 5 Destruction for 10s upon successful attack. [Lv. 5 Destruction] Decreases final Defense by 30%"
     },
     "image_path": "assets/characters/New_King_Arthur.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for New King Arthur here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for New King Arthur here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1142,7 +1142,7 @@
       "Description": "Deals damage equal to 1280% of Attack to all enemies within 6m of self over 5 hits . Inflicts various debuffs on targets hit upon successful attack. These debuffs all last 5s . - 1st hit ( Slow ): Decreases Attack Speed by 10% - 2nd hit ( Erosion ): Decreases Crit Damage 30% - 3rd hit ( Weaken ): Decreases final Attack by 20% - 4th hit ( Disperse ): Decreases Crit Chance by 15% - 5th hit ( Blind ): Decreases final Accuracy by 15%"
     },
     "image_path": "assets/characters/Pitch-Black_Meliodas.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Pitch-Black Meliodas here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Pitch-Black Meliodas here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1170,7 +1170,7 @@
       "Description": "Deals damage equal to 813% of Attack to all enemies in a 2m x 6m area in front of self."
     },
     "image_path": "assets/characters/Purge_Zaratras.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Purge Zaratras here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Purge Zaratras here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1198,7 +1198,7 @@
       "Description": "Deals damage equal to 591% of Attack to the target. Inflicts the target with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%"
     },
     "image_path": "assets/characters/Sapphire_Holy_Knight_Griamore.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Sapphire Holy Knight Griamore here: Equip premium defensive gear to enhance survivability and use in prolonged PvP matches.",
       "F2P": "Edit F2P recommendations for Sapphire Holy Knight Griamore here: Position this character in the front line for story missions to absorb damage effectively."
     }
@@ -1226,7 +1226,7 @@
       "Description": "Deals damage equal to 590% of Attack to all enemies within 2m of the initial target. Grants Lv. 5 Sever to STR-attribute allies for 10s upon successful attack. [Lv. 5 Sever] Increases Crit Chance by 20%"
     },
     "image_path": "assets/characters/Sky_Temple_Protector_Ellatte.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Sky Temple Protector Ellatte here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Sky Temple Protector Ellatte here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1254,7 +1254,7 @@
       "Description": "Deals damage equal to 820% of Attack to the target. Restores 30 Energy if this skill defeats an enemy."
     },
     "image_path": "assets/characters/Swordsman_Nanashi.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Swordsman Nanashi here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Swordsman Nanashi here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1282,7 +1282,7 @@
       "Description": "Deals damage equal to 892% of Attack to all enemies in a 1.5m x 7m area in front of self. Removes all buffs and Knocks Back targets hit upon successful attack."
     },
     "image_path": "assets/characters/The_Boar_Sin_of_Gluttony_Merlin.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for The Boar Sin of Gluttony Merlin here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for The Boar Sin of Gluttony Merlin here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1310,7 +1310,7 @@
       "Description": "Deals damage equal to 760% of Attack to all enemies in a 2m x 6.5m area in front of self. Reduces allies\u2019 cooldowns by 2s upon successful attack. This skill\u2019s final damage is increased by 40% against STR-attribute targets."
     },
     "image_path": "assets/characters/The_Goat_Sin_of_Lust_Gowther.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for The Goat Sin of Lust Gowther here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for The Goat Sin of Lust Gowther here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1338,7 +1338,7 @@
       "Description": "Deals damage equal to 772% of Attack to all enemies within 4m of the initial target. Inflicts the target with Lv. 4 Evasion Down for 5s to the target and increases cooldowns by 2s upon successful attack. Grants Earth\u2019s Calling to self for 3s . [Lv. 4 Evasion Down] Decreases final Evasion by 16% [Earth\u2019s Calling] Increases final Attack Speed by 200%"
     },
     "image_path": "assets/characters/The_Serpent_Sin_of_Envy_Diane.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for The Serpent Sin of Envy Diane here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for The Serpent Sin of Envy Diane here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -1366,7 +1366,7 @@
       "Description": "Deals damage equal to 630% of Attack to the target. Restores allies\u2019 HP by an amount equal to 540% of Attack upon successful attack."
     },
     "image_path": "assets/characters/Thousand_Ashes_Gelda.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Thousand Ashes Gelda here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for Thousand Ashes Gelda here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1394,7 +1394,7 @@
       "Description": "Deals damage equal to 967 % of Attack to all enemies in a 3m x 12m area in front of self. Grants Weapon Enhancement to self and inflicts targets hit with Dark Fire for 5s upon successful attack. [Weapon Enhancement] Increases final Attack by 12% and final Crit Chance by 5% . (Stacks up to 5 10 times ) [Dark Fire] Deals damage equal to 100% of the caster\u2019s Attack every 1s , non-recoverable (Treated as Acid Corrosion Acid )"
     },
     "image_path": "assets/characters/Wandering_Swordsman_Meliodas.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for Wandering Swordsman Meliodas here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for Wandering Swordsman Meliodas here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1422,7 +1422,7 @@
       "Description": "Restores allies\u2019 Energy by 10 upon using the skill. Inflicts allies with Reflect for 3s , reflecting 35% of the damage taken back at the attacker upon being hit. [Reflect] Upon being hit, reflects a portion of the damage taken back at the attacker."
     },
     "image_path": "assets/characters/White_Wings_Elizabeth.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for White Wings Elizabeth here: Invest in premium resources to boost this character\u2019s healing or buff abilities for team synergy.",
       "F2P": "Edit F2P recommendations for White Wings Elizabeth here: Use this character to support your main DPS in story and event missions for consistent clears."
     }
@@ -1450,7 +1450,7 @@
       "Description": "Deals damage equal to 1880% of Attack to the target. Removes all buffs from targets hit upon successful attack."
     },
     "image_path": "assets/characters/[Demon_King's_Deputy]_Zeldris.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for [Demon King's Deputy] Zeldris here: Focus on premium gear to maximize damage output and prioritize this character in PvP battles.",
       "F2P": "Edit F2P recommendations for [Demon King's Deputy] Zeldris here: Use this character for high-damage boss fights and pair with free-to-play supports for synergy."
     }
@@ -1478,7 +1478,7 @@
       "Description": "Deals damage equal to 549% of Attack to all enemies in a 2m x 4m area in front of self. Inflicts targets hit with \u201cOverpower\u201d for 5s upon successful attack. [\u201cOverpower\u201d] Decreases final Defense by 30% and decreases Crit Chance by 12%"
     },
     "image_path": "assets/characters/[Roars_of_Dawn]_Slater.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for [Roars of Dawn] Slater here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for [Roars of Dawn] Slater here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }
@@ -1506,7 +1506,7 @@
       "Description": "Deals damage equal to 666% of Attack to the target. Inflicts the target with Lv. 5 Weaken for 10s upon successful attack. [Lv. 5 Weaken] Decreases final Attack by 30%"
     },
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg",
-    "Mentor_Recommendations": {
+    "Build_Recommendations": {
       "P2P": "Edit P2P recommendations for [The Pleiades of the Azure Sky] Denzel here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
       "F2P": "Edit F2P recommendations for [The Pleiades of the Azure Sky] Denzel here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
     }

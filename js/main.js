@@ -53,25 +53,25 @@ function skillHTML(obj, cat) {
     </div>`;
 }
 
-// Mentor recommendation box
-function mentorHTML(data, characterName) {
+// Build recommendation box
+function BuildHTML(data, characterName) {
   const icon = "🎓";
   let p2pContent, f2pContent;
 
-  // Check if Mentor_Recommendations is an object or string
-  if (typeof data.Mentor_Recommendations === 'object' && data.Mentor_Recommendations) {
-    p2pContent = data.Mentor_Recommendations.P2P || `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
-    f2pContent = data.Mentor_Recommendations.F2P || `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
+  // Check if Build_Recommendations is an object or string
+  if (typeof data.Build_Recommendations === 'object' && data.Build_Recommendations) {
+    p2pContent = data.Build_Recommendations.P2P || `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
+    f2pContent = data.Build_Recommendations.F2P || `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
   } else {
-    // Fallback for current "Mentor tips coming soon!" string
+    // Fallback for current "Build tips coming soon!" string
     p2pContent = `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
     f2pContent = `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
   }
   
   return `
-    <div class="skill-section mentor-highlight">
+    <div class="skill-section Build-highlight">
       <p class="skill-header" style="font-size:1.15rem;color:#ffd700;">
-        ${icon} Mentor Recommendations
+        ${icon} Build Recommendations
       </p>
       <p class="skill-desc"><b>P2P:</b> ${p2pContent}</p>
       <p class="skill-desc"><b>F2P:</b> ${f2pContent}</p>
@@ -113,7 +113,7 @@ function renderCharacters(characters) {
       ${skillHTML(char.Normal_Skill, "Normal Skill")}
       ${skillHTML(char.Special_Skill, "Special Move")}
       ${skillHTML(char.Ultimate_Move, "Ultimate Move")}
-      ${mentorHTML(char, char.name)}
+      ${BuildHTML(char, char.name)}
     `;
 
     results.appendChild(card);

@@ -296,29 +296,29 @@ body {
   text-decoration: underline dotted;
 }
 
-/* Mentor Recommendation Styles */
-.mentor-highlight {
+/* Build Recommendation Styles */
+.Build-highlight {
   position: relative;
   border: 2px solid #00e5ff;
   background: linear-gradient(145deg, #263238 0%, #2e3b44 100%);
-  animation: pulseGlowMentor 2.5s infinite;
+  animation: pulseGlowBuild 2.5s infinite;
   border-radius: 10px;
   padding: 12px;
   transition: transform 0.3s ease;
 }
 
-.mentor-highlight:hover {
+.Build-highlight:hover {
   transform: scale(1.02);
 }
 
-.mentor-highlight .skill-header {
+.Build-highlight .skill-header {
   color: #00e5ff;
   font-weight: 800;
   font-size: 1.2rem;
   text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
 }
 
-.mentor-highlight .skill-desc {
+.Build-highlight .skill-desc {
   margin: 8px 0;
   padding: 8px;
   background: linear-gradient(145deg, #1e1e2e 0%, #2a2a3e 100%);
@@ -328,20 +328,20 @@ body {
   font-weight: 500;
 }
 
-.mentor-highlight .skill-desc b {
+.Build-highlight .skill-desc b {
   color: #ffcc00;
   font-weight: 700;
 }
 
 /* Optional icon effect */
-.mentor-highlight .skill-header::before {
+.Build-highlight .skill-header::before {
   content: "🎓 ";
   font-size: 1.2rem;
   margin-right: 4px;
 }
 
 /* Animations */
-@keyframes pulseGlowMentor {
+@keyframes pulseGlowBuild {
   0%   { box-shadow: 0 0 8px #00e5ff66; }
   50%  { box-shadow: 0 0 16px #00e5ffaa; }
   100% { box-shadow: 0 0 8px #00e5ff66; }
