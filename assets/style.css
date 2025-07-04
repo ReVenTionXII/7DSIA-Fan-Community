@@ -72,16 +72,17 @@ body {
 #searchButton {
   padding: 10px 20px;
   border-radius: 0 6px 6px 0;
-  border: none;
-  background-color: #5865f2;
-  color: white;
+  border: 2px solid #ffcc00;  /* Gold border */
+  background-color: #000;     /* Black background */
+  color: #ffcc00;             /* Gold text */
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #searchButton:hover {
-  background-color: #4752c4;
+  background-color: #ffcc00; /* Gold background on hover */
+  color: #000;               /* Black text on hover */
 }
 
 #results {
