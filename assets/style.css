@@ -223,11 +223,14 @@ body {
   white-space: pre-wrap;
 }
 
+/* mentor highlight inherits .skill-section but tweaks border colour */
 .mentor-highlight {
-  background-color: #2f2a19;
-  border-left: 4px solid #ffd700;
-  box-shadow: 0 0 10px #ffcc00;
-  animation: pulseGlow 3s infinite ease-in-out;
+  border-left-color: #00bfff;          /* bright cyan border */
+  background-color: #263238;           /* slightly different bg */
+}
+
+.mentor-highlight .skill-header {
+  color: #00e5ff;                      /* bright cyan header text */
 }
 
 @keyframes pulseGlow {
