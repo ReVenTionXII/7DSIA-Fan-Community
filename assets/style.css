@@ -98,7 +98,8 @@ body {
   border-radius: 14px;
   padding: 20px;
   width: 320px;
-  box-shadow: 0 0 12px rgba(88, 101, 242, 0.5);
+  /* Use the glow color variable with a soft shadow */
+  box-shadow: 0 0 12px var(--glow-color, rgba(88, 101, 242, 0.5));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
   display: flex;
@@ -108,7 +109,8 @@ body {
 
 .character-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 24px rgba(88, 101, 242, 0.9);
+  /* Stronger glow on hover */
+  box-shadow: 0 0 24px var(--glow-color, rgba(88, 101, 242, 0.9));
 }
 
 .character-card img {

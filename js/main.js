@@ -36,6 +36,14 @@ document.getElementById('searchButton').addEventListener('click', () => {
         "Support": "🚑"
       };
 
+      // Attribute colors for glow
+      const attributeColors = {
+        "DEX": "#3b82f6",   // blue
+        "VIT": "#22c55e",   // green
+        "STR": "#ef4444",   // red
+        "INT": "#f97316"    // orange
+      };
+
       function formatSkillText(text) {
         if (!text) return '';
 
@@ -88,8 +96,15 @@ document.getElementById('searchButton').addEventListener('click', () => {
         const attributeEmoji = attributeEmojis[character.Attribute] || '';
         const typeEmoji = typeEmojis[character.Type] || '';
 
+        // Get glow color from attribute or default
+        const glowColor = attributeColors[character.Attribute] || '#5865f2';
+
         const card = document.createElement('div');
         card.classList.add('character-card');
+
+        // Set CSS variable for glow color
+        card.style.setProperty('--glow-color', glowColor);
+
         card.innerHTML = `
           <img src="${imgSrc}" alt="${character.name}">
           <h2>${character.name}</h2>
