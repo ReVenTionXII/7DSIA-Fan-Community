@@ -67,7 +67,7 @@ body {
 
 #searchInput::placeholder {
   color: #ffd966;             /* Lighter gold for placeholder */
-
+} /* <-- fixed: added missing closing brace here */
 
 #searchButton {
   background-color: #ffcc00; /* Gold background */
@@ -83,8 +83,8 @@ body {
 
 #searchButton:hover {
   background-color: #e6b800; /* Slightly darker gold */
-  color: #000;
-}               /* Black text on hover */
+  color: #000;               /* Black text on hover */
+}
 
 #results {
   display: flex;
