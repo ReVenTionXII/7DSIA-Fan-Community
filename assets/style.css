@@ -1,174 +1,171 @@
-/* General Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+body {
   background-color: #121212;
+  color: #ddd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* Banner */
+header {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .banner {
-  display: block;
   max-width: 100%;
   height: auto;
-  margin: 20px auto 10px;
-  object-fit: contain;
+  border-radius: 10px;
 }
 
-/* Social Buttons Container */
 #social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+  margin: 1rem 0;
 }
 
 .social-btn {
-  padding: 10px 20px;
-  border: 2px solid #FFD700;
-  border-radius: 8px;
+  background-color: #2c2c2c;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  margin: 0 0.5rem;
+  border-radius: 25px;
   text-decoration: none;
-  color: white;
   font-weight: 600;
-  background: transparent;
-  transition: background-color 0.3s, color 0.3s;
-  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 .social-btn:hover {
-  background-color: #FFD700;
-  color: #121212;
-  cursor: pointer;
+  background-color: #555;
 }
 
-.discord-btn {
-  /* You can add specific Discord styles if you want */
-}
-
-.reddit-btn {
-  /* You can add specific Reddit styles if you want */
-}
-
-/* Search Section */
 .search-section {
+  margin: 1rem 0 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 40px;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 500px;
 }
 
 #searchInput {
-  padding: 10px 15px;
-  width: 300px;
-  border-radius: 8px;
-  border: 2px solid #FFD700;
-  background-color: #1E1E1E;
-  color: white;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s;
+  flex-grow: 1;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #444;
+  background-color: #1e1e1e;
+  color: #eee;
 }
 
-#searchInput:focus {
-  border-color: #00BFFF;
+#searchInput::placeholder {
+  color: #777;
 }
 
 #searchButton {
-  padding: 10px 20px;
-  background-color: #FFD700;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
   border: none;
-  border-radius: 8px;
+  background-color: #bfa43f; /* gold */
   color: #121212;
-  font-weight: 700;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 #searchButton:hover {
-  background-color: #e6c200;
+  background-color: #d1c26f;
 }
 
-/* Results Container */
 #results {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding-bottom: 40px;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 2rem;
 }
 
-/* Character Card */
 .character-card {
-  background: #222;
+  background-color: #222;
   border-radius: 15px;
+  box-shadow: 0 0 15px rgba(191, 164, 63, 0.6);
   width: 320px;
-  padding: 20px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem 1.2rem 1.5rem;
+  color: #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
-  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .character-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 25px rgba(191, 164, 63, 0.9);
 }
 
 .character-card img {
-  width: 100%;
+  max-width: 100%;
   border-radius: 12px;
-  margin-bottom: 15px;
-  object-fit: cover;
+  margin-bottom: 1rem;
+  object-fit: contain;
 }
 
-/* Name */
 .character-card h2 {
-  color: white;
-  margin-bottom: 12px;
-  font-size: 24px;
+  margin: 0 0 0.75rem 0;
+  font-size: 1.6rem;
+  color: #fff; /* white */
   text-align: center;
-  user-select: text;
 }
 
-/* Attribute & Type container same line */
 .attribute-type {
   display: flex;
   justify-content: center;
-  gap: 25px;
-  margin-bottom: 20px;
-  color: white;
-  font-weight: 700;
-  font-size: 18px;
-  user-select: text;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .attribute-type p {
+  color: #fff; /* white */
+  font-weight: 600;
+  font-size: 1.1rem;
   margin: 0;
+  text-align: center;
+  flex: 1;
 }
 
-/* Skills */
 .skill {
   text-align: left;
-  line-height: 1.5;
-  margin-bottom: 18px;
-  user-select: text;
-  font-size: 15px;
-  color: #ddd;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  white-space: normal;
 }
 
-/* Keywords highlight */
-.keyword {
+.skill b {
+  color: #bfa43f; /* gold for labels */
   font-weight: 700;
-  color: #FFD700;
 }
 
-/* Duration underline */
+.keyword {
+  color: #ffcf33;
+  font-weight: 700;
+}
+
 .duration {
   text-decoration: underline;
-  color: #00BFFF;
+  color: #64b5f6;
+  font-weight: 600;
+}
+
+.percentage {
+  color: #e57373;
+  font-weight: 700;
 }

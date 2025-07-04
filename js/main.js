@@ -36,43 +36,6 @@ document.getElementById('searchButton').addEventListener('click', () => {
         "Support": "🚑"
       };
 
-      function formatSkillText(text) {
-        if (!text) return '';
-
-        // Convert \n to <br>
-        text = text.replace(/\n/g, '<br>');
-
-        // Highlight move names in quotes e.g. “Charge”
-        text = text.replace(/“([^”]+)”/g, '<span class="move-name">“$1”</span>');
-
-        // Highlight keywords (case sensitive)
-        const keywords = [
-          "Attack",
-          "Attack Speed",
-          "Accuracy",
-          "Crit Chance",
-          "Crit Damage",
-          "Movement Speed",
-          "Defense",
-          "HP",
-          "Evasion",
-          "Crit Resistance",
-          "Crit Defense"
-        ];
-        keywords.forEach(k => {
-          const re = new RegExp(`\\b${k}\\b`, 'g');
-          text = text.replace(re, `<span class="keyword">${k}</span>`);
-        });
-
-        // Highlight durations e.g. 0.5s
-        text = text.replace(/(\d+(\.\d+)?s)/g, '<span class="duration">$1</span>');
-
-        // Highlight percentages e.g. 101%
-        text = text.replace(/(\d+(\.\d+)?%)/g, '<span class="percent">$1</span>');
-
-        return text;
-      }
-
       filtered.forEach(character => {
         let imgName = '';
         if (character.image_path) {
@@ -85,6 +48,34 @@ document.getElementById('searchButton').addEventListener('click', () => {
         const attributeEmoji = attributeEmojis[character.Attribute] || '';
         const typeEmoji = typeEmojis[character.Type] || '';
 
+        function formatSkillText(text) {
+          if (!text) return '';
+          text = text.replace(/\n/g, ' ');
+          const keywords = [
+            "Attack",
+            "Attack Speed",
+            "Accuracy",
+            "Crit Chance",
+            "Crit Damage",
+            "Movement Speed",
+            "Defense",
+            "HP",
+            "Evasion",
+            "Crit Resistance",
+            "Crit Defense"
+          ];
+          keywords.forEach(k => {
+            // Case sensitive replacement using word boundaries
+            const re = new RegExp(`\\b${k}\\b`, 'g');
+            text = text.replace(re, `<span class="keyword">${k}</span>`);
+          });
+          // Underline durations like "2s", "0.5s"
+          text = text.replace(/(\d+(\.\d+)?s)/g, '<span class="duration">$1</span>');
+          // Highlight percentages like "1093%", "20%"
+          text = text.replace(/(\d+(\.\d+)?%)/g, '<span class="percentage">$1</span>');
+          return text;
+        }
+
         const card = document.createElement('div');
         card.classList.add('character-card');
         card.innerHTML = `
@@ -94,9 +85,9 @@ document.getElementById('searchButton').addEventListener('click', () => {
             <p>${attributeEmoji} ${character.Attribute || ''}</p>
             <p>${typeEmoji} ${character.Type || ''}</p>
           </div>
-          <p class="skill"><b>Normal Skill:</b><br>${formatSkillText(character.Normal_Skill)}</p>
-          <p class="skill"><b>Special Move:</b><br>${formatSkillText(character.Special_Skill)}</p>
-          <p class="skill"><b>Ultimate Move:</b><br>${formatSkillText(character.Ultimate_Move)}</p>
+          <p class="skill"><b>Normal Skill:</b> ${formatSkillText(character.Normal_Skill)}</p>
+          <p class="skill"><b>Special Move:</b> ${formatSkillText(character.Special_Skill)}</p>
+          <p class="skill"><b>Ultimate Move:</b> ${formatSkillText(character.Ultimate_Move)}</p>
         `;
 
         resultsContainer.appendChild(card);
