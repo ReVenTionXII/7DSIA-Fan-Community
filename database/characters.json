@@ -1296,12 +1296,11 @@
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg"
   },
   {
-    "id": 379,
     "name": "Test",
     "Affiliation": "Absolute Testiness",
-    "Rank": "Legendary",
     "Attribute": "STR",
     "Type": "Debuffer",
+    "image_path": "#",
     "Normal_Skill": {
       "Category": "Normal Skill",
       "Name": "“Hand of God”",
@@ -1317,6 +1316,7 @@
       "Name": "“Final Erase”",
       "Description": "Obliterates the game after dealing 999999% of Attack."
     },
-    "image_path": "#"
+    "Mentor_Recommendations": 12345,
+    "id": 379
   }
 ]
