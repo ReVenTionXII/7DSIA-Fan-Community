@@ -5,23 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>7DSIA Fan Community</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-<header>
-  <img src="assets/ForumBanner.png" alt="7DSIA Fan Community Banner" class="banner" />
-  <div id="social-buttons" role="navigation" aria-label="Social Media Links">
-    <a href="https://discord.gg/ze58eJw64M" target="_blank" rel="noopener" class="social-btn discord-btn" aria-label="Join our Discord community">Discord</a>
-    <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank" rel="noopener" class="social-btn reddit-btn" aria-label="Visit our Reddit community">Reddit</a>
-  </div>
-</header>
+  <div id="particles-js"></div>
+  <header>
+    <div class="banner-container" id="parallax-banner">
+      <img src="assets/ForumBanner.png" alt="7DSIA Fan Community Banner" class="banner" />
+      <div class="banner-overlay">
+        <div class="logo-text">7DSIA Fan Community</div>
+        <h1 class="tagline">Join the Cozy Adventure in Britannia!</h1>
+        <a href="https://7dsi.netmarble.com/en" target="_blank" rel="noopener" class="cta-button" aria-label="Play Seven Deadly Sins: Idle Adventure Now">Play Now</a>
+      </div>
+    </div>
+    <div id="social-buttons" role="navigation" aria-label="Social Media Links">
+      <a href="https://discord.gg/ze58eJw64M" target="_blank" rel="noopener" class="social-btn discord-btn" aria-label="Join our Discord community">Discord</a>
+      <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank" rel="noopener" class="social-btn reddit-btn" aria-label="Visit our Reddit community">Reddit</a>
+    </div>
+  </header>
 
-<section class="search-section" aria-label="Character Search">
-  <input type="text" id="searchInput" placeholder="Search characters by name, affiliation, attribute, or type..." aria-label="Search for characters" />
-  <button id="searchButton" aria-label="Search">Search</button>
-</section>
+  <section class="search-section" aria-label="Character Search">
+    <input type="text" id="searchInput" placeholder="Search characters by name, affiliation, attribute, or type..." aria-label="Search for characters" />
+    <button id="searchButton" aria-label="Search">Search</button>
+  </section>
 
-<main id="results" aria-live="polite" role="region" aria-label="Character Results"></main>
+  <main id="results" aria-live="polite" role="region" aria-label="Character Results">
+    <p>Please use the search bar to find characters.</p>
+  </main>
 
-<script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

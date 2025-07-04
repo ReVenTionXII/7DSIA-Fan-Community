@@ -1,3 +1,29 @@
+// Initialize particles.js
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: '#00e5ff' },
+    shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+    opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+    size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.3 } },
+    line_linked: { enable: false },
+    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+  },
+  retina_detect: true
+});
+
+// Parallax effect for banner
+window.addEventListener('scroll', () => {
+  const banner = document.getElementById('parallax-banner');
+  const scrollPosition = window.pageYOffset;
+  banner.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+});
+
 // Highlighting helper function
 function highlight(txt = "") {
   txt = txt.replace(/\n/g, " ");
@@ -28,10 +54,19 @@ function skillHTML(obj, cat) {
 }
 
 // Mentor recommendation box
-function mentorHTML(data) {
+function mentorHTML(data, characterName) {
   const icon = "🎓";
-  const p2pContent = "Mentor tips coming soon! Stay tuned.";
-  const f2pContent = "Mentor tips coming soon! Stay tuned.";
+  let p2pContent, f2pContent;
+
+  // Check if Mentor_Recommendations is an object or string
+  if (typeof data.Mentor_Recommendations === 'object' && data.Mentor_Recommendations) {
+    p2pContent = data.Mentor_Recommendations.P2P || `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
+    f2pContent = data.Mentor_Recommendations.F2P || `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
+  } else {
+    // Fallback for current "Mentor tips coming soon!" string
+    p2pContent = `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
+    f2pContent = `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
+  }
   
   return `
     <div class="skill-section mentor-highlight">
@@ -54,16 +89,17 @@ function renderCharacters(characters) {
   results.innerHTML = "";
 
   if (!characters.length) {
-    results.innerHTML = `<p>No characters found.</p>`;
+    results.innerHTML = `<p>No characters found. Please try a different search term.</p>`;
     return;
   }
 
-  characters.forEach(char => {
+  characters.forEach((char, index) => {
     const imgSrc = char.image_path || "assets/characters/placeholder.png";
 
     const card = document.createElement("div");
     card.classList.add("character-card");
     card.style.setProperty("--glow-color", glowColor[char.Attribute] || "#5865f2");
+    card.style.animationDelay = `${index * 0.1}s`; // Staggered animation
 
     card.innerHTML = `
       <img src="${imgSrc}" alt="${char.name}">
@@ -77,35 +113,39 @@ function renderCharacters(characters) {
       ${skillHTML(char.Normal_Skill, "Normal Skill")}
       ${skillHTML(char.Special_Skill, "Special Move")}
       ${skillHTML(char.Ultimate_Move, "Ultimate Move")}
-      ${mentorHTML(char.Mentor_Recommendations, "Mentor Recommendations")}
+      ${mentorHTML(char, char.name)}
     `;
 
     results.appendChild(card);
   });
 }
 
-// Fetch all characters and render
-function fetchAndRenderAll() {
+// Fetch all characters but don't render
+function fetchCharacters() {
   fetch("database/characters.json")
     .then(r => r.json())
     .then(data => {
-      window.allCharacters = data; // store globally for filtering
-      renderCharacters(data);
+      window.allCharacters = data; // Store globally for filtering
+      document.getElementById("results").innerHTML = "<p>Please use the search bar to find characters.</p>";
     })
     .catch(err => {
       console.error(err);
-      document.getElementById("results").innerHTML = "<p>Failed to load character data.</p>";
+      document.getElementById("results").innerHTML = "<p>Failed to load character data. Please try again later.</p>";
     });
 }
 
 // Filter characters by search query and render
 function searchCharacters(query) {
   if (!query) {
-    renderCharacters(window.allCharacters || []);
+    document.getElementById("results").innerHTML = "<p>Please enter a search term.</p>";
+    return;
+  }
+  if (!window.allCharacters) {
+    document.getElementById("results").innerHTML = "<p>Loading character data, please try again...</p>";
     return;
   }
   query = query.toLowerCase();
-  const filtered = (window.allCharacters || []).filter(c =>
+  const filtered = window.allCharacters.filter(c =>
     c.name.toLowerCase().includes(query) ||
     (c.Affiliation && c.Affiliation.toLowerCase().includes(query)) ||
     (c.Attribute && c.Attribute.toLowerCase().includes(query)) ||
@@ -117,10 +157,6 @@ function searchCharacters(query) {
 // Setup event listeners
 document.getElementById("searchButton").addEventListener("click", () => {
   const query = document.getElementById("searchInput").value.trim();
-  if (!query) {
-    alert("Please enter a search term.");
-    return;
-  }
   searchCharacters(query);
 });
 
@@ -131,5 +167,5 @@ document.getElementById("searchInput").addEventListener("keydown", e => {
   }
 });
 
-// Initial load
-fetchAndRenderAll();
+// Initial load - fetch data but don't render
+fetchCharacters();
