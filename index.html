@@ -3,27 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>7DSIA Fan Community</title>
+  <title>7 Deadly Sins Characters</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
   <header>
-    <img src="assets/ForumBanner.png" alt="Banner" class="banner" />
-    <nav>
-      <h1>7DSIA Fan Community</h1>
-      <div class="nav-links">
-        <a href="https://discord.gg/ze58eJw64M" target="_blank" rel="noopener noreferrer">Discord</a>
-        <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank" rel="noopener noreferrer">Reddit</a>
-      </div>
-    </nav>
+    <h1>Seven Deadly Sins Characters</h1>
+
+    <!-- Social Buttons -->
+    <ul class="social-buttons">
+      <li><a href="https://www.youtube.com/@7dsi_en" target="_blank" rel="noopener noreferrer" class="btn-youtube">youtube</a></li>
+      <li><a href="https://www.facebook.com/7dsi.en" target="_blank" rel="noopener noreferrer" class="btn-facebook">facebook</a></li>
+      <li><a href="https://x.com/7taizai_LC" target="_blank" rel="noopener noreferrer" class="btn-twitter">twitter</a></li>
+      <li><a href="https://forum.netmarble.com/7dsi_en" target="_blank" rel="noopener noreferrer" class="btn-forum">forum</a></li>
+      <li class="share-container">
+        <button type="button" class="btn-share">share</button>
+        <div class="share-list">
+          <button type="button" class="btn-share-facebook">facebook</button>
+          <button type="button" class="btn-share-twitter">twitter</button>
+          <button type="button" class="btn-share-link">link copy</button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="search-area">
+      <input id="searchInput" type="text" placeholder="Search characters..." />
+      <button id="searchButton">Search</button>
+    </div>
   </header>
 
   <main>
-    <section class="search-section">
-      <input type="text" id="searchInput" placeholder="Search characters..." />
-      <button id="searchButton">Search</button>
-    </section>
-    <section id="results" class="results-container"></section>
+    <div id="results" class="results-container"></div>
   </main>
 
   <script src="js/main.js"></script>

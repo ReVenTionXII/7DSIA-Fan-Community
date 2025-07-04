@@ -1,171 +1,285 @@
-/* General */
+/* Reset and base */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
   background: #121212;
-  color: #fff;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   overflow-y: scroll;
-}
-
-header {
-  text-align: center;
-  background: #000;
-  padding-bottom: 0.5em;
-}
-
-.banner {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-}
-
-nav {
-  padding: 1em;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-nav h1 {
-  margin: 0.5em 0;
-  font-size: 2em;
-  color: #ffd700;
-}
-
-.nav-links a {
-  margin: 0 10px;
-  color: #ffd700;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-.search-section {
-  margin: 2em auto;
+header {
+  width: 100%;
+  max-width: 1100px;
+  padding: 1rem 1rem 2rem;
   text-align: center;
 }
 
-#searchInput {
-  padding: 0.5em;
-  width: 300px;
-  border-radius: 4px;
+h1 {
+  margin: 0 0 1rem;
+  color: gold;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+}
+
+/* Social buttons container */
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0.75rem 0 1.5rem;
+  list-style: none;
+  margin: 0;
+}
+
+.social-buttons li {
+  position: relative;
+}
+
+.social-buttons a,
+.social-buttons button {
+  text-transform: lowercase;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
   border: none;
-  font-size: 1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  color: #fff;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Individual button colors */
+.btn-youtube {
+  background: #ff0000;
+}
+
+.btn-facebook {
+  background: #1877f2;
+}
+
+.btn-twitter {
+  background: #1da1f2;
+}
+
+.btn-forum {
+  background: #ffd700;
+  color: #000;
+}
+
+/* Share button base style */
+.btn-share {
+  background: #222;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+  position: relative;
+}
+
+/* Hover states */
+.social-buttons a:hover,
+.social-buttons button:hover {
+  filter: brightness(1.15);
+}
+
+/* Share dropdown container */
+.share-container {
+  position: relative;
+}
+
+/* Share list dropdown - hidden by default */
+.share-list {
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  padding: 0.3rem 0;
+  min-width: 100px;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Share dropdown visible */
+.share-list.active {
+  display: block;
+}
+
+/* Share buttons inside dropdown */
+.share-list button {
+  width: 100%;
+  padding: 0.4rem 0;
+  background: none;
+  border: none;
+  color: #ffd700;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  border-radius: 0;
+  letter-spacing: 0.03em;
+}
+
+.share-list button:hover {
+  background: #ffd700;
+  color: #111;
+}
+
+/* Search area styling */
+.search-area {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#searchInput {
+  font-size: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  border: none;
+  max-width: 300px;
+  flex: 1 1 auto;
 }
 
 #searchButton {
-  padding: 0.5em 1em;
-  margin-left: 0.5em;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  background: gold;
+  color: #111;
+  font-weight: 700;
+  border-radius: 8px;
   border: none;
-  background: #ffd700;
-  color: #000;
   cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 1em;
+  flex-shrink: 0;
 }
 
 #searchButton:hover {
-  background: #e6c200;
+  filter: brightness(1.1);
 }
 
 /* Results container */
 .results-container {
+  max-width: 1100px;
+  margin: 1rem auto 3rem;
   display: flex;
   flex-wrap: wrap;
+  gap: 1.25rem;
   justify-content: center;
-  gap: 1.5em;
-  padding: 2em;
 }
 
-/* Character cards */
+/* Character Card */
 .character-card {
-  background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 8px;
+  background: #222;
+  border-radius: 16px;
   width: 280px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  padding: 1em 1.2em;
+  padding: 1rem 1rem 1.5rem;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
   display: flex;
   flex-direction: column;
-  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
 }
 
 .character-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.9);
 }
 
+/* Image styling */
 .character-card img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1em;
-}
-
-.character-card h2 {
-  margin: 0 0 0.5em 0;
-  color: white; /* White for character name */
-  text-align: center;
-}
-
-.attribute-type {
-  display: flex;
-  justify-content: center;
-  gap: 1.5em;
   width: 100%;
-  margin-bottom: 1em;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  aspect-ratio: 1 / 1;
 }
 
-.attribute-type p {
+/* Title and Attribute / Type container */
+.character-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  color: white; /* White text */
+}
+
+.character-header h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
   margin: 0;
-  color: white; /* White text for attribute/type */
-  font-weight: 600;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attr-type {
+  display: flex;
+  gap: 0.8rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: white;
+  min-width: 90px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.attr-type span {
   display: flex;
   align-items: center;
-  gap: 0.3em;
-  font-size: 1.05em;
+  gap: 0.3rem;
 }
 
-.attribute-type .emoji {
-  font-size: 1.3em;
-}
-
-/* Stats below Attribute/Type */
-.stats {
-  color: #ddd;
-  font-size: 0.95em;
-  margin: 0 0 1em 0;
-  text-align: center;
-  font-weight: bold;
-}
-
-.stats b {
-  color: #ffd700;
-}
-
-/* Skill text formatting */
-.skill {
-  font-size: 0.9em;
-  line-height: 1.35em;
-  color: #ddd;
-  margin-bottom: 1.2em;
-  white-space: normal;
+/* Skill paragraphs */
+.character-card p.skill {
+  margin: 0.45rem 0;
+  line-height: 1.3;
+  font-size: 0.9rem;
   text-align: left;
+  white-space: pre-wrap; /* preserve line breaks */
 }
 
-.skill b {
-  color: #ffd700;
+.character-card p.skill b {
+  color: gold;
 }
 
-.skill br {
-  margin-bottom: 0.2em;
+/* Section headers (e.g. Normal Skill, Special Move, Ultimate Move) */
+.character-card p.skill strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: gold;
 }
 
-/* Scroll bar on page but no scroll inside cards */
+/* Emojis next to attribute/type */
+.attr-type span.emoji {
+  font-size: 1.2rem;
+}
+
+/* Scrollbar removal - no scrolls anywhere */
+.character-card,
+.character-card p.skill {
+  overflow: visible !important;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.character-card::-webkit-scrollbar,
+.character-card p.skill::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera, Firefox */
+}
