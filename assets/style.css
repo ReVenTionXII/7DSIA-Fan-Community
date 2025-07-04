@@ -5,7 +5,7 @@ body {
   padding: 0;
   background: #121212;
   color: #fff;
-  overflow-y: scroll; /* always show scrollbar for page */
+  /* Removed overflow-y: scroll; so natural scroll on page */
 }
 
 /* Header and banner */
@@ -64,31 +64,14 @@ nav h1 {
   font-weight: bold;
 }
 
-/* Results container with scroll */
+/* Results container - no scroll, expands naturally */
 .results-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
   padding: 2em;
-  max-height: 75vh; /* limit vertical size */
-  overflow-y: auto; /* vertical scroll if needed */
-  scrollbar-width: thin;
-  scrollbar-color: #ffd700 #1e1e1e;
-}
-
-.results-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.results-container::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-.results-container::-webkit-scrollbar-thumb {
-  background-color: #ffd700;
-  border-radius: 10px;
-  border: 2px solid #1e1e1e;
+  /* Removed max-height and overflow */
 }
 
 /* Character card styling */
@@ -163,7 +146,9 @@ nav h1 {
   text-decoration: underline;
 }
 
-/* Scrollbar on body for page */
+/* Removed scrollbar styles */
+
+/* Smooth page scroll */
 html {
   scroll-behavior: smooth;
 }
