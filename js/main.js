@@ -87,7 +87,7 @@ function renderCharacters(characters) {
       ${skillHTML(char.Normal_Skill, "Normal Skill")}
       ${skillHTML(char.Special_Skill, "Special Move")}
       ${skillHTML(char.Ultimate_Move, "Ultimate Move")}
-      ${mentorHTML(char.Mentor_Recommendations)}
+      ${mentorHTML(char.Mentor_Recommendations, "Mentor Recommendation")}
     `;
 
     results.appendChild(card);
