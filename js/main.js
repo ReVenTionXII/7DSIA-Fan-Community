@@ -65,7 +65,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
             "Crit Defense"
           ];
           keywords.forEach(k => {
-            const re = new RegExp(`\\b${k}\\b`, 'gi');
+            const re = new RegExp(`\\b${k}\\b`, 'g'); // Case-sensitive match
             text = text.replace(re, `<span class="keyword">${k}</span>`);
           });
           text = text.replace(/(\d+(\.\d+)?s)/g, '<span class="duration">$1</span>');
@@ -81,9 +81,9 @@ document.getElementById('searchButton').addEventListener('click', () => {
             <p>${attributeEmoji} ${character.Attribute || ''}</p>
             <p>${typeEmoji} ${character.Type || ''}</p>
           </div>
-          <div class="skill"><b>Normal Skill:</b> ${formatSkillText(character.Normal_Skill)}</div>
-          <div class="skill"><b>Special Move:</b> ${formatSkillText(character.Special_Skill)}</div>
-          <div class="skill"><b>Ultimate Move:</b> ${formatSkillText(character.Ultimate_Move)}</div>
+          <p class="skill"><b>Normal Skill:</b> ${formatSkillText(character.Normal_Skill)}</p>
+          <p class="skill"><b>Special Move:</b> ${formatSkillText(character.Special_Skill)}</p>
+          <p class="skill"><b>Ultimate Move:</b> ${formatSkillText(character.Ultimate_Move)}</p>
         `;
 
         resultsContainer.appendChild(card);
