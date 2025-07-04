@@ -50,7 +50,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
         function formatSkillText(text) {
           if (!text) return '';
-          text = text.replace(/\n/g, ' ');
+          text = text.replace(/\n/g, ' ').trim();
           const keywords = [
             "Attack",
             "Attack Speed",
@@ -81,9 +81,9 @@ document.getElementById('searchButton').addEventListener('click', () => {
             <p>${attributeEmoji} ${character.Attribute || ''}</p>
             <p>${typeEmoji} ${character.Type || ''}</p>
           </div>
-          <p class="skill"><b>Normal Skill:</b> ${formatSkillText(character.Normal_Skill)}</p>
-          <p class="skill"><b>Special Move:</b> ${formatSkillText(character.Special_Skill)}</p>
-          <p class="skill"><b>Ultimate Move:</b> ${formatSkillText(character.Ultimate_Move)}</p>
+          <div class="skill"><b>Normal Skill:</b> ${formatSkillText(character.Normal_Skill)}</div>
+          <div class="skill"><b>Special Move:</b> ${formatSkillText(character.Special_Skill)}</div>
+          <div class="skill"><b>Ultimate Move:</b> ${formatSkillText(character.Ultimate_Move)}</div>
         `;
 
         resultsContainer.appendChild(card);

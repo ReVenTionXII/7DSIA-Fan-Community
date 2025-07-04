@@ -1,158 +1,174 @@
-/* Reset & base */
+/* General Reset */
 * {
   box-sizing: border-box;
-}
-body {
   margin: 0;
-  background: #121212;
-  color: #ddd;
+  padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background: #222;
   color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.8);
+  background-color: #121212;
 }
 
-#search-container {
-  margin-top: 1rem;
+/* Banner */
+.banner {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto 10px;
+  object-fit: contain;
+}
+
+/* Social Buttons Container */
+#social-buttons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.social-btn {
+  padding: 10px 20px;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  background: transparent;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+}
+
+.social-btn:hover {
+  background-color: #FFD700;
+  color: #121212;
+  cursor: pointer;
+}
+
+.discord-btn {
+  /* You can add specific Discord styles if you want */
+}
+
+.reddit-btn {
+  /* You can add specific Reddit styles if you want */
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
 }
 
 #searchInput {
+  padding: 10px 15px;
   width: 300px;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #FFD700;
+  background-color: #1E1E1E;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #00BFFF;
 }
 
 #searchButton {
-  background: #ffd700;
+  padding: 10px 20px;
+  background-color: #FFD700;
   border: none;
-  border-radius: 6px;
-  padding: 0.55rem 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
+  border-radius: 8px;
   color: #121212;
-  transition: background 0.3s ease;
-}
-#searchButton:hover {
-  background: #ffb700;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* Results container and cards */
-.results-container {
+#searchButton:hover {
+  background-color: #e6c200;
+}
+
+/* Results Container */
+#results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* center horizontally */
-  gap: 1.5rem;
-  padding: 2rem 1rem 4rem;
-  flex-grow: 1;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 40px;
 }
 
+/* Character Card */
 .character-card {
-  background: #1e1e1e;
-  border: 1px solid #444;
-  padding: 1.5rem;
-  border-radius: 10px;
+  background: #222;
+  border-radius: 15px;
   width: 320px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center image/title */
-  text-align: left;
+  align-items: center;
+  user-select: none;
+}
+
+.character-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
 }
 
 .character-card img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  object-fit: cover;
 }
 
+/* Name */
 .character-card h2 {
   color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: 12px;
+  font-size: 24px;
   text-align: center;
+  user-select: text;
 }
 
+/* Attribute & Type container same line */
 .attribute-type {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
+  gap: 25px;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  user-select: text;
 }
 
 .attribute-type p {
   margin: 0;
-  font-weight: bold;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 1.05rem;
 }
 
 /* Skills */
 .skill {
   text-align: left;
-  margin-bottom: 1.2rem;
-  white-space: normal;
-  line-height: 1.4;
-  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  user-select: text;
+  font-size: 15px;
   color: #ddd;
 }
 
-.skill b {
-  color: #ffd700;
-  font-weight: 700;
-}
-
+/* Keywords highlight */
 .keyword {
-  color: #ffa500;
-  font-weight: 600;
+  font-weight: 700;
+  color: #FFD700;
 }
 
+/* Duration underline */
 .duration {
   text-decoration: underline;
-  font-style: italic;
-}
-
-/* Footer */
-footer {
-  background: #222;
-  padding: 1rem 1rem 2rem;
-  text-align: center;
-}
-
-.footer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.footer-button {
-  background-color: #ffd700;
-  color: #121212;
-  font-weight: bold;
-  padding: 0.6rem 1.5rem;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-
-.footer-button:hover {
-  background-color: #ffb700;
+  color: #00BFFF;
 }
