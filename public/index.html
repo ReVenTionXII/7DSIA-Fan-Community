@@ -1,244 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Character Admin Tool</title>
-<style>
-  body {
-    background: #121212; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px; max-width: 900px; margin-left: auto; margin-right: auto;
-  }
-  h1 { text-align: center; }
-  form { background: #222; padding: 15px; border-radius: 10px; margin-bottom: 30px; }
-  label { display: block; margin: 10px 0 5px; font-weight: 700; }
-  input, textarea, select {
-    width: 100%; padding: 8px; border-radius: 6px; border: none; background: #333; color: #fff;
-    font-size: 1rem;
-  }
-  textarea { resize: vertical; height: 80px; }
-  button { background: #ffcc00; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: 700; color: #000; }
-  button:hover { background: #e6b800; }
-  .character-list { margin-top: 30px; }
-  .char-item {
-    background: #222; padding: 15px; border-radius: 10px; margin-bottom: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .char-item > div {
-    flex-grow: 1;
-    padding-right: 10px;
-  }
-  .char-actions button {
-    margin-left: 10px;
-    background: #555; color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
-  .char-actions button.delete {
-    background: #c00;
-  }
-  .char-actions button:hover {
-    filter: brightness(1.2);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>7DSIA Fan Community</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-<h1>Character Admin Tool</h1>
+<header>
+  <img src="assets/ForumBanner.png" alt="Banner" class="banner" />
+  <div id="social-buttons">
+    <a href="https://discord.gg/ze58eJw64M" target="_blank" rel="noopener" class="social-btn discord-btn">Discord</a>
+    <a href="https://www.reddit.com/r/SDSIDLEAdventure" target="_blank" rel="noopener" class="social-btn reddit-btn">Reddit</a>
+  </div>
 
-<form id="charForm">
-  <input type="hidden" id="charId" />
-  <label for="name">Name *</label>
-  <input type="text" id="name" required />
+  <!-- Admin Panel Button -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <a href="/admin.html" class="social-btn" id="adminPanelBtn">Admin Panel</a>
+  </div>
+</header>
 
-  <label for="affiliation">Affiliation</label>
-  <input type="text" id="affiliation" />
+<section class="search-section">
+  <input type="text" id="searchInput" placeholder="Search characters..." />
+  <button id="searchButton">Search</button>
+</section>
 
-  <label for="rank">Rank</label>
-  <input type="text" id="rank" />
+<main id="results"></main>
 
-  <label for="attribute">Attribute</label>
-  <select id="attribute">
-    <option value="">-- Select Attribute --</option>
-    <option value="DEX">DEX</option>
-    <option value="VIT">VIT</option>
-    <option value="STR">STR</option>
-    <option value="INT">INT</option>
-  </select>
-
-  <label for="type">Type</label>
-  <select id="type">
-    <option value="">-- Select Type --</option>
-    <option value="DPS">DPS</option>
-    <option value="VIT">VIT</option>
-    <option value="Tank">Tank</option>
-    <option value="Debuffer">Debuffer</option>
-    <option value="Support">Support</option>
-  </select>
-
-  <label for="normalSkill">Normal Skill (JSON format)</label>
-  <textarea id="normalSkill" placeholder='{"Category":"Normal Skill","Name":"Skill Name","Description":"Description"}'></textarea>
-
-  <label for="specialSkill">Special Skill (JSON format)</label>
-  <textarea id="specialSkill" placeholder='{"Category":"Special Move","Name":"Move Name","Description":"Description"}'></textarea>
-
-  <label for="ultimateMove">Ultimate Move (JSON format)</label>
-  <textarea id="ultimateMove" placeholder='{"Category":"Ultimate Move","Name":"Move Name","Description":"Description"}'></textarea>
-
-  <label for="imagePath">Image Path</label>
-  <input type="text" id="imagePath" placeholder="assets/characters/image.jpg" />
-
-  <button type="submit">Save Character</button>
-  <button type="button" id="cancelEdit" style="display:none; margin-left:10px;">Cancel</button>
-</form>
-
-<div class="character-list" id="charList"></div>
-
-<script>
-  const apiBase = '/api/characters';
-
-  const form = document.getElementById('charForm');
-  const charList = document.getElementById('charList');
-  const cancelEditBtn = document.getElementById('cancelEdit');
-
-  function toJSON(text) {
-    try {
-      return JSON.parse(text);
-    } catch {
-      return null;
-    }
-  }
-
-  function toText(json) {
-    if (!json) return '';
-    return JSON.stringify(json, null, 2);
-  }
-
-  // Fetch and display characters
-  async function loadCharacters() {
-    const res = await fetch(apiBase);
-    const chars = await res.json();
-
-    charList.innerHTML = '';
-    chars.forEach(c => {
-      const div = document.createElement('div');
-      div.classList.add('char-item');
-      div.innerHTML = `
-        <div><strong>${c.name}</strong> (${c.Attribute || '-'} / ${c.Type || '-'})</div>
-        <div class="char-actions">
-          <button onclick="editChar(${c.id})">Edit</button>
-          <button class="delete" onclick="deleteChar(${c.id})">Delete</button>
-        </div>
-      `;
-      charList.appendChild(div);
-    });
-  }
-
-  // Fill form with character data for editing
-  window.editChar = async function(id) {
-    const res = await fetch(`${apiBase}`);
-    const chars = await res.json();
-    const c = chars.find(ch => ch.id === id);
-    if (!c) return alert('Character not found');
-
-    document.getElementById('charId').value = c.id;
-    document.getElementById('name').value = c.name || '';
-    document.getElementById('affiliation').value = c.Affiliation || '';
-    document.getElementById('rank').value = c.Rank || '';
-    document.getElementById('attribute').value = c.Attribute || '';
-    document.getElementById('type').value = c.Type || '';
-    document.getElementById('normalSkill').value = toText(c.Normal_Skill);
-    document.getElementById('specialSkill').value = toText(c.Special_Skill);
-    document.getElementById('ultimateMove').value = toText(c.Ultimate_Move);
-    document.getElementById('imagePath').value = c.image_path || '';
-
-    cancelEditBtn.style.display = 'inline-block';
-  };
-
-  // Clear form
-  function clearForm() {
-    form.reset();
-    document.getElementById('charId').value = '';
-    cancelEditBtn.style.display = 'none';
-  }
-
-  cancelEditBtn.onclick = () => clearForm();
-
-  // Delete character
-  window.deleteChar = async function(id) {
-    if (!confirm('Are you sure you want to delete this character?')) return;
-
-    const res = await fetch(`${apiBase}/${id}`, { method: 'DELETE' });
-    if (res.ok) {
-      alert('Deleted successfully');
-      loadCharacters();
-      clearForm();
-    } else {
-      alert('Failed to delete');
-    }
-  };
-
-  // Handle form submit
-  form.onsubmit = async function(e) {
-    e.preventDefault();
-
-    const id = document.getElementById('charId').value;
-    const newChar = {
-      name: document.getElementById('name').value.trim(),
-      Affiliation: document.getElementById('affiliation').value.trim(),
-      Rank: document.getElementById('rank').value.trim(),
-      Attribute: document.getElementById('attribute').value,
-      Type: document.getElementById('type').value,
-      image_path: document.getElementById('imagePath').value.trim(),
-      Normal_Skill: toJSON(document.getElementById('normalSkill').value),
-      Special_Skill: toJSON(document.getElementById('specialSkill').value),
-      Ultimate_Move: toJSON(document.getElementById('ultimateMove').value)
-    };
-
-    if (!newChar.name) {
-      alert('Name is required');
-      return;
-    }
-    if (!newChar.Normal_Skill) {
-      alert('Normal Skill must be valid JSON');
-      return;
-    }
-    if (document.getElementById('specialSkill').value.trim() && !newChar.Special_Skill) {
-      alert('Special Skill must be valid JSON');
-      return;
-    }
-    if (document.getElementById('ultimateMove').value.trim() && !newChar.Ultimate_Move) {
-      alert('Ultimate Move must be valid JSON');
-      return;
-    }
-
-    let res;
-    if (id) {
-      res = await fetch(`${apiBase}/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newChar)
-      });
-    } else {
-      res = await fetch(apiBase, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newChar)
-      });
-    }
-
-    if (res.ok) {
-      alert('Saved successfully');
-      loadCharacters();
-      clearForm();
-    } else {
-      const err = await res.json();
-      alert('Error: ' + (err.error || 'Unknown error'));
-    }
-  };
-
-  loadCharacters();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
