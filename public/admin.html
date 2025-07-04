@@ -89,11 +89,6 @@
   .character-item > button.delete-btn:hover {
     background: #cc3333;
   }
-  img.preview {
-    max-width: 100px;
-    border-radius: 6px;
-    margin-top: 10px;
-  }
   textarea {
     resize: vertical;
     height: 60px;
@@ -102,12 +97,30 @@
     margin-bottom: 1rem;
     font-weight: 700;
   }
+  /* Home button styling */
+  #homeBtn {
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-weight: 700;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  #homeBtn:hover {
+    background-color: #444444;
+  }
 </style>
 </head>
 <body>
 
 <h1>Admin Panel</h1>
 <button id="logoutBtn" style="display:none;">Logout</button>
+
+<!-- Home button -->
+<button id="homeBtn">Home</button>
 
 <div id="loginSection">
   <form id="loginForm">
@@ -152,11 +165,6 @@
     <label for="image_path">Image Filename</label>
     <input id="image_path" type="text" placeholder="e.g. image-123456.png" readonly />
 
-    <label for="imageUpload">Upload Image</label>
-    <input id="imageUpload" type="file" accept="image/*" />
-
-    <img id="imagePreview" class="preview" src="" alt="Image preview" style="display:none;"/>
-
     <label for="normalSkill">Normal Skill Description</label>
     <textarea id="normalSkill" placeholder="JSON or plain text"></textarea>
 
@@ -188,14 +196,17 @@
   const attributeSelect = document.getElementById('attribute');
   const typeSelect = document.getElementById('type');
   const imagePathInput = document.getElementById('image_path');
-  const imageUploadInput = document.getElementById('imageUpload');
-  const imagePreview = document.getElementById('imagePreview');
   const normalSkillInput = document.getElementById('normalSkill');
   const specialSkillInput = document.getElementById('specialSkill');
   const ultimateMoveInput = document.getElementById('ultimateMove');
   const mentorRecommendationInput = document.getElementById('mentorRecommendation');
 
   let characters = [];
+
+  // Home button click handler
+  document.getElementById('homeBtn').addEventListener('click', () => {
+    window.location.href = '/';
+  });
 
   // Utility: Load all characters
   async function loadCharacters() {
@@ -254,8 +265,6 @@
     attributeSelect.value = char.Attribute || '';
     typeSelect.value = char.Type || '';
     imagePathInput.value = char.image_path || '';
-    imagePreview.src = char.image_path ? `/assets/characters/${char.image_path}` : '';
-    imagePreview.style.display = char.image_path ? 'block' : 'none';
     normalSkillInput.value = char.Normal_Skill ? (typeof char.Normal_Skill === 'string' ? char.Normal_Skill : JSON.stringify(char.Normal_Skill, null, 2)) : '';
     specialSkillInput.value = char.Special_Skill ? (typeof char.Special_Skill === 'string' ? char.Special_Skill : JSON.stringify(char.Special_Skill, null, 2)) : '';
     ultimateMoveInput.value = char.Ultimate_Move ? (typeof char.Ultimate_Move === 'string' ? char.Ultimate_Move : JSON.stringify(char.Ultimate_Move, null, 2)) : '';
@@ -271,7 +280,6 @@
       alert('Deleted!');
       await loadCharacters();
       charForm.reset();
-      imagePreview.style.display = 'none';
     } catch (err) {
       alert(err.message);
     }
@@ -311,7 +319,6 @@
       adminSection.style.display = 'none';
       logoutBtn.style.display = 'none';
       charForm.reset();
-      imagePreview.style.display = 'none';
     } catch (err) {
       alert(err.message);
     }
@@ -356,29 +363,6 @@
       alert('Character saved successfully!');
       await loadCharacters();
       charForm.reset();
-      imagePreview.style.display = 'none';
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-
-  // Image upload handler
-  imageUploadInput.addEventListener('change', async () => {
-    const file = imageUploadInput.files[0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        credentials: 'include',
-        body: formData
-      });
-      if (!res.ok) throw new Error('Image upload failed');
-      const result = await res.json();
-      imagePathInput.value = result.filename;
-      imagePreview.src = `/assets/characters/${result.filename}`;
-      imagePreview.style.display = 'block';
     } catch (err) {
       alert(err.message);
     }
@@ -406,10 +390,7 @@
         renderCharacterList();
       }
     } catch {
-      // Not logged in or error, show login
-      loginSection.style.display = 'block';
-      adminSection.style.display = 'none';
-      logoutBtn.style.display = 'none';
+      // Not logged in or no session
     }
   })();
 </script>
