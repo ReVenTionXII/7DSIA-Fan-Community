@@ -78,8 +78,11 @@ header h1 {
 
 /* Search Section */
 .search-section {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  gap: 0.5em;              /* space between input and button */
   margin: 2em auto;
-  text-align: center;
 }
 
 #searchInput {
