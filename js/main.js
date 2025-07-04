@@ -1,4 +1,3 @@
-// Mapping emojis for attributes and types
 const attributeEmojis = {
   DEX: "🔵",
   VIT: "🟢",
@@ -14,7 +13,6 @@ const typeEmojis = {
   Support: '🚑',
 };
 
-// Load characters and stats JSON
 let characters = [];
 let statsKeywords = [];
 
@@ -35,19 +33,21 @@ async function loadData() {
 function highlightStats(text) {
   if (!text) return '';
 
-  // Highlight percentage numbers (bold)
+  // Bold percentages
   text = text.replace(/(\d+%)/g, '<b>$1</b>');
 
-  // Highlight stats keywords (bold)
+  // Bold keywords (including those with numbers)
   statsKeywords.forEach(keyword => {
-    const regex = new RegExp(`\\b(${keyword.replace('<number>', '\\d+')})\\b`, 'gi');
+    const kw = keyword.replace('<number>', '\\d+');
+    const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
     text = text.replace(regex, '<b>$1</b>');
   });
 
   // Underline time durations (e.g. 0.5s, 3s)
   text = text.replace(/(\d+(\.\d+)?s)/g, '<u>$1</u>');
 
-  return text;
+  // Replace newlines with <br> for HTML display
+  return text.replace(/\n/g, '<br>');
 }
 
 function createCharacterCard(character) {
@@ -57,9 +57,7 @@ function createCharacterCard(character) {
   const attrEmoji = attributeEmojis[attr] || '';
   const typeEmoji = typeEmojis[type] || '';
 
-  // Fix image path for web (filename only, stored in assets/characters/)
   let imgName = character.image_path ? character.image_path.split('\\').pop() : '';
-  // Remove spaces and replace with underscores for filenames if needed (you can customize based on your naming)
   imgName = imgName.replace(/\s/g, '_');
 
   return `
@@ -68,14 +66,13 @@ function createCharacterCard(character) {
       <h2>${character.name}</h2>
       <p><b>Attribute:</b> <span>${attrEmoji} <b>${attr}</b></span></p>
       <p><b>Type:</b> ${typeEmoji} <b>${type}</b></p>
-      <p><b>Special Move:</b><br>${highlightStats(character.Special_Skill)}</p>
       <p><b>Normal Skill:</b><br>${highlightStats(character.Normal_Skill)}</p>
+      <p><b>Special Move:</b><br>${highlightStats(character.Special_Skill)}</p>
       <p><b>Ultimate Move:</b><br>${highlightStats(character.Ultimate_Move)}</p>
     </div>
   `;
 }
 
-// Search & dropdown logic
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const dropdown = document.getElementById('dropdown');
@@ -98,23 +95,20 @@ function showDropdown(matches) {
     dropdown.style.display = 'none';
     return;
   }
+
   matches.forEach(character => {
-    const option = document.createElement('option');
+    const div = document.createElement('div');
     const attrEmoji = attributeEmojis[character.Attribute] || '';
     const typeEmoji = typeEmojis[character.Type] || '';
-    option.text = `${character.name} — ${attrEmoji} ${character.Attribute} | ${typeEmoji} ${character.Type}`;
-    option.value = character.id;
-    dropdown.appendChild(option);
+    div.className = 'custom-dropdown-item';
+    div.innerHTML = `${character.name} — ${attrEmoji} ${character.Attribute} | ${typeEmoji} ${character.Type}`;
+    div.addEventListener('click', () => {
+      dropdown.style.display = 'none';
+      resultsContainer.innerHTML = createCharacterCard(character);
+    });
+    dropdown.appendChild(div);
   });
   dropdown.style.display = 'block';
-}
-
-function showCharacterDetailsById(id) {
-  clearResults();
-  const character = characters.find(c => c.id == id);
-  if (character) {
-    resultsContainer.innerHTML = createCharacterCard(character);
-  }
 }
 
 searchButton.addEventListener('click', () => {
@@ -125,7 +119,6 @@ searchButton.addEventListener('click', () => {
   const matches = filterCharacters(query);
   if (matches.length === 1) {
     resultsContainer.innerHTML = createCharacterCard(matches[0]);
-    dropdown.style.display = 'none';
   } else if (matches.length > 1) {
     showDropdown(matches);
   } else {
@@ -133,12 +126,4 @@ searchButton.addEventListener('click', () => {
   }
 });
 
-dropdown.addEventListener('change', () => {
-  const selectedId = dropdown.value;
-  if (selectedId) {
-    showCharacterDetailsById(selectedId);
-  }
-});
-
-// Initialize
 loadData();
