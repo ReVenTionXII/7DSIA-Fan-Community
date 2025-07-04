@@ -1247,6 +1247,7 @@
     },
     "image_path": "assets/characters/[Demon_King's_Deputy]_Zeldris.jpg"
   },
+	"Mentor_Recommendations": "Nothing to be shown at this time.
   {
     "id": 377,
     "name": "[Roars of Dawn] Slater",
@@ -1271,6 +1272,7 @@
     },
     "image_path": "assets/characters/[Roars_of_Dawn]_Slater.jpg"
   },
+	"Mentor_Recommendations": "Nothing to be shown at this time.
   {
     "id": 378,
     "name": "[The Pleiades of the Azure Sky] Denzel",
@@ -1294,7 +1296,8 @@
       "Description": "Deals damage equal to 666% of Attack to the target. Inflicts the target with Lv. 5 Weaken for 10s upon successful attack. [Lv. 5 Weaken] Decreases final Attack by 30%"
     },
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg"
-  },
+	},
+	"Mentor_Recommendations": "Nothing to be shown at this time."
   {
     "id": 379,
 	"name": "Test",
