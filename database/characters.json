@@ -1301,9 +1301,9 @@
     "Attribute": "DEX",
     "Type": "DPS",
     "image_path": "",
-    "Normal_Skill": "test",
-    "Special_Skill": "test",
-    "Ultimate_Move": "test",
+    "Normal_Skill": "\"test\"1242341234123",
+    "Special_Skill": "\"test\"13241324",
+    "Ultimate_Move": "\"test\"1223432",
     "Mentor_Recommendations": "test",
     "id": 379
   }
