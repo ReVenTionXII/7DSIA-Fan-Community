@@ -22,11 +22,14 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-const ADMIN_USERS = [
-  { username: 'admin', password: 'password' },
-  { username: 'ReVenTion', password: 'Pokemon123' },
-  // Add more users here
-];
+// Parse ADMIN_USERS from env var, format: "user1:pass1,user2:pass2"
+const adminUsersEnv = process.env.ADMIN_USERS || '';
+const ADMIN_USERS = adminUsersEnv.split(',')
+  .map(user => {
+    const [username, password] = user.split(':');
+    return { username, password };
+  })
+  .filter(u => u.username && u.password); // filter out incomplete entries
 
 // Authentication routes
 app.post('/api/login', (req, res) => {
@@ -37,7 +40,7 @@ app.post('/api/login', (req, res) => {
 
   if (user) {
     req.session.loggedIn = true;
-    req.session.username = user.username; // optional, for tracking
+    req.session.username = user.username;
     return res.json({ success: true });
   }
 
