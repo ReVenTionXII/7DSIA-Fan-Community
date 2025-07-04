@@ -1,11 +1,14 @@
+/* General body & layout */
 body {
   font-family: 'Segoe UI', sans-serif;
-  margin: 0;
+  margin: 1rem;
   padding: 0;
   background: #121212;
   color: #fff;
+  overflow-y: scroll; /* always show scrollbar for page */
 }
 
+/* Header and banner */
 header {
   text-align: center;
   background: #000;
@@ -37,6 +40,7 @@ nav h1 {
   font-weight: bold;
 }
 
+/* Search section */
 .search-section {
   margin: 2em auto;
   text-align: center;
@@ -60,89 +64,106 @@ nav h1 {
   font-weight: bold;
 }
 
+/* Results container with scroll */
 .results-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
   padding: 2em;
+  max-height: 75vh; /* limit vertical size */
+  overflow-y: auto; /* vertical scroll if needed */
+  scrollbar-width: thin;
+  scrollbar-color: #ffd700 #1e1e1e;
 }
 
-/* Updated Character Card */
+.results-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.results-container::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.results-container::-webkit-scrollbar-thumb {
+  background-color: #ffd700;
+  border-radius: 10px;
+  border: 2px solid #1e1e1e;
+}
+
+/* Character card styling */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
   padding: 1em 1.2em;
-  border-radius: 12px;
-  width: 320px;
-  height: 360px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  opacity: 0;
-  animation: fadeIn 0.5s forwards;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: visible;
+  height: auto;
+  word-break: break-word;
 }
 
 .character-card:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 20px #ffd700;
-  border-color: #ffd700;
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
 }
 
+/* Image styling */
 .character-card img {
-  max-width: 100%;
-  height: 130px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  max-width: 250px;
+  max-height: 250px;
   object-fit: contain;
-  flex-shrink: 0;
+  border-radius: 8px;
+  margin-bottom: 1em;
 }
 
+/* Name and attribute/type text */
 .character-card h2 {
-  margin: 0 0 8px 0;
-  color: #fff; /* Character name white */
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-.character-card p {
-  font-size: 0.8rem;
-  line-height: 1.3;
-  margin-bottom: 6px;
-  text-align: left;
-  overflow-y: auto;
-  flex-grow: 1;
-  scrollbar-width: thin;
-  scrollbar-color: #ffd700 #333;
-  color: #fff; /* Attribute and type white by default */
-}
-
-.character-card p.attribute-type {
+  color: #fff;
+  margin: 0 0 0.5em 0;
   text-align: center;
-  margin-bottom: 12px;
-}
-
-.character-card p::-webkit-scrollbar {
-  width: 6px;
-}
-
-.character-card p::-webkit-scrollbar-thumb {
-  background-color: #ffd700;
-  border-radius: 3px;
-}
-
-.character-card p b {
-  color: #ffd700; /* Titles in gold */
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
 }
 
-/* Fade-in animation for cards */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+/* Attribute and Type as separate blocks, centered with margin below */
+.character-card p.attribute,
+.character-card p.type {
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 1.2em 0;
+  font-size: 1rem;
+}
+
+.character-card p.attribute span,
+.character-card p.type span {
+  font-weight: 700;
+}
+
+/* Skill sections */
+.character-card p.skill {
+  text-align: left;
+  line-height: 1.4em;
+  margin-bottom: 1.2em;
+  font-size: 0.9rem;
+  white-space: pre-wrap; /* preserves line breaks */
+}
+
+.character-card p.skill b {
+  font-weight: bold;
+}
+
+.character-card p.skill u {
+  text-decoration: underline;
+}
+
+/* Scrollbar on body for page */
+html {
+  scroll-behavior: smooth;
 }

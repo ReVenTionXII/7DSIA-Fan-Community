@@ -10,7 +10,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
       const resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = '';
 
-      // Filter characters by name or affiliation or attribute or type
+      // Filter characters by name, affiliation, attribute, or type
       const filtered = data.filter(char => 
         char.name.toLowerCase().includes(query) ||
         (char.Affiliation && char.Affiliation.toLowerCase().includes(query)) ||
@@ -23,45 +23,44 @@ document.getElementById('searchButton').addEventListener('click', () => {
         return;
       }
 
+      // Emojis for attribute and type
+      const attributeEmojis = {
+        "DEX": "🔵",
+        "VIT": "🟢",
+        "STR": "🔴",
+        "INT": "🟠"
+      };
+      const typeEmojis = {
+        "DPS": "🗡️",
+        "VIT": "❤️",
+        "Tank": "🛡️",
+        "Debuffer": "🌙",
+        "Support": "🚑"
+      };
+
       filtered.forEach(character => {
         // Extract just the filename from full image path
         let imgName = '';
         if (character.image_path) {
-          imgName = character.image_path.split(/[/\\]/).pop(); // gets filename only
-          imgName = imgName.replace(/\s/g, '_'); // convert spaces to underscores if needed
+          imgName = character.image_path.split(/[/\\]/).pop(); // filename only
+          imgName = imgName.replace(/\s/g, '_'); // spaces to underscores
         }
-
-        // Prepend the assets folder once
         const imgSrc = `assets/characters/${imgName}`;
 
-        // Attribute and Type emojis
-        const attributeEmojis = {
-          "DEX": "🔵",
-          "VIT": "🟢",
-          "STR": "🔴",
-          "INT": "🟠"
-        };
-        const typeEmojis = {
-          "DPS": "🗡️",
-          "VIT": "❤️",
-          "Tank": "🛡️",
-          "Debuffer": "🌙",
-          "Support": "🚑"
-        };
-
+        // Emojis for this character
         const attributeEmoji = attributeEmojis[character.Attribute] || '';
         const typeEmoji = typeEmojis[character.Type] || '';
 
         const card = document.createElement('div');
         card.classList.add('character-card');
         card.innerHTML = `
-          <img src="${imgSrc}" alt="${character.name}" style="max-width:100%; border-radius:8px;">
+          <img src="${imgSrc}" alt="${character.name}">
           <h2>${character.name}</h2>
-          <p class="attribute-type"><b>Attribute:</b> <span>${attributeEmoji} <b style="color:inherit;">${character.Attribute || ''}</b></span></p>
-          <p class="attribute-type"><b>Type:</b> ${typeEmoji} <b style="color:inherit;">${character.Type || ''}</b></p>
-          <p><b>Normal Skill:</b><br>${character.Normal_Skill.replace(/\n/g, '<br>')}</p>
-          <p><b>Special Move:</b><br>${character.Special_Skill.replace(/\n/g, '<br>')}</p>
-          <p><b>Ultimate Move:</b><br>${character.Ultimate_Move.replace(/\n/g, '<br>')}</p>
+          <p class="attribute"><span>${attributeEmoji} ${character.Attribute || ''}</span></p>
+          <p class="type"><span>${typeEmoji} ${character.Type || ''}</span></p>
+          <p class="skill"><b>Normal Skill:</b><br>${character.Normal_Skill.replace(/\n/g, '<br>')}</p>
+          <p class="skill"><b>Special Move:</b><br>${character.Special_Skill.replace(/\n/g, '<br>')}</p>
+          <p class="skill"><b>Ultimate Move:</b><br>${character.Ultimate_Move.replace(/\n/g, '<br>')}</p>
         `;
 
         resultsContainer.appendChild(card);
