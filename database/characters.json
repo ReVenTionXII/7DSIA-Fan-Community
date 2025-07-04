@@ -1347,6 +1347,8 @@
       "Description": "Deals damage equal to 666% of Attack to the target. Inflicts the target with Lv. 5 Weaken for 10s upon successful attack. [Lv. 5 Weaken] Decreases final Attack by 30%"
     },
     "image_path": "assets/characters/[The_Pleiades_of_the_Azure_Sky]_Denzel.jpg",
-    "Mentor_Recommendations": "Mentor tips coming soon! Stay tuned."
+    "Mentor_Recommendations": { 
+	 "P2P": "Mentor tips coming soon! Stay tuned.",
+     "F2P": "Mentor tips coming soon! Stay tuned.",
   }
 ]
