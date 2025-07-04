@@ -70,20 +70,21 @@ body {
 
 
 #searchButton {
+  background-color: #ffcc00; /* Gold background */
+  color: #000;               /* Black text */
+  border: none;
   padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  border: 2px solid #ffcc00;  /* Gold border */
-  background-color: #000;     /* Black background */
-  color: #ffcc00;             /* Gold text */
   font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #searchButton:hover {
-  background-color: #ffcc00; /* Gold background on hover */
-  color: #000;               /* Black text on hover */
-}
+  background-color: #e6b800; /* Slightly darker gold */
+  color: #000;
+}               /* Black text on hover */
 
 #results {
   display: flex;
