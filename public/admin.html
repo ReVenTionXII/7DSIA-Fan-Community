@@ -136,7 +136,10 @@
   <form id="characterForm">
     <h2>Add / Edit Character</h2>
     <input type="hidden" id="charId" />
-    
+
+    <label for="category">Category</label>
+    <input id="category" type="text" placeholder="Category" />
+
     <label for="name">Name</label>
     <input id="name" type="text" required />
 
@@ -162,16 +165,25 @@
     </select>
 
     <label for="image_path">Image Filename</label>
-    <input id="image_path" type="text" placeholder="e.g. image-123456.png" readonly />
+    <input id="image_path" type="text" placeholder="e.g. image-123456.png" />
 
-    <label for="normalSkill">Normal Skill Description</label>
-    <textarea id="normalSkill" placeholder="JSON or plain text"></textarea>
+    <!-- Normal Skill -->
+    <label for="normalSkillName">Normal Skill Name</label>
+    <input id="normalSkillName" type="text" placeholder="Normal skill name" />
+    <label for="normalSkillDesc">Normal Skill Description</label>
+    <textarea id="normalSkillDesc" placeholder="Normal skill description"></textarea>
 
-    <label for="specialSkill">Special Skill Description</label>
-    <textarea id="specialSkill" placeholder="JSON or plain text"></textarea>
+    <!-- Special Skill -->
+    <label for="specialSkillName">Special Skill Name</label>
+    <input id="specialSkillName" type="text" placeholder="Special skill name" />
+    <label for="specialSkillDesc">Special Skill Description</label>
+    <textarea id="specialSkillDesc" placeholder="Special skill description"></textarea>
 
-    <label for="ultimateMove">Ultimate Move Description</label>
-    <textarea id="ultimateMove" placeholder="JSON or plain text"></textarea>
+    <!-- Ultimate Move -->
+    <label for="ultimateMoveName">Ultimate Move Name</label>
+    <input id="ultimateMoveName" type="text" placeholder="Ultimate move name" />
+    <label for="ultimateMoveDesc">Ultimate Move Description</label>
+    <textarea id="ultimateMoveDesc" placeholder="Ultimate move description"></textarea>
 
     <label for="mentorRecommendation">Mentor Recommendation(s)</label>
     <textarea id="mentorRecommendation" placeholder="Mentor recommendation text or JSON"></textarea>
@@ -190,14 +202,22 @@
 
   const charForm = document.getElementById('characterForm');
   const charIdInput = document.getElementById('charId');
+  const categoryInput = document.getElementById('category');
   const nameInput = document.getElementById('name');
   const affiliationInput = document.getElementById('affiliation');
   const attributeSelect = document.getElementById('attribute');
   const typeSelect = document.getElementById('type');
   const imagePathInput = document.getElementById('image_path');
-  const normalSkillInput = document.getElementById('normalSkill');
-  const specialSkillInput = document.getElementById('specialSkill');
-  const ultimateMoveInput = document.getElementById('ultimateMove');
+
+  const normalSkillNameInput = document.getElementById('normalSkillName');
+  const normalSkillDescInput = document.getElementById('normalSkillDesc');
+
+  const specialSkillNameInput = document.getElementById('specialSkillName');
+  const specialSkillDescInput = document.getElementById('specialSkillDesc');
+
+  const ultimateMoveNameInput = document.getElementById('ultimateMoveName');
+  const ultimateMoveDescInput = document.getElementById('ultimateMoveDesc');
+
   const mentorRecommendationInput = document.getElementById('mentorRecommendation');
 
   let characters = [];
@@ -233,14 +253,37 @@
         : '';
 
       div.innerHTML = `
-        <strong>${escapeHtml(c.name)}</strong> (${escapeHtml(c.Attribute || '-')}/ ${escapeHtml(c.Type || '-')})<br/>
+        <strong>${escapeHtml(c.name)}</strong> — <em>${escapeHtml(c.Category || 'No Category')}</em><br/>
+        Affiliation: ${escapeHtml(c.Affiliation || '-')}<br/>
+        Attribute / Type: ${escapeHtml(c.Attribute || '-')}/${escapeHtml(c.Type || '-')}<br/>
+        Image: ${escapeHtml(c.image_path || 'N/A')}<br/><br/>
+
+        <strong>Normal Skill:</strong> ${escapeHtml(getSkillDisplay(c.Normal_Skill))}<br/>
+        <strong>Special Skill:</strong> ${escapeHtml(getSkillDisplay(c.Special_Skill))}<br/>
+        <strong>Ultimate Move:</strong> ${escapeHtml(getSkillDisplay(c.Ultimate_Move))}<br/><br/>
+
         <em>Mentor Recommendation(s):</em> ${escapeHtml(mentorSnippet)}
-        <br/>
+
+        <br/><br/>
         <button class="edit-btn" onclick="editCharacter(${c.id})">Edit</button>
         <button class="delete-btn" onclick="deleteCharacter(${c.id})">Delete</button>
       `;
       characterList.appendChild(div);
     });
+  }
+
+  // Helper to show skill as "Name: Description" if object, else string
+  function getSkillDisplay(skill) {
+    if (!skill) return '-';
+    if (typeof skill === 'string') return skill;
+    if (typeof skill === 'object') {
+      // Expecting {name: "...", description: "..."} or similar
+      if ('name' in skill && 'description' in skill) {
+        return `${skill.name}: ${skill.description}`;
+      }
+      return JSON.stringify(skill);
+    }
+    return '-';
   }
 
   // Escape HTML for safety
@@ -258,16 +301,44 @@
   window.editCharacter = function(id) {
     const char = characters.find(c => c.id === id);
     if (!char) return;
-    charIdInput.value = char.id;
+    charIdInput.value = char.id || '';
+    categoryInput.value = char.Category || '';
     nameInput.value = char.name || '';
     affiliationInput.value = char.Affiliation || '';
     attributeSelect.value = char.Attribute || '';
     typeSelect.value = char.Type || '';
     imagePathInput.value = char.image_path || '';
-    normalSkillInput.value = char.Normal_Skill ? (typeof char.Normal_Skill === 'string' ? char.Normal_Skill : JSON.stringify(char.Normal_Skill, null, 2)) : '';
-    specialSkillInput.value = char.Special_Skill ? (typeof char.Special_Skill === 'string' ? char.Special_Skill : JSON.stringify(char.Special_Skill, null, 2)) : '';
-    ultimateMoveInput.value = char.Ultimate_Move ? (typeof char.Ultimate_Move === 'string' ? char.Ultimate_Move : JSON.stringify(char.Ultimate_Move, null, 2)) : '';
-    mentorRecommendationInput.value = char.Mentor_Recommendations ? (typeof char.Mentor_Recommendations === 'string' ? char.Mentor_Recommendations : JSON.stringify(char.Mentor_Recommendations, null, 2)) : '';
+
+    // Handle skills as objects or strings
+    if (char.Normal_Skill && typeof char.Normal_Skill === 'object') {
+      normalSkillNameInput.value = char.Normal_Skill.name || '';
+      normalSkillDescInput.value = char.Normal_Skill.description || '';
+    } else {
+      normalSkillNameInput.value = '';
+      normalSkillDescInput.value = char.Normal_Skill || '';
+    }
+
+    if (char.Special_Skill && typeof char.Special_Skill === 'object') {
+      specialSkillNameInput.value = char.Special_Skill.name || '';
+      specialSkillDescInput.value = char.Special_Skill.description || '';
+    } else {
+      specialSkillNameInput.value = '';
+      specialSkillDescInput.value = char.Special_Skill || '';
+    }
+
+    if (char.Ultimate_Move && typeof char.Ultimate_Move === 'object') {
+      ultimateMoveNameInput.value = char.Ultimate_Move.name || '';
+      ultimateMoveDescInput.value = char.Ultimate_Move.description || '';
+    } else {
+      ultimateMoveNameInput.value = '';
+      ultimateMoveDescInput.value = char.Ultimate_Move || '';
+    }
+
+    mentorRecommendationInput.value = char.Mentor_Recommendations
+      ? (typeof char.Mentor_Recommendations === 'string'
+         ? char.Mentor_Recommendations
+         : JSON.stringify(char.Mentor_Recommendations, null, 2))
+      : '';
   };
 
   // Delete character
@@ -327,16 +398,39 @@
   charForm.addEventListener('submit', async e => {
     e.preventDefault();
     const id = charIdInput.value;
+
+    // Build skill objects or fallback strings
+    const normalSkill = (normalSkillNameInput.value.trim() || normalSkillDescInput.value.trim())
+      ? { name: normalSkillNameInput.value.trim(), description: normalSkillDescInput.value.trim() }
+      : '';
+
+    const specialSkill = (specialSkillNameInput.value.trim() || specialSkillDescInput.value.trim())
+      ? { name: specialSkillNameInput.value.trim(), description: specialSkillDescInput.value.trim() }
+      : '';
+
+    const ultimateMove = (ultimateMoveNameInput.value.trim() || ultimateMoveDescInput.value.trim())
+      ? { name: ultimateMoveNameInput.value.trim(), description: ultimateMoveDescInput.value.trim() }
+      : '';
+
+    let mentorRecommendationVal = mentorRecommendationInput.value.trim();
+    // Try parse JSON for mentor recommendation, fallback to string
+    try {
+      mentorRecommendationVal = mentorRecommendationVal ? JSON.parse(mentorRecommendationVal) : '';
+    } catch {
+      // keep as string
+    }
+
     const data = {
+      Category: categoryInput.value.trim(),
       name: nameInput.value.trim(),
       Affiliation: affiliationInput.value.trim(),
       Attribute: attributeSelect.value,
       Type: typeSelect.value,
       image_path: imagePathInput.value.trim(),
-      Normal_Skill: parseJSONorText(normalSkillInput.value.trim()),
-      Special_Skill: parseJSONorText(specialSkillInput.value.trim()),
-      Ultimate_Move: parseJSONorText(ultimateMoveInput.value.trim()),
-      Mentor_Recommendations: parseJSONorText(mentorRecommendationInput.value.trim()),
+      Normal_Skill: normalSkill,
+      Special_Skill: specialSkill,
+      Ultimate_Move: ultimateMove,
+      Mentor_Recommendations: mentorRecommendationVal,
     };
 
     try {
@@ -367,29 +461,17 @@
     }
   });
 
-  // Utility: parse JSON or return plain text if invalid JSON
-  function parseJSONorText(str) {
-    if (!str) return '';
-    try {
-      return JSON.parse(str);
-    } catch {
-      return str;
-    }
-  }
-
-  // On page load, check if logged in (try loading characters)
+  // On page load, check login status by trying to fetch characters
   (async () => {
     try {
-      const res = await fetch('/api/characters', { credentials: 'include' });
-      if (res.ok) {
-        loginSection.style.display = 'none';
-        adminSection.style.display = 'block';
-        logoutBtn.style.display = 'inline-block';
-        characters = await res.json();
-        renderCharacterList();
-      }
+      await loadCharacters();
+      loginSection.style.display = 'none';
+      adminSection.style.display = 'block';
+      logoutBtn.style.display = 'inline-block';
     } catch {
-      // Not logged in or no session
+      loginSection.style.display = 'block';
+      adminSection.style.display = 'none';
+      logoutBtn.style.display = 'none';
     }
   })();
 </script>
