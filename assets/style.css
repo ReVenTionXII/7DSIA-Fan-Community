@@ -24,9 +24,9 @@ body {
   display: inline-block;
   padding: 10px 20px;
   margin: 0 10px;
-  border: 2px solid #ffcc00; /* Gold border */
-  background-color: #000;    /* Black background */
-  color: #ffcc00;            /* Gold text */
+  border: 2px solid #ffcc00;
+  background-color: #000;
+  color: #ffcc00;
   font-weight: 700;
   text-decoration: none;
   border-radius: 6px;
@@ -36,8 +36,8 @@ body {
 }
 
 .social-btn:hover {
-  background-color: #ffcc00; /* Gold background on hover */
-  color: #000;               /* Black text on hover */
+  background-color: #ffcc00;
+  color: #000;
 }
 
 .discord-btn:hover {
@@ -58,20 +58,20 @@ body {
   width: 300px;
   max-width: 90vw;
   border-radius: 6px 0 0 6px;
-  border: 2px solid #ffcc00;  /* Gold border */
-  background-color: #000;     /* Black background */
-  color: #ffcc00;             /* Gold text */
+  border: 2px solid #ffcc00;
+  background-color: #000;
+  color: #ffcc00;
   font-size: 1rem;
   outline: none;
 }
 
 #searchInput::placeholder {
-  color: #ffd966;             /* Lighter gold for placeholder */
+  color: #ffd966;
 }
 
 #searchButton {
-  background-color: #ffcc00; /* Gold background */
-  color: #000;               /* Black text */
+  background-color: #ffcc00;
+  color: #000;
   border: none;
   padding: 10px 20px;
   font-weight: 700;
@@ -82,8 +82,8 @@ body {
 }
 
 #searchButton:hover {
-  background-color: #e6b800; /* Slightly darker gold */
-  color: #000;               /* Black text on hover */
+  background-color: #e6b800;
+  color: #000;
 }
 
 #results {
@@ -98,7 +98,6 @@ body {
   border-radius: 14px;
   padding: 20px;
   width: 320px;
-  /* Use the glow color variable with a soft shadow */
   box-shadow: 0 0 12px var(--glow-color, rgba(88, 101, 242, 0.5));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
@@ -109,7 +108,6 @@ body {
 
 .character-card:hover {
   transform: scale(1.05);
-  /* Stronger glow on hover */
   box-shadow: 0 0 24px var(--glow-color, rgba(88, 101, 242, 0.9));
 }
 
@@ -141,11 +139,27 @@ body {
   margin: 0;
 }
 
-.skill {
+/* Skill Sections */
+.skill-section {
+  width: 100%;
   margin-bottom: 18px;
-  font-size: 1rem;
-  line-height: 1.5;
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-left: 4px solid #ffcc00;
+  border-radius: 8px;
+}
+
+.skill-header {
+  font-size: 1.05rem;
+  color: #ffcc00;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.skill-desc {
+  font-size: 0.95rem;
   color: #ddd;
+  line-height: 1.5;
   text-align: left;
 }
 
