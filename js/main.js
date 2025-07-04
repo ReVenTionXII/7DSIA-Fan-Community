@@ -1,5 +1,3 @@
-// js/main.js
-
 // Highlighting helper function
 function highlight(txt = "") {
   txt = txt.replace(/\n/g, " ");
@@ -32,24 +30,16 @@ function skillHTML(obj, cat) {
 // Mentor recommendation box
 function mentorHTML(data) {
   const icon = "🎓";
-  let content;
-  if (!data) {
-    content = "<em>No mentor recommendation.</em>";
-  } else if (typeof data === "string") {
-    content = data.replace(/\n/g, "<br>");
-  } else {
-    try {
-      content = `<pre style="white-space:pre-wrap;">${JSON.stringify(data, null, 2)}</pre>`;
-    } catch {
-      content = "<em>Invalid mentor recommendation data.</em>";
-    }
-  }
+  const p2pContent = "Mentor tips coming soon! Stay tuned.";
+  const f2pContent = "Mentor tips coming soon! Stay tuned.";
+  
   return `
     <div class="skill-section mentor-highlight">
       <p class="skill-header" style="font-size:1.15rem;color:#ffd700;">
         ${icon} Mentor Recommendations
       </p>
-      <p class="skill-desc">${content}</p>
+      <p class="skill-desc"><b>P2P:</b> ${p2pContent}</p>
+      <p class="skill-desc"><b>F2P:</b> ${f2pContent}</p>
     </div>`;
 }
 
@@ -80,8 +70,8 @@ function renderCharacters(characters) {
       <h2>${char.name}</h2>
 
       <div class="attribute-type">
-        <p>${attrEmoji[char.Attribute] || ""} ${char.Attribute || ""}  
-           ${typeEmoji[char.Type] || ""} ${char.Type || ""}</p>
+        <p>${attrEmoji[char.Attribute] || ""} ${char.Attribute || ""}  
+           ${typeEmoji[char.Type] || ""} ${char.Type || ""}</p>
       </div>
 
       ${skillHTML(char.Normal_Skill, "Normal Skill")}

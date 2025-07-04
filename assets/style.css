@@ -198,32 +198,6 @@ body {
 }
 
 /* Mentor Recommendation Styles */
-.mentor-recommendation {
-  margin-top: 12px;
-  padding: 12px;
-  background-color: #2a2a2a;
-  border-left: 4px solid #ffcc00;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: #ffd700;
-  white-space: pre-wrap;
-  text-align: left;
-  box-shadow: inset 0 0 5px rgba(255, 204, 0, 0.3);
-}
-
-.mentor-recommendation strong {
-  color: #ffcc00;
-}
-
-.mentor-recommendation pre {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9rem;
-  color: #ffbb33;
-  margin: 6px 0 0;
-  white-space: pre-wrap;
-}
-
-/* Eye-catching glow pulse animation for Mentor Recommendation box */
 .mentor-highlight {
   position: relative;
   border-left-color: #00bfff;
@@ -240,6 +214,20 @@ body {
   text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
 }
 
+.mentor-highlight .skill-desc {
+  margin: 8px 0;
+  padding: 6px;
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.mentor-highlight .skill-desc b {
+  color: #ffcc00;
+  font-weight: 700;
+}
+
 /* Optional icon effect */
 .mentor-highlight .skill-header::before {
   content: "🎓 ";
@@ -253,4 +241,3 @@ body {
   50%  { box-shadow: 0 0 16px #00e5ffaa; }
   100% { box-shadow: 0 0 8px #00e5ff66; }
 }
-
