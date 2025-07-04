@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (keep secrets out of repo)
+.env
+.env.local
+.env.*.local
+
+# Optional npm cache
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Build output (if you have any build/dist folders)
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Misc
+*.tgz
