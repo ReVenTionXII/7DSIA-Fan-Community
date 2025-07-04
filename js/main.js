@@ -1,3 +1,10 @@
+function formatSkillText(text) {
+  if (!text) return '';
+  return text
+    .replace(/\n{2,}/g, '<br><br>')  // multiple newlines => paragraph break
+    .replace(/\n/g, ' ');             // single newline => space
+}
+
 document.getElementById('searchButton').addEventListener('click', () => {
   const query = document.getElementById('searchInput').value.trim().toLowerCase();
   if (!query) {
@@ -23,31 +30,29 @@ document.getElementById('searchButton').addEventListener('click', () => {
         return;
       }
 
+      const attributeEmojis = {
+        "DEX": "🔵",
+        "VIT": "🟢",
+        "STR": "🔴",
+        "INT": "🟠"
+      };
+      const typeEmojis = {
+        "DPS": "🗡️",
+        "VIT": "❤️",
+        "Tank": "🛡️",
+        "Debuffer": "🌙",
+        "Support": "🚑"
+      };
+
       filtered.forEach(character => {
-        // Extract filename from image path
+        // Extract filename from full image path and fix spaces
         let imgName = '';
         if (character.image_path) {
-          imgName = character.image_path.split(/[/\\]/).pop(); // filename only
-          imgName = imgName.replace(/\s/g, '_'); // spaces to underscores
+          imgName = character.image_path.split(/[/\\]/).pop();
+          imgName = imgName.replace(/\s/g, '_');
         }
 
         const imgSrc = `assets/characters/${imgName}`;
-
-        // Emojis
-        const attributeEmojis = {
-          "DEX": "🔵",
-          "VIT": "🟢",
-          "STR": "🔴",
-          "INT": "🟠"
-        };
-        const typeEmojis = {
-          "DPS": "🗡️",
-          "VIT": "❤️",
-          "Tank": "🛡️",
-          "Debuffer": "🌙",
-          "Support": "🚑"
-        };
-
         const attributeEmoji = attributeEmojis[character.Attribute] || '';
         const typeEmoji = typeEmojis[character.Type] || '';
 
@@ -57,12 +62,12 @@ document.getElementById('searchButton').addEventListener('click', () => {
           <img src="${imgSrc}" alt="${character.name}">
           <h2>${character.name}</h2>
           <div class="attribute-type">
-            <p><span>${attributeEmoji}</span> ${character.Attribute || ''}</p>
-            <p><span>${typeEmoji}</span> ${character.Type || ''}</p>
+            <p><span class="emoji">${attributeEmoji}</span> <span class="label">${character.Attribute || ''}</span></p>
+            <p><span class="emoji">${typeEmoji}</span> <span class="label">${character.Type || ''}</span></p>
           </div>
-          <p class="skill"><b>Normal Skill:</b><br>${character.Normal_Skill.replace(/\n/g, '<br>')}</p>
-          <p class="skill"><b>Special Move:</b><br>${character.Special_Skill.replace(/\n/g, '<br>')}</p>
-          <p class="skill"><b>Ultimate Move:</b><br>${character.Ultimate_Move.replace(/\n/g, '<br>')}</p>
+          <p class="skill"><b>Normal Skill:</b><br>${formatSkillText(character.Normal_Skill)}</p>
+          <p class="skill"><b>Special Move:</b><br>${formatSkillText(character.Special_Skill)}</p>
+          <p class="skill"><b>Ultimate Move:</b><br>${formatSkillText(character.Ultimate_Move)}</p>
         `;
 
         resultsContainer.appendChild(card);

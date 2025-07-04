@@ -1,15 +1,18 @@
+/* Reset and basics */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   background: #121212;
   color: #fff;
-  overflow-y: auto;
+  overflow-y: scroll;
+  min-height: 100vh;
 }
 
 header {
   text-align: center;
   background: #000;
+  padding-bottom: 0.5em;
 }
 
 .banner {
@@ -23,20 +26,20 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #000;
 }
 
 nav h1 {
-  margin: 0.5em 0;
+  margin: 0.3em 0 0.5em 0;
   font-size: 2em;
   color: #ffd700;
 }
 
 .nav-links a {
-  margin: 0 10px;
+  margin: 0 15px;
   color: #ffd700;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
 .search-section {
@@ -45,14 +48,15 @@ nav h1 {
 }
 
 #searchInput {
-  padding: 0.5em;
+  padding: 0.5em 0.8em;
   width: 300px;
   border-radius: 4px;
   border: none;
+  font-size: 1em;
 }
 
 #searchButton {
-  padding: 0.5em 1em;
+  padding: 0.5em 1.2em;
   margin-left: 0.5em;
   border: none;
   background: #ffd700;
@@ -60,6 +64,7 @@ nav h1 {
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
+  font-size: 1em;
 }
 
 .results-container {
@@ -67,78 +72,75 @@ nav h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5em;
-  padding: 2em;
+  padding: 1em 2em 3em 2em;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 3em auto;
 }
 
+/* Character card */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1.5em;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 320px;
-  min-height: 480px;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+  padding: 1em 1.2em;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  /* no scrollbars */
+  overflow: visible;
 }
 
 .character-card img {
-  max-width: 100%;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1em;
-  object-fit: contain;
-  height: 180px;
-  width: auto;
 }
 
 .character-card h2 {
-  margin: 0 0 0.5em 0;
-  font-weight: bold;
-  color: #fff;
+  margin: 0 0 0.6em 0;
+  color: white;
+  font-size: 1.5em;
   text-align: center;
 }
 
 .attribute-type {
   display: flex;
   justify-content: center;
-  gap: 1.5em;
-  width: 100%;
+  gap: 2em;
   margin-bottom: 1.2em;
+  width: 100%;
 }
 
 .attribute-type p {
   margin: 0;
   font-weight: bold;
-  font-size: 1.05em;
-  color: #fff;
+  color: white;
   display: flex;
   align-items: center;
   gap: 0.3em;
+  justify-content: center;
+  font-size: 1.1em;
 }
 
-.character-card p.skill {
+.attribute-type .emoji {
+  font-size: 1.4em;
+}
+
+/* Skill text formatting */
+.skill {
   text-align: left;
-  width: 100%;
-  margin: 0.4em 0 1em 0;
-  line-height: 1.4;
-  white-space: pre-wrap;
+  font-size: 0.9em;
+  line-height: 1.5em;
+  margin-bottom: 1.2em;
+  white-space: normal;
+  color: #ddd;
 }
 
-.character-card p.skill b {
+.skill b {
   color: #ffd700;
-}
-
-.character-card p.skill u {
-  text-decoration: underline;
-  text-decoration-color: #ffd700;
-}
-
-.character-card:hover {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
 }
