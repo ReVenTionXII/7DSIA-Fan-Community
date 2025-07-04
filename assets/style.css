@@ -168,4 +168,33 @@ nav h1 {
   margin-bottom: 0.2em;
 }
 
+.keyword {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.duration {
+  text-decoration: underline;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin: 0.5em 0 1em;
+  font-weight: bold;
+  color: white;
+}
+
+.attribute, .type {
+  text-align: center;
+}
+
+.skill {
+  text-align: left;
+  font-size: 0.95em;
+  margin-bottom: 0.75em;
+  line-height: 1.5;
+}
+
 /* Scroll bar on page but no scroll inside cards */
