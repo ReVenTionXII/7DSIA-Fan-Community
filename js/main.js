@@ -10,7 +10,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
       const resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = '';
 
-      // Filter characters by name, affiliation, attribute, or type
+      // Filter characters by name or affiliation or attribute or type
       const filtered = data.filter(char => 
         char.name.toLowerCase().includes(query) ||
         (char.Affiliation && char.Affiliation.toLowerCase().includes(query)) ||
@@ -23,31 +23,31 @@ document.getElementById('searchButton').addEventListener('click', () => {
         return;
       }
 
-      // Emojis for attribute and type
-      const attributeEmojis = {
-        "DEX": "🔵",
-        "VIT": "🟢",
-        "STR": "🔴",
-        "INT": "🟠"
-      };
-      const typeEmojis = {
-        "DPS": "🗡️",
-        "VIT": "❤️",
-        "Tank": "🛡️",
-        "Debuffer": "🌙",
-        "Support": "🚑"
-      };
-
       filtered.forEach(character => {
-        // Extract just the filename from full image path
+        // Extract filename from image path
         let imgName = '';
         if (character.image_path) {
           imgName = character.image_path.split(/[/\\]/).pop(); // filename only
           imgName = imgName.replace(/\s/g, '_'); // spaces to underscores
         }
+
         const imgSrc = `assets/characters/${imgName}`;
 
-        // Emojis for this character
+        // Emojis
+        const attributeEmojis = {
+          "DEX": "🔵",
+          "VIT": "🟢",
+          "STR": "🔴",
+          "INT": "🟠"
+        };
+        const typeEmojis = {
+          "DPS": "🗡️",
+          "VIT": "❤️",
+          "Tank": "🛡️",
+          "Debuffer": "🌙",
+          "Support": "🚑"
+        };
+
         const attributeEmoji = attributeEmojis[character.Attribute] || '';
         const typeEmoji = typeEmojis[character.Type] || '';
 
@@ -56,8 +56,10 @@ document.getElementById('searchButton').addEventListener('click', () => {
         card.innerHTML = `
           <img src="${imgSrc}" alt="${character.name}">
           <h2>${character.name}</h2>
-          <p class="attribute"><span>${attributeEmoji} ${character.Attribute || ''}</span></p>
-          <p class="type"><span>${typeEmoji} ${character.Type || ''}</span></p>
+          <div class="attribute-type">
+            <p><span>${attributeEmoji}</span> ${character.Attribute || ''}</p>
+            <p><span>${typeEmoji}</span> ${character.Type || ''}</p>
+          </div>
           <p class="skill"><b>Normal Skill:</b><br>${character.Normal_Skill.replace(/\n/g, '<br>')}</p>
           <p class="skill"><b>Special Move:</b><br>${character.Special_Skill.replace(/\n/g, '<br>')}</p>
           <p class="skill"><b>Ultimate Move:</b><br>${character.Ultimate_Move.replace(/\n/g, '<br>')}</p>

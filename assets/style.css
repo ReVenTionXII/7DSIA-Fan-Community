@@ -1,14 +1,12 @@
-/* General body & layout */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
   padding: 0;
   background: #121212;
   color: #fff;
-  /* Removed overflow-y: scroll; so natural scroll on page */
+  overflow-y: auto;
 }
 
-/* Header and banner */
 header {
   text-align: center;
   background: #000;
@@ -25,6 +23,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #000;
 }
 
 nav h1 {
@@ -40,7 +39,6 @@ nav h1 {
   font-weight: bold;
 }
 
-/* Search section */
 .search-section {
   margin: 2em auto;
   text-align: center;
@@ -64,91 +62,83 @@ nav h1 {
   font-weight: bold;
 }
 
-/* Results container - no scroll, expands naturally */
 .results-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
+  gap: 1.5em;
   padding: 2em;
-  /* Removed max-height and overflow */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Character card styling */
 .character-card {
   background: #1e1e1e;
   border: 1px solid #444;
-  padding: 1em 1.2em;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  padding: 1.5em;
+  border-radius: 12px;
+  width: 320px;
+  min-height: 480px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  overflow: visible;
-  height: auto;
-  word-break: break-word;
+  color: #fff;
 }
 
-.character-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
-}
-
-/* Image styling */
 .character-card img {
-  max-width: 250px;
-  max-height: 250px;
-  object-fit: contain;
+  max-width: 100%;
   border-radius: 8px;
   margin-bottom: 1em;
+  object-fit: contain;
+  height: 180px;
+  width: auto;
 }
 
-/* Name and attribute/type text */
 .character-card h2 {
-  color: #fff;
   margin: 0 0 0.5em 0;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.4rem;
-}
-
-/* Attribute and Type as separate blocks, centered with margin below */
-.character-card p.attribute,
-.character-card p.type {
+  font-weight: bold;
   color: #fff;
-  font-weight: 600;
   text-align: center;
-  margin: 0 0 1.2em 0;
-  font-size: 1rem;
 }
 
-.character-card p.attribute span,
-.character-card p.type span {
-  font-weight: 700;
+.attribute-type {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  width: 100%;
+  margin-bottom: 1.2em;
 }
 
-/* Skill sections */
+.attribute-type p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.05em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
 .character-card p.skill {
   text-align: left;
-  line-height: 1.4em;
-  margin-bottom: 1.2em;
-  font-size: 0.9rem;
-  white-space: pre-wrap; /* preserves line breaks */
+  width: 100%;
+  margin: 0.4em 0 1em 0;
+  line-height: 1.4;
+  white-space: pre-wrap;
 }
 
 .character-card p.skill b {
-  font-weight: bold;
+  color: #ffd700;
 }
 
 .character-card p.skill u {
   text-decoration: underline;
+  text-decoration-color: #ffd700;
 }
 
-/* Removed scrollbar styles */
-
-/* Smooth page scroll */
-html {
-  scroll-behavior: smooth;
+.character-card:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
 }
