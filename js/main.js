@@ -24,7 +24,7 @@ document.getElementById("searchButton").addEventListener("click", () => {
 
       /* ── emoji & colour maps ───────────────────────────────── */
       const attrEmoji = { DEX:"🔵", VIT:"🟢", STR:"🔴", INT:"🟠" };
-      const typeEmoji = { DPS:"🗡️", VIT:"❤️", Tank:"🛡️", Debuffer:"🌙", Support:"🚑" };
+      const typeEmoji = { DPS:"🗡️", Tank:"🛡️", Debuffer:"🌙", Support:"🚑" };
       const glowColor = { DEX:"#3b82f6", VIT:"#22c55e", STR:"#ef4444", INT:"#f97316" };
 
       /* ── keyword / highlighter helpers ─────────────────────── */
