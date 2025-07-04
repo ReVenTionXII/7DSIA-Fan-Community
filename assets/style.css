@@ -67,7 +67,7 @@ body {
 
 #searchInput::placeholder {
   color: #ffd966;             /* Lighter gold for placeholder */
-} /* <-- fixed: added missing closing brace here */
+}
 
 #searchButton {
   background-color: #ffcc00; /* Gold background */
@@ -147,6 +147,7 @@ body {
   text-align: left;
 }
 
+/* Highlighted text styles */
 .keyword {
   color: #ffcc00;
   font-weight: 700;

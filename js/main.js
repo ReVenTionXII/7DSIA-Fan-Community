@@ -39,10 +39,10 @@ document.getElementById('searchButton').addEventListener('click', () => {
       function formatSkillText(text) {
         if (!text) return '';
 
-        // Replace newlines with spaces for inline formatting
+        // Replace newlines with spaces for formatting
         text = text.replace(/\n/g, ' ');
 
-        // Keywords to highlight exactly (case-sensitive)
+        // Keywords to highlight (case-sensitive exact matches)
         const keywords = [
           "Attack",
           "Attack Speed",
@@ -56,18 +56,20 @@ document.getElementById('searchButton').addEventListener('click', () => {
           "Crit Resistance",
           "Crit Defense"
         ];
+
+        // Highlight keywords
         keywords.forEach(k => {
           const re = new RegExp(`\\b${k}\\b`, 'g');
           text = text.replace(re, `<span class="keyword">${k}</span>`);
         });
 
-        // Highlight durations like "2s", "0.5s" (number followed by 's', whole word)
+        // Highlight time durations like "2s", "0.5s"
         text = text.replace(/\b(\d+(\.\d+)?s)\b/g, '<span class="duration">$1</span>');
 
-        // Highlight percentages like "20%", "1093%"
-        text = text.replace(/\b(\d+(\.\d+)?%)\b/g, '<span class="percentage">$1</span>');
+        // Highlight percentage numbers like "20%", "1093%"
+        text = text.replace(/(\d+(\.\d+)?%)/g, '<span class="percentage">$1</span>');
 
-        // Highlight area ranges like "1.5m x 7m" or single "6m" (number + 'm' optionally x number + 'm')
+        // Highlight area ranges like "1.5m x 7m" or single "6m"
         const areaRangeRegex = /\b\d+(\.\d+)?m( x \d+(\.\d+)?m)?\b/g;
         text = text.replace(areaRangeRegex, match => `<span class="area-range">${match}</span>`);
 
