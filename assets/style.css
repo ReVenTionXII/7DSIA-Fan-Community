@@ -223,19 +223,34 @@ body {
   white-space: pre-wrap;
 }
 
-/* mentor highlight inherits .skill-section but tweaks border colour */
+/* Eye-catching glow pulse animation for Mentor Recommendation box */
 .mentor-highlight {
-  border-left-color: #00bfff;          /* bright cyan border */
-  background-color: #263238;           /* slightly different bg */
+  position: relative;
+  border-left-color: #00bfff;
+  background-color: #263238;
+  animation: pulseGlowMentor 2.5s infinite;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 .mentor-highlight .skill-header {
-  color: #00e5ff;                      /* bright cyan header text */
+  color: #00e5ff;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
 }
 
-@keyframes pulseGlow {
-  0%   { box-shadow: 0 0 10px #ffcc00; }
-  50%  { box-shadow: 0 0 20px #ffd700; }
-  100% { box-shadow: 0 0 10px #ffcc00; }
+/* Optional icon effect */
+.mentor-highlight .skill-header::before {
+  content: "🎓 ";
+  font-size: 1.2rem;
+  margin-right: 4px;
+}
+
+/* Pulsing animation for glow */
+@keyframes pulseGlowMentor {
+  0%   { box-shadow: 0 0 8px #00e5ff66; }
+  50%  { box-shadow: 0 0 16px #00e5ffaa; }
+  100% { box-shadow: 0 0 8px #00e5ff66; }
 }
 
