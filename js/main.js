@@ -5,13 +5,13 @@ document.getElementById('searchButton').addEventListener('click', () => {
     return;
   }
   fetch('database/characters.json')
-    .then(res => res.json())
-    .then(characters => {
+    .then(response => response.json())
+    .then(data => {
       const resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = '';
 
-      // Filter characters by name, affiliation, attribute, or type
-      const filtered = characters.filter(char =>
+      // Filter characters by name or affiliation or attribute or type
+      const filtered = data.filter(char => 
         char.name.toLowerCase().includes(query) ||
         (char.Affiliation && char.Affiliation.toLowerCase().includes(query)) ||
         (char.Attribute && char.Attribute.toLowerCase().includes(query)) ||
@@ -19,87 +19,56 @@ document.getElementById('searchButton').addEventListener('click', () => {
       );
 
       if (filtered.length === 0) {
-        resultsContainer.innerHTML = `<p>No characters found for "<b>${query}</b>".</p>`;
+        resultsContainer.innerHTML = `<p>No characters found for "${query}".</p>`;
         return;
       }
 
-      // Emoji and color maps
-      const attributeEmojis = {
-        "DEX": "🔵",
-        "VIT": "🟢",
-        "STR": "🔴",
-        "INT": "🟠"
-      };
-      const typeEmojis = {
-        "DPS": "🗡️",
-        "VIT": "❤️",
-        "Tank": "🛡️",
-        "Debuffer": "🌙",
-        "Support": "🚑"
-      };
-
-      const attributeClasses = {
-        "DEX": "attribute-dex",
-        "VIT": "attribute-vit",
-        "STR": "attribute-str",
-        "INT": "attribute-int"
-      };
-
-      // Regex to highlight keywords and % and time durations
-      const keywords = [
-        "Attack",
-        "Attack Speed",
-        "Accuracy",
-        "Crit Chance",
-        "Crit Damage",
-        "Movement Speed",
-        "Defense",
-        "HP",
-        "Evasion",
-        "Crit Resistance",
-        "Crit Defense"
-      ];
-      const keywordRegex = new RegExp(`\\b(${keywords.join('|')})\\b`, 'gi');
-      const percentRegex = /(\d+(\.\d+)?%)/g;
-      const timeRegex = /(\d+(\.\d+)?s)/g;
-
-      function highlightText(text) {
-        return text
-          .replace(keywordRegex, '<span class="highlight-keyword">$1</span>')
-          .replace(percentRegex, '<span class="highlight-percent">$1</span>')
-          .replace(timeRegex, '<span class="underline-time">$1</span>')
-          .replace(/\n/g, '<br>');
-      }
-
-      filtered.forEach(char => {
-        // Extract filename from image_path
+      filtered.forEach(character => {
+        // Extract just the filename from full image path
         let imgName = '';
-        if (char.image_path) {
-          imgName = char.image_path.split(/[/\\]/).pop().replace(/\s/g, '_');
+        if (character.image_path) {
+          imgName = character.image_path.split(/[/\\]/).pop(); // gets filename only
+          imgName = imgName.replace(/\s/g, '_'); // convert spaces to underscores if needed
         }
+
+        // Prepend the assets folder once
         const imgSrc = `assets/characters/${imgName}`;
 
-        const attrEmoji = attributeEmojis[char.Attribute] || '';
-        const typeEmoji = typeEmojis[char.Type] || '';
-        const attrClass = attributeClasses[char.Attribute] || '';
+        // Attribute and Type emojis
+        const attributeEmojis = {
+          "DEX": "🔵",
+          "VIT": "🟢",
+          "STR": "🔴",
+          "INT": "🟠"
+        };
+        const typeEmojis = {
+          "DPS": "🗡️",
+          "VIT": "❤️",
+          "Tank": "🛡️",
+          "Debuffer": "🌙",
+          "Support": "🚑"
+        };
+
+        const attributeEmoji = attributeEmojis[character.Attribute] || '';
+        const typeEmoji = typeEmojis[character.Type] || '';
 
         const card = document.createElement('div');
         card.classList.add('character-card');
         card.innerHTML = `
-          <img src="${imgSrc}" alt="${char.name}" loading="lazy">
-          <h2>${char.name}</h2>
-          <p><b>Attribute:</b> <span class="${attrClass}">${attrEmoji} <b>${char.Attribute || ''}</b></span></p>
-          <p><b>Type:</b> ${typeEmoji} <b>${char.Type || ''}</b></p>
-          <p><b>Normal Skill:</b><br>${highlightText(char.Normal_Skill)}</p>
-          <p><b>Special Move:</b><br>${highlightText(char.Special_Skill)}</p>
-          <p><b>Ultimate Move:</b><br>${highlightText(char.Ultimate_Move)}</p>
+          <img src="${imgSrc}" alt="${character.name}" style="max-width:100%; border-radius:8px;">
+          <h2>${character.name}</h2>
+          <p class="attribute-type"><b>Attribute:</b> <span>${attributeEmoji} <b style="color:inherit;">${character.Attribute || ''}</b></span></p>
+          <p class="attribute-type"><b>Type:</b> ${typeEmoji} <b style="color:inherit;">${character.Type || ''}</b></p>
+          <p><b>Normal Skill:</b><br>${character.Normal_Skill.replace(/\n/g, '<br>')}</p>
+          <p><b>Special Move:</b><br>${character.Special_Skill.replace(/\n/g, '<br>')}</p>
+          <p><b>Ultimate Move:</b><br>${character.Ultimate_Move.replace(/\n/g, '<br>')}</p>
         `;
 
         resultsContainer.appendChild(card);
       });
     })
     .catch(err => {
-      console.error(err);
+      console.error('Error fetching character data:', err);
       document.getElementById('results').innerHTML = '<p>Failed to load character data.</p>';
     });
 });
