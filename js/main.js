@@ -107,7 +107,7 @@ document.getElementById("searchButton").addEventListener("click", () => {
           ${skillHTML(char.Ultimate_Move)}
 
           <div class="mentor-recommendation">
-            <strong>Mentor Recommendation:</strong><br/>
+            <strong>Mentor Recommendation(s):</strong><br/>
             ${formatMentorRecommendation(char.Mentor_Recommendations)}
           </div>
         `;
