@@ -1,6 +1,6 @@
 [
     {
-        "id": 325,
+        "id": 1,
         "name": "Acid Hendrickson",
         "Affiliation": "Seed of Betrayal",
         "Rank": "Legendary",
@@ -19,16 +19,16 @@
         "Ultimate_Move": {
             "Category": "Ultimate Move",
             "Name": "“Acid Down”",
-            "Description": "Deals damage equal to 654% of Attack to all enemies within 1.5m of the initial target. Inflicts targets hit with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%"
+            "Description": "Deals damage equal to 654% of Attack to all enemies within 1.5m of the initial target. Inflicts targets hit with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%."
         },
         "image_path": "assets/characters/Acid_Hendrickson.jpg",
         "Build_Recommendations": {
-            "P2P": "Edit P2Ptest recommendations for Acid Hendrickson here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
-            "F2P": "Edit F2P recommendations for Acid Hendrickson here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
         }
     },
     {
-        "id": 326,
+        "id": 2,
         "name": "Break Dreyfus",
         "Affiliation": "Liones Holy Knight",
         "Rank": "Legendary",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "id": 327,
+        "id": 3,
         "name": "Dark Fighter Ban",
         "Affiliation": "[Seven Deadly Sins], Transform!",
         "Rank": "Legendary",
@@ -84,7 +84,7 @@
         }
     },
     {
-        "id": 328,
+        "id": 4,
         "name": "Demonic Love Melascula",
         "Affiliation": "Another Side of the [Ten Commandments]",
         "Rank": "Legendary",
@@ -112,7 +112,7 @@
         }
     },
     {
-        "id": 329,
+        "id": 5,
         "name": "Derieri of Purity",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -140,7 +140,7 @@
         }
     },
     {
-        "id": 330,
+        "id": 6,
         "name": "Diamond Holy Knight Gilthunder",
         "Affiliation": "Liones’s Hero",
         "Rank": "Legendary",
@@ -168,7 +168,7 @@
         }
     },
     {
-        "id": 331,
+        "id": 7,
         "name": "Diamond Holy Knight Howzer",
         "Affiliation": "Liones’s Hero",
         "Rank": "Legendary",
@@ -196,7 +196,7 @@
         }
     },
     {
-        "id": 332,
+        "id": 8,
         "name": "Dragon Sin of Wrath Meliodas",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -224,7 +224,7 @@
         }
     },
     {
-        "id": 333,
+        "id": 9,
         "name": "Dragon Slayer Derieri",
         "Affiliation": "Another Side of the [Ten Commandments]",
         "Rank": "Legendary",
@@ -252,7 +252,7 @@
         }
     },
     {
-        "id": 334,
+        "id": 10,
         "name": "Drole of Patience",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -280,7 +280,7 @@
         }
     },
     {
-        "id": 335,
+        "id": 11,
         "name": "Elizabeth of Eternal Rebirth",
         "Affiliation": "Liones’s Hero",
         "Rank": "Legendary",
@@ -308,7 +308,7 @@
         }
     },
     {
-        "id": 336,
+        "id": 12,
         "name": "Emperor of Light Escanor",
         "Affiliation": "[The Seven Deadly Sins], Transform!",
         "Rank": "Legendary",
@@ -336,7 +336,7 @@
         }
     },
     {
-        "id": 337,
+        "id": 13,
         "name": "Estarossa of Love",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -364,7 +364,7 @@
         }
     },
     {
-        "id": 338,
+        "id": 14,
         "name": "Fairy Helbram",
         "Affiliation": "Fairy King’s Forest",
         "Rank": "Legendary",
@@ -392,7 +392,7 @@
         }
     },
     {
-        "id": 339,
+        "id": 15,
         "name": "Fighter Diane",
         "Affiliation": "[Boar Hat] Tavern",
         "Rank": "Legendary",
@@ -420,7 +420,7 @@
         }
     },
     {
-        "id": 340,
+        "id": 16,
         "name": "First Fairy King Gloxinia",
         "Affiliation": "Another Side of the [Ten Commandments]",
         "Rank": "Legendary",
@@ -448,7 +448,7 @@
         }
     },
     {
-        "id": 341,
+        "id": 17,
         "name": "Fountain of Youth Saint Elaine",
         "Affiliation": "Fairy King’s Forest",
         "Rank": "Legendary",
@@ -476,7 +476,7 @@
         }
     },
     {
-        "id": 342,
+        "id": 18,
         "name": "Fox Sin of Greed Ban",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -504,7 +504,7 @@
         }
     },
     {
-        "id": 343,
+        "id": 19,
         "name": "Fraudrin of Selflessness",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -532,7 +532,7 @@
         }
     },
     {
-        "id": 344,
+        "id": 20,
         "name": "Galland of Truth",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -560,7 +560,7 @@
         }
     },
     {
-        "id": 345,
+        "id": 21,
         "name": "Giant Girl Diane",
         "Affiliation": "Giant Warriors",
         "Rank": "Legendary",
@@ -588,7 +588,7 @@
         }
     },
     {
-        "id": 346,
+        "id": 22,
         "name": "Gloxinia of Repose",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -616,7 +616,7 @@
         }
     },
     {
-        "id": 347,
+        "id": 23,
         "name": "Grandmaster Hendrickson",
         "Affiliation": "Liones Holy Knight",
         "Rank": "Legendary",
@@ -644,7 +644,7 @@
         }
     },
     {
-        "id": 348,
+        "id": 24,
         "name": "Grayroad of Pacifism",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -672,7 +672,7 @@
         }
     },
     {
-        "id": 349,
+        "id": 25,
         "name": "Grizzly Sloth King",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -700,7 +700,7 @@
         }
     },
     {
-        "id": 350,
+        "id": 26,
         "name": "Guardian of Istal Jenna",
         "Affiliation": "Druids of Istal",
         "Rank": "Legendary",
@@ -728,7 +728,7 @@
         }
     },
     {
-        "id": 351,
+        "id": 27,
         "name": "Guardian of Istal Zaneri",
         "Affiliation": "Druids of Istal",
         "Rank": "Legendary",
@@ -756,7 +756,7 @@
         }
     },
     {
-        "id": 352,
+        "id": 28,
         "name": "Guardian of the Fairies Old Fart King",
         "Affiliation": "Guardians of the Forest",
         "Rank": "Legendary",
@@ -784,7 +784,7 @@
         }
     },
     {
-        "id": 353,
+        "id": 29,
         "name": "Holy Knight of Ice Jericho",
         "Affiliation": "Guardians of Liones",
         "Rank": "Legendary",
@@ -812,7 +812,7 @@
         }
     },
     {
-        "id": 354,
+        "id": 30,
         "name": "Holy Maiden of the Forest Elaine",
         "Affiliation": "Guardians of the Forest",
         "Rank": "Legendary",
@@ -840,7 +840,7 @@
         }
     },
     {
-        "id": 355,
+        "id": 31,
         "name": "Holy Night's Illusion Lillia",
         "Affiliation": "[Seven Catastrophes]",
         "Rank": "Legendary",
@@ -868,7 +868,7 @@
         }
     },
     {
-        "id": 356,
+        "id": 32,
         "name": "Invasion Arrow Gowther",
         "Affiliation": "[Seven Deadly Sins], Transform!",
         "Rank": "Legendary",
@@ -896,7 +896,7 @@
         }
     },
     {
-        "id": 357,
+        "id": 33,
         "name": "Knight of Danafor Liz",
         "Affiliation": "Kingdom of Danafor",
         "Rank": "Legendary",
@@ -924,7 +924,7 @@
         }
     },
     {
-        "id": 358,
+        "id": 34,
         "name": "Lion Sin of Pride Escanor",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -952,7 +952,7 @@
         }
     },
     {
-        "id": 359,
+        "id": 35,
         "name": "Mad Scientist Valenti",
         "Affiliation": "[Seven Catastrophes]",
         "Rank": "Legendary",
@@ -980,7 +980,7 @@
         }
     },
     {
-        "id": 360,
+        "id": 36,
         "name": "Mage of Infinity Merlin",
         "Affiliation": "Awaken, [Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -1008,7 +1008,7 @@
         }
     },
     {
-        "id": 361,
+        "id": 37,
         "name": "Melascula of Faith",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -1036,7 +1036,7 @@
         }
     },
     {
-        "id": 362,
+        "id": 38,
         "name": "Monspeet of Reticence",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -1064,7 +1064,7 @@
         }
     },
     {
-        "id": 363,
+        "id": 39,
         "name": "New Generation Holy Knight Jericho",
         "Affiliation": "Liones Holy Knight",
         "Rank": "Legendary",
@@ -1092,7 +1092,7 @@
         }
     },
     {
-        "id": 364,
+        "id": 40,
         "name": "New King Arthur",
         "Affiliation": "Camelot",
         "Rank": "Legendary",
@@ -1120,7 +1120,7 @@
         }
     },
     {
-        "id": 365,
+        "id": 41,
         "name": "Pitch-Black Meliodas",
         "Affiliation": "Swallowed By Darkness",
         "Rank": "Legendary",
@@ -1148,7 +1148,7 @@
         }
     },
     {
-        "id": 366,
+        "id": 42,
         "name": "Purge Zaratras",
         "Affiliation": "Liones Holy Knight",
         "Rank": "Legendary",
@@ -1176,7 +1176,7 @@
         }
     },
     {
-        "id": 367,
+        "id": 43,
         "name": "Sapphire Holy Knight Griamore",
         "Affiliation": "Liones’s Hero",
         "Rank": "Legendary",
@@ -1204,7 +1204,7 @@
         }
     },
     {
-        "id": 368,
+        "id": 44,
         "name": "Sky Temple Protector Ellatte",
         "Affiliation": "Sky Temple Protectors",
         "Rank": "Legendary",
@@ -1232,7 +1232,7 @@
         }
     },
     {
-        "id": 369,
+        "id": 45,
         "name": "Swordsman Nanashi",
         "Affiliation": "Camelot",
         "Rank": "Legendary",
@@ -1260,7 +1260,7 @@
         }
     },
     {
-        "id": 370,
+        "id": 46,
         "name": "The Boar Sin of Gluttony Merlin",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -1288,7 +1288,7 @@
         }
     },
     {
-        "id": 371,
+        "id": 47,
         "name": "The Goat Sin of Lust Gowther",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -1316,7 +1316,7 @@
         }
     },
     {
-        "id": 372,
+        "id": 48,
         "name": "The Serpent Sin of Envy Diane",
         "Affiliation": "[The Seven Deadly Sins]",
         "Rank": "Legendary",
@@ -1344,7 +1344,7 @@
         }
     },
     {
-        "id": 373,
+        "id": 49,
         "name": "Thousand Ashes Gelda",
         "Affiliation": "Vampires of Edinburgh",
         "Rank": "Legendary",
@@ -1372,7 +1372,7 @@
         }
     },
     {
-        "id": 374,
+        "id": 50,
         "name": "Wandering Swordsman Meliodas",
         "Affiliation": "[Seven Deadly Sins], Transform!",
         "Rank": "Legendary",
@@ -1400,7 +1400,7 @@
         }
     },
     {
-        "id": 375,
+        "id": 51,
         "name": "White Wings Elizabeth",
         "Affiliation": "Goddess Warrior",
         "Rank": "Legendary",
@@ -1428,7 +1428,7 @@
         }
     },
     {
-        "id": 376,
+        "id": 52,
         "name": "[Demon King's Deputy] Zeldris",
         "Affiliation": "[The Ten Commandments]",
         "Rank": "Legendary",
@@ -1456,7 +1456,7 @@
         }
     },
     {
-        "id": 377,
+        "id": 53,
         "name": "[Roars of Dawn] Slater",
         "Affiliation": "[Roars of Dawn]",
         "Rank": "Legendary",
@@ -1484,7 +1484,7 @@
         }
     },
     {
-        "id": 378,
+        "id": 54,
         "name": "[The Pleiades of the Azure Sky] Denzel",
         "Affiliation": "[The Pleiades of the Azure Sky]",
         "Rank": "Legendary",
@@ -1509,34 +1509,6 @@
         "Build_Recommendations": {
             "P2P": "Edit P2P recommendations for [The Pleiades of the Azure Sky] Denzel here: Leverage premium items to amplify debuff effects and control PvP battlefields.",
             "F2P": "Edit F2P recommendations for [The Pleiades of the Azure Sky] Denzel here: Apply debuffs strategically in boss fights to weaken enemies and support your team."
-        }
-    },
-    {
-        "id": 55,
-        "name": "Test",
-        "Affiliation": "Test",
-        "Rank": "Legendary",
-        "Attribute": "STR",
-        "Type": "DPS",
-        "Normal_Skill": {
-            "Category": "Normal Skill",
-            "Name": "123",
-            "Description": "Deals 999% damage."
-        },
-        "Special_Skill": {
-            "Category": "Special Move",
-            "Name": "123",
-            "Description": "Deals 999% damage."
-        },
-        "Ultimate_Move": {
-            "Category": "Ultimate Move",
-            "Name": "123",
-            "Description": "Deals 999% damage."
-        },
-        "image_path": "G:/Silen/Pictures/20240630_031142.png",
-        "Build_Recommendations": {
-            "P2P": "Coming Soon. 123",
-            "F2P": "Coming Soon."
         }
     }
 ]
