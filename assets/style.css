@@ -235,11 +235,15 @@ body {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-.character-card .affiliation {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 5px 0;
-  font-style: italic;
+.character-card .character-header {
+  text-align: center;
+}
+
+.character-card .subtext {
+  font-size: 0.85rem; /* Smaller font for subtext */
+  color: #777; /* Lighter color for subtext */
+  margin: 2px 0 8px; /* Adjust spacing below name */
+  font-style: italic; /* Optional: italic for subtext feel */
 }
 
 .attribute-type {

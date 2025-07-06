@@ -80,7 +80,7 @@ function BuildHTML(data, characterName) {
 
 // Emoji & glow color maps
 const attrEmoji = { DEX: "🔵", VIT: "🟢", STR: "🔴", INT: "🟠" };
-const typeEmoji = { DPS: "🗡️", Tank: "🛡️", Debuffer: "🌙", Support: "🚑" };
+const typeEmoji = { DPS: "🗡️", Tank: "🛡️", Debuffer: "🌙", Support: "❤️" };
 const glowColor = { DEX: "#3b82f6", VIT: "#22c55e", STR: "#ef4444", INT: "#f97316" };
 
 // Render characters array to the page
@@ -103,8 +103,10 @@ function renderCharacters(characters) {
 
     card.innerHTML = `
       <img src="${imgSrc}" alt="${char.name}">
-      <h2>${char.name}</h2>
-	  <p class="affiliation">${char.Affiliation || "No Affiliation"}</p> <!-- New line for Affiliation -->
+      <div class="character-header">
+        <h2>${char.name}</h2>
+        <p class="subtext">${char.Affiliation || "No Affiliation"}</p>
+      </div>
 
       <div class="attribute-type">
         <p>${attrEmoji[char.Attribute] || ""} ${char.Attribute || ""}  
