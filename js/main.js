@@ -192,3 +192,42 @@ document.getElementById("searchInput").addEventListener("keydown", e => {
 
 // Initial load - fetch data but don't render
 fetchCharacters();
+
+// === Leaf Wind Animation ===
+
+// Create the wind overlay container once and append to body
+const windOverlay = document.createElement('div');
+windOverlay.id = 'wind-overlay';
+document.body.appendChild(windOverlay);
+
+// Function to create a single leaf element
+function createLeaf() {
+  const leaf = document.createElement('div');
+  leaf.classList.add('leaf');
+
+  // Random vertical position (0 to 100vh)
+  leaf.style.top = `${Math.random() * 100}vh`;
+
+  // Start just off the left side (-30 to -10 px)
+  leaf.style.left = `-${10 + Math.random() * 20}px`;
+
+  // Random animation duration between 6 and 12 seconds
+  leaf.style.animationDuration = `${6 + Math.random() * 6}s`;
+
+  // Random animation delay up to 10 seconds
+  leaf.style.animationDelay = `${Math.random() * 10}s`;
+
+  // Random scale for size variety (0.6 to 1.2)
+  const scale = 0.6 + Math.random() * 0.6;
+  leaf.style.transform = `scale(${scale})`;
+
+  windOverlay.appendChild(leaf);
+
+  // Remove leaf after animation finishes (12s max)
+  setTimeout(() => {
+    leaf.remove();
+  }, 12000);
+}
+
+// Create a leaf every 400 milliseconds
+setInterval(createLeaf, 400);

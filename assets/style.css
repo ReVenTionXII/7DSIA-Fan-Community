@@ -16,14 +16,73 @@ body {
   overflow-x: hidden;
 }
 
-/* Overlay for readability */
+/* Overlay for readability - Adjusted z-index to ensure content is above */
 #particles-js {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 0;
+  z-index: -1; /* Below everything */
+}
+
+/* Wind overlay container */
+#wind-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 0; /* Above particles, below content */
+}
+
+/* Leaf drifting particle */
+.leaf {
+  position: absolute;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(135deg, #00ffcc 0%, #007a5e 100%); /* Adjusted to match theme */
+  border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+  filter: drop-shadow(0 0 5px #00ffcc);
+  opacity: 0.85;
+  animation: driftLeaf linear infinite;
+  transform-origin: center;
+  box-shadow:
+    0 0 8px #00ffcc,
+    inset 0 0 6px #00e6d8;
+}
+
+/* Leaf shape detail: add a subtle vein with ::before */
+.leaf::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  width: 2px;
+  height: 17px;
+  background: #00e6d8;
+  border-radius: 1px;
+  filter: drop-shadow(0 0 3px #00e6d8);
+  transform-origin: center;
+  transform: rotate(10deg);
+}
+
+/* Animation for drifting leaf - Adjusted path to fit screen */
+@keyframes driftLeaf {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(110vw) translateY(30vh) rotate(360deg); /* Adjusted for screen fit */
+    opacity: 0;
+  }
 }
 
 /* NAVIGATION */
@@ -73,7 +132,7 @@ nav a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #e0f7fa;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Darker shadow for readability */
 }
 
 .logo-text {
@@ -81,10 +140,16 @@ nav a:hover {
   font-size: 2.5rem;
   color: #00ffc3;
   margin-bottom: 0.5rem;
+  text-shadow:
+    0 0 6px #00ffc3,
+    0 0 10px #00e6d8,
+    0 0 20px #00ffc3;
 }
 
 .tagline {
   font-size: 1.2rem;
+  color: #e0f7fa; /* Ensured contrast */
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* Added shadow for readability */
 }
 
 /* SOCIAL BUTTONS */
@@ -104,6 +169,7 @@ nav a:hover {
   font-weight: bold;
   text-decoration: none;
   transition: all 0.3s ease;
+  text-shadow: 0 0 4px #00e6d8;
 }
 
 .social-btn:hover {
@@ -115,24 +181,32 @@ nav a:hover {
 /* CONTENT SECTIONS */
 .content-section {
   padding: 4rem 2rem;
-  background: rgba(0, 30, 45, 0.75);
+  background: rgba(0, 30, 45, 0.85); /* Darker background for better contrast */
   margin: 2rem auto;
   border-radius: 16px;
   max-width: 1000px;
   backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 10px #00e6d8,
+    0 0 30px #00ffc3;
 }
 
+/* Section Titles with glow */
 .section-title {
   font-family: 'MedievalSharp', cursive;
   font-size: 2rem;
   color: #a8ffeb;
   margin-bottom: 1rem;
+  text-shadow:
+    0 0 5px #00e6d8,
+    0 0 10px #00ffc3;
 }
 
 .section-description {
   font-size: 1rem;
-  color: #ccf4f1;
+  color: #e0f7fa; /* Brighter text for contrast */
   margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Added shadow for readability */
 }
 
 /* SEARCH SECTION */
@@ -152,6 +226,11 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.05);
   color: #e0f7fa;
   border: 2px solid #00e6d8;
+  text-shadow: 0 0 4px #00e6d8;
+}
+
+#searchInput::placeholder {
+  color: #99fef0cc;
 }
 
 #searchButton {
@@ -163,10 +242,12 @@ nav a:hover {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
+  box-shadow: 0 0 8px #00e6d8;
 }
 
 #searchButton:hover {
   background: #00ffc3;
+  box-shadow: 0 0 15px #00ffc3;
 }
 
 /* RESULTS */
@@ -175,24 +256,113 @@ nav a:hover {
   color: #e0f7fa;
 }
 
+/* Character card with anime glow and hover effect */
 .character-card {
   background: rgba(0, 51, 51, 0.7);
   border: 2px solid #00e6d8;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 0 15px #00e6d855;
+  box-shadow:
+    0 0 15px var(--glow-color, #00e6d8),
+    0 0 30px var(--glow-color, #00ffc3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.character-card h3 {
+.character-card:hover {
+  box-shadow:
+    0 0 40px var(--glow-color, #00e6d8),
+    0 0 60px var(--glow-color, #00ffc3);
+  transform: scale(1.03);
+}
+
+/* Expanded card styles */
+.character-card.expanded {
+  max-height: 1000px;
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* Character name with glow */
+.character-card h2 {
   font-family: 'MedievalSharp', cursive;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #00ffc3;
+  text-shadow:
+    0 0 10px #00e6d8,
+    0 0 20px #00ffc3;
 }
 
-.character-card p {
-  margin-top: 0.5rem;
+/* Affiliation text */
+.character-card .subtext {
+  font-style: italic;
+  color: #a0e7e5;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 4px #00b8aa;
+}
+
+/* Attribute and type */
+.attribute-type p {
+  font-weight: 600;
+  color: #8ef2e7;
+  text-shadow: 0 0 5px #00e6d8;
+}
+
+/* Skill sections with glow */
+.skill-section {
+  margin-top: 1rem;
+}
+
+.skill-header {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #00e6d8;
+  text-shadow: 0 0 6px #00b8aa;
+  margin-bottom: 0.3rem;
+}
+
+.skill-desc {
+  font-size: 1rem;
   color: #b2f7f5;
+  line-height: 1.6; /* Increased for readability */
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Added shadow for contrast */
+}
+
+/* Build Recommendations special highlight */
+.Build-highlight {
+  background: rgba(0, 255, 195, 0.1);
+  border: 1px solid #00ffc3;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  box-shadow:
+    0 0 10px #00ffc3;
+  color: #e0f7fa; /* Brighter text */
+  font-weight: 600;
+}
+
+/* Keyword highlights inside descriptions */
+.keyword {
+  color: #00ffc3;
+  font-weight: 700;
+  text-shadow: 0 0 8px #00e6d8;
+}
+
+.percentage {
+  color: #6ef2d7;
+  font-weight: 600;
+}
+
+.duration {
+  color: #3cd4b2;
+  font-weight: 600;
+}
+
+.area-range {
+  color: #31a895;
+  font-weight: 600;
 }
 
 /* FOOTER */
@@ -204,6 +374,7 @@ footer {
   font-size: 0.9rem;
   margin-top: 4rem;
   border-top: 1px solid #00e6d8;
+  text-shadow: 0 0 6px #00b8aa;
 }
 
 /* Loader */
@@ -240,5 +411,10 @@ footer {
 
   .content-section {
     padding: 2rem 1rem;
+  }
+
+  .leaf {
+    width: 20px;
+    height: 20px; /* Adjusted for smaller screens */
   }
 }
