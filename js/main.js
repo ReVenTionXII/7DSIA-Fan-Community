@@ -104,6 +104,7 @@ function renderCharacters(characters) {
     card.innerHTML = `
       <img src="${imgSrc}" alt="${char.name}">
       <h2>${char.name}</h2>
+	  <p class="affiliation">${char.Affiliation || "No Affiliation"}</p> <!-- New line for Affiliation -->
 
       <div class="attribute-type">
         <p>${attrEmoji[char.Attribute] || ""} ${char.Attribute || ""}  

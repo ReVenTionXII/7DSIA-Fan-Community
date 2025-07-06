@@ -235,6 +235,13 @@ body {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
+.character-card .affiliation {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+  font-style: italic;
+}
+
 .attribute-type {
   display: flex;
   justify-content: center;
