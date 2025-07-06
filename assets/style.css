@@ -8,11 +8,11 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #0a2a2a; /* Fallback color */
-  background-image: url('/assets/SDSIABGAnim.png');
+  background-image: url('/7DSIA-Fan-Community/assets/SDSIABGAnim.png'); /* Root-relative path with repo context */
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  background-size: cover; /* Explicitly set to override any default or conflicting size */
+  background-size: cover; /* Explicitly set to override any default */
   color: #e0f7fa;
   line-height: 1.6;
   min-height: 100vh;
