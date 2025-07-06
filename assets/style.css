@@ -11,7 +11,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
-  background-image: url('assets/magic-parchment.jpg'); /* optional custom background */
+  background-image: url('assets/magic-parchment.png'); /* optional custom background */
   background-size: cover;
   background-attachment: fixed;
   color: #eae6f8;
