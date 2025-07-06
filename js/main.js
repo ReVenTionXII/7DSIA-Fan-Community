@@ -58,12 +58,10 @@ function BuildHTML(data, characterName) {
   const icon = "🎓";
   let p2pContent, f2pContent;
 
-  // Check if Build_Recommendations is an object or string
   if (typeof data.Build_Recommendations === 'object' && data.Build_Recommendations) {
     p2pContent = data.Build_Recommendations.P2P || `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
     f2pContent = data.Build_Recommendations.F2P || `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
   } else {
-    // Fallback for current "Build tips coming soon!" string
     p2pContent = `Edit P2P recommendations for ${characterName} here (e.g., strategies for paid players)`;
     f2pContent = `Edit F2P recommendations for ${characterName} here (e.g., strategies for free-to-play players)`;
   }
@@ -80,7 +78,7 @@ function BuildHTML(data, characterName) {
 
 // Emoji & glow color maps
 const attrEmoji = { DEX: "🔵", VIT: "🟢", STR: "🔴", INT: "🟠" };
-const typeEmoji = { DPS: "🗡️", Tank: "🛡️", Debuffer: "🌙", Support: "❤️" };
+const typeEmoji = { DPS: "🗡️", Tank: "🛡️", Debuffer: "🌙", Support: "🚑" };
 const glowColor = { DEX: "#3b82f6", VIT: "#22c55e", STR: "#ef4444", INT: "#f97316" };
 
 // Render characters array to the page
@@ -99,7 +97,7 @@ function renderCharacters(characters) {
     const card = document.createElement("div");
     card.classList.add("character-card");
     card.style.setProperty("--glow-color", glowColor[char.Attribute] || "#5865f2");
-    card.style.animationDelay = `${index * 0.1}s`; // Staggered animation
+    card.style.animationDelay = `${index * 0.1}s`;
 
     card.innerHTML = `
       <img src="${imgSrc}" alt="${char.name}">
@@ -119,21 +117,29 @@ function renderCharacters(characters) {
       ${BuildHTML(char, char.name)}
     `;
 
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+
     results.appendChild(card);
   });
 }
 
 // Fetch all characters but don't render
 function fetchCharacters() {
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block';
   fetch("database/characters.json")
     .then(r => r.json())
     .then(data => {
-      window.allCharacters = data; // Store globally for filtering
+      window.allCharacters = data;
       document.getElementById("results").innerHTML = "<p>Please use the search bar to find characters.</p>";
+      loader.style.display = 'none';
     })
     .catch(err => {
       console.error(err);
       document.getElementById("results").innerHTML = "<p>Failed to load character data. Please try again later.</p>";
+      loader.style.display = 'none';
     });
 }
 
@@ -157,10 +163,24 @@ function searchCharacters(query) {
   renderCharacters(filtered);
 }
 
+// Enhanced search with suggestions
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  const suggestions = document.getElementById("suggestions");
+  if (query && window.allCharacters) {
+    const filtered = window.allCharacters.filter(c => c.name.toLowerCase().includes(query)).slice(0, 5);
+    suggestions.innerHTML = filtered.map(c => `<div class="suggestion-item" onclick="document.getElementById('searchInput').value='${c.name}';searchCharacters('${c.name}');suggestions.classList.remove('active');">${c.name}</div>`).join('');
+    suggestions.classList.add('active');
+  } else {
+    suggestions.classList.remove('active');
+  }
+});
+
 // Setup event listeners
 document.getElementById("searchButton").addEventListener("click", () => {
   const query = document.getElementById("searchInput").value.trim();
   searchCharacters(query);
+  document.getElementById("suggestions").classList.remove('active');
 });
 
 // Also filter on Enter key inside search box

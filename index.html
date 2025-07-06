@@ -9,6 +9,13 @@
 </head>
 <body>
   <div id="particles-js"></div>
+  <nav role="navigation" aria-label="Main Navigation">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#characters">Characters</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
   <header>
     <div class="banner-container" id="parallax-banner">
       <img src="assets/ForumBanner.png" alt="7DSIA Fan Community Banner" class="banner" />
@@ -26,11 +33,18 @@
   <section class="search-section" aria-label="Character Search">
     <input type="text" id="searchInput" placeholder="Search characters by name, affiliation, attribute, or type..." aria-label="Search for characters" />
     <button id="searchButton" aria-label="Search">Search</button>
+    <div id="suggestions" class="suggestions"></div> <!-- New suggestion dropdown -->
   </section>
 
   <main id="results" aria-live="polite" role="region" aria-label="Character Results">
     <p>Please use the search bar to find characters.</p>
   </main>
+
+  <footer>
+    <p>© 2025 YourName | <a href="https://x.com/yourhandle">X</a> | <a href="https://discord.gg/ze58eJw64M">Discord</a></p>
+  </footer>
+
+  <div id="loader" class="loader" style="display: none;"></div> <!-- Visual flair loader -->
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/main.js"></script>
