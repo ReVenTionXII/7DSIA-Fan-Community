@@ -7,8 +7,9 @@ body {
   text-align: center;
   position: relative;
   overflow-x: hidden;
-  background-image: url('assets/parchment-texture.png');
-  background-blend-mode: overlay;
+  /* Removed parchment texture to avoid white bg issues; reintroduce only if dark texture is available */
+  /* background-image: url('assets/parchment-texture.png'); */
+  /* background-blend-mode: overlay; */
 }
 
 #particles-js {
@@ -102,15 +103,15 @@ nav ul li a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(26, 42, 46, 0.7);
+  background: rgba(26, 42, 46, 0.8); /* Darker overlay for better contrast */
   text-align: center;
 }
 
 .logo-text {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #d4af37;
-  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+  color: #fff; /* Brighter text for readability */
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.9);
   letter-spacing: 3px;
   margin-bottom: 10px;
   font-family: 'MedievalSharp', cursive;
@@ -120,8 +121,8 @@ nav ul li a:hover {
 .tagline {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #4a90e2;
-  text-shadow: 0 0 10px rgba(74, 144, 226, 0.8);
+  color: #e8e8e8; /* Lighter text for contrast */
+  text-shadow: 0 0 10px rgba(74, 144, 226, 0.9);
   margin: 10px 0;
   font-family: 'MedievalSharp', cursive;
 }
@@ -373,7 +374,7 @@ nav ul li a:hover {
 .skill-desc {
   font-size: 0.95rem;
   color: #ddd;
-  line-height: 1.5;
+  line-height: 1.6; /* Increased for better readability */
   text-align: left;
 }
 
@@ -431,6 +432,7 @@ nav ul li a:hover {
   font-size: 0.95rem;
   color: #e8e8e8;
   font-weight: 500;
+  line-height: 1.6; /* Improved readability */
 }
 
 .Build-highlight .skill-desc b {
@@ -450,12 +452,15 @@ nav ul li a:hover {
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  background: rgba(30, 30, 30, 0.9); /* Dark semi-transparent background for sections */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .section-title {
   font-size: 2.5rem;
-  color: #d4af37;
-  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+  color: #fff;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.9);
   margin-bottom: 20px;
   font-family: 'MedievalSharp', cursive;
 }
