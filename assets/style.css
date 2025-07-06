@@ -7,9 +7,8 @@ body {
   text-align: center;
   position: relative;
   overflow-x: hidden;
-  /* Removed parchment texture to avoid white bg issues; reintroduce only if dark texture is available */
-  /* background-image: url('assets/parchment-texture.png'); */
-  /* background-blend-mode: overlay; */
+  background-image: url('assets/parchment-texture.jpg');
+  background-blend-mode: overlay;
 }
 
 #particles-js {
