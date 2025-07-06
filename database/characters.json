@@ -22,8 +22,8 @@
             "Description": "Deals damage equal to 654% of Attack to all enemies within 1.5m of the initial target. Inflicts targets hit with Lv. 5 Break for 10s upon successful attack. [Lv. 5 Break] Decreases Crit Defense by 42%."
         },
         "Build_Recommendations": {
-            "P2P": "Nothing at this time. 123",
-            "F2P": "Nothing at this time. 123"
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
         }
     },
     {
