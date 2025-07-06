@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>7DSIA Fan Community</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="particles-js"></div>
@@ -30,21 +31,35 @@
     </div>
   </header>
 
-  <section class="search-section" aria-label="Character Search">
-    <input type="text" id="searchInput" placeholder="Search characters by name, affiliation, attribute, or type..." aria-label="Search for characters" />
-    <button id="searchButton" aria-label="Search">Search</button>
-    <div id="suggestions" class="suggestions"></div> <!-- New suggestion dropdown -->
+  <section id="home" class="content-section">
+    <section class="search-section" aria-label="Character Search">
+      <input type="text" id="searchInput" placeholder="Search characters by name, affiliation, attribute, or type..." aria-label="Search for characters" />
+      <button id="searchButton" aria-label="Search">Search</button>
+      <div id="suggestions" class="suggestions"></div>
+    </section>
+
+    <main id="results" aria-live="polite" role="region" aria-label="Character Results">
+      <p>Please use the search bar to find characters.</p>
+    </main>
   </section>
 
-  <main id="results" aria-live="polite" role="region" aria-label="Character Results">
-    <p>Please use the search bar to find characters.</p>
-  </main>
+  <section id="characters" class="content-section">
+    <h2 class="section-title">Character Gallery</h2>
+    <p class="section-description">Explore the diverse roster of heroes and allies from the Seven Deadly Sins: Idle Adventure. Use the search above to find your favorites!</p>
+    <!-- Additional character-related content can go here, e.g., featured characters -->
+  </section>
+
+  <section id="about" class="content-section">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-description">Welcome to the 7DSIA Fan Community! We’re a passionate group of fans dedicated to celebrating the world of Seven Deadly Sins: Idle Adventure. Join us on Discord and Reddit to share strategies, fan art, and more. This site is built to help you explore character details and connect with fellow adventurers.</p>
+    <p class="section-description">Created by YourName | <a href="https://x.com/yourhandle">Follow me on X</a></p>
+  </section>
 
   <footer>
     <p>© 2025 YourName | <a href="https://x.com/yourhandle">X</a> | <a href="https://discord.gg/ze58eJw64M">Discord</a></p>
   </footer>
 
-  <div id="loader" class="loader" style="display: none;"></div> <!-- Visual flair loader -->
+  <div id="loader" class="loader" style="display: none;"></div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/main.js"></script>

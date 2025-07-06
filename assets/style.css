@@ -7,6 +7,7 @@ body {
   text-align: center;
   position: relative;
   overflow-x: hidden;
+  background-image: url('assets/parchment-texture.png');
   background-blend-mode: overlay;
 }
 
@@ -22,7 +23,7 @@ body {
 particlesJS.load('particles-js', '', {
   particles: {
     number: { value: 60, density: { enable: true, value_area: 800 } },
-    color: { value: '#d4af37' }, /* Gold particles */
+    color: { value: '#d4af37' },
     shape: { type: 'circle', stroke: { width: 0, color: '#4a90e2' } },
     opacity: { value: 0.4, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.1 } },
     size: { value: 4, random: true, anim: { enable: true, speed: 1.5, size_min: 0.5 } },
@@ -38,7 +39,7 @@ particlesJS.load('particles-js', '', {
 });
 
 nav {
-  background: rgba(46, 26, 46, 0.9); /* Dark plum with transparency */
+  background: rgba(46, 26, 46, 0.9);
   padding: 10px 0;
   margin-bottom: 20px;
   border-bottom: 2px solid #d4af37;
@@ -59,7 +60,7 @@ nav ul li a {
   color: #d4af37;
   text-decoration: none;
   font-weight: 600;
-  font-family: 'MedievalSharp', cursive; /* New header font */
+  font-family: 'MedievalSharp', cursive;
   transition: color 0.3s ease;
 }
 
@@ -75,7 +76,7 @@ nav ul li a:hover {
   margin-bottom: 20px;
   transform: translateY(0);
   transition: filter 0.3s ease;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); /* Gold glow */
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
 .banner-container:hover {
@@ -101,7 +102,7 @@ nav ul li a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(26, 42, 46, 0.7); /* Darker teal overlay */
+  background: rgba(26, 42, 46, 0.7);
   text-align: center;
 }
 
@@ -444,6 +445,37 @@ nav ul li a:hover {
   margin-right: 4px;
 }
 
+/* Content Section Styles */
+.content-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #d4af37;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+  margin-bottom: 20px;
+  font-family: 'MedievalSharp', cursive;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  color: #e8e8e8;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.section-description a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.section-description a:hover {
+  color: #d4af37;
+}
+
 /* Footer Styles */
 footer {
   text-align: center;
@@ -544,5 +576,13 @@ footer a:hover {
 
   nav ul li {
     margin: 10px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
   }
 }
