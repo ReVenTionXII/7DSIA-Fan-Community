@@ -7,7 +7,6 @@ body {
   text-align: center;
   position: relative;
   overflow-x: hidden;
-  background-image: url('assets/parchment-texture.png'); /* Optional: Add a subtle texture */
   background-blend-mode: overlay;
 }
 
