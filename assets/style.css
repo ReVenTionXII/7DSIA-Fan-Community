@@ -7,11 +7,16 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: url('assets/SDSIABGAnim.png') no-repeat center center fixed;
-  background-size: cover;
+  background-color: #0a2a2a; /* Fallback color */
+  background-image: url('/assets/SDSIABGAnim.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover; /* Explicitly set to override any default or conflicting size */
   color: #e0f7fa;
   line-height: 1.6;
   min-height: 100vh;
+  height: 100%;
   position: relative;
   overflow-x: hidden;
 }
