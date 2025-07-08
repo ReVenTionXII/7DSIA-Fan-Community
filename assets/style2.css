@@ -122,32 +122,22 @@ nav a:hover {
   position: relative;
   text-align: center;
   margin-top: 1rem;
-  max-width: 1000px; /* Match content-section width */
-  margin-left: auto; /* Center the container */
-  margin-right: auto;
-  overflow: hidden; /* Prevent overflow from large images */
 }
 
 .banner {
   width: 100%;
-  max-width: 100%; /* Ensure image doesn’t exceed container */
-  height: auto; /* Preserve aspect ratio */
-  max-height: 300px; /* Keep max height, but allow flexibility */
-  object-fit: cover; /* Crop to fit, if needed */
+  max-height: 300px;
+  object-fit: cover;
   border-bottom: 2px solid #00e6d8;
-  display: block; /* Ensure proper rendering */
 }
 
-/* Overlay text adjustments for responsiveness */
 .banner-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #e0f7fa;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-  width: 90%; /* Prevent text from touching edges */
-  max-width: 800px; /* Keep text readable */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Darker shadow for readability */
 }
 
 .logo-text {
@@ -163,8 +153,8 @@ nav a:hover {
 
 .tagline {
   font-size: 1.2rem;
-  color: #e0f7fa;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  color: #e0f7fa; /* Ensured contrast */
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* Added shadow for readability */
 }
 
 /* SOCIAL BUTTONS */
@@ -403,7 +393,7 @@ footer {
   border-top: 6px solid transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  z-index: 1000;
+  z-index: 100;
 }
 
 @keyframes spin {
@@ -412,7 +402,7 @@ footer {
   }
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media screen and (max-width: 768px) {
   nav ul {
     flex-direction: column;
@@ -431,31 +421,5 @@ footer {
   .leaf {
     width: 20px;
     height: 20px; /* Adjusted for smaller screens */
-  }
-
-  .banner-container {
-    max-width: 800px; /* Slightly narrower on mobile */
-  }
-
-  .banner {
-    max-height: 200px; /* Reduce banner height on smaller screens */
-  }
-
-  .logo-text {
-    font-size: 1.8rem; /* Smaller text for mobile */
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .logo-text {
-    font-size: 1.5rem;
-  }
-
-  .tagline {
-    font-size: 0.9rem;
   }
 }
