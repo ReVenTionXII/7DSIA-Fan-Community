@@ -1510,5 +1510,33 @@
             "P2P": "Nothing at this time.",
             "F2P": "Nothing at this time."
         }
+    },
+    {
+        "id": 379,
+        "name": "Crimson Flame Mage Monspeet",
+        "Affiliation": "Another Side of the [Ten Commandments]",
+        "Rank": "Legendary",
+        "Attribute": "DEX",
+        "Type": "SUPPORT",
+        "Normal_Skill": {
+            "Category": "Normal Skill",
+            "Name": "“Bomb”",
+            "Description": "Deals damage equal to 168% of Attack to the target.\n\nRestores 2 Energy upon successful attack."
+        },
+        "Special_Skill": {
+            "Category": "Special Move",
+            "Name": "“Flame Ball”",
+            "Description": "Deals damage equal to 240% of Attack to all enemies within 4m of the initial target every 5s.\n\nGrants Silence Immunity and Stun Immunity to allies for 3s, and removes 2 debuffs from allies upon successful attack.\n\n \n\n[Silence Immunity]\n\nImmune to Silence\n\n[Stun Immunity]\n\nNullifies Stun"
+        },
+        "Ultimate_Move": {
+            "Category": "Ultimate Move",
+            "Name": "“Ash Dragon”",
+            "Description": "Deals damage equal to 1014% of Attack to all enemies within 8m of the initial target, prioritizing Support heroes.\n\nIncreases the cooldowns of the target by 2s and decreases the cooldowns of allies by 2s upon successful attack."
+        },
+        "image_path": "assets/characters/Crimson_Flame_Mage_Monspeet.jpg",
+        "Build_Recommendations": {
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
+        }
     }
 ]
