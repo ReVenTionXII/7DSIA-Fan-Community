@@ -1548,7 +1548,7 @@
         "Type": "SUPPORT",
         "Normal_Skill": {
             "Category": "Normal Skill",
-            "Name": "\n“Flurry”",
+            "Name": "\"Flurry\"",
             "Description": "Deals damage equal to 168% of Attack to the target.\n\nGrants Chaotic Barrage to self for 3s each time this skill deals damage to an enemy.\n\n \n\n[Chaotic Barrage]\n\nIncreases final Attack by 3% and Attack Speed by 7.5% (Up to 10 stack(s))"
         },
         "Special_Skill": {
