@@ -1538,5 +1538,33 @@
             "P2P": "Nothing at this time.",
             "F2P": "Nothing at this time."
         }
+    },
+    {
+        "id": 380,
+        "name": "Martial Artist of Earth Drole",
+        "Affiliation": "Another Side of the [Ten Commandments]",
+        "Rank": "Legendary",
+        "Attribute": "INT",
+        "Type": "SUPPORT",
+        "Normal_Skill": {
+            "Category": "Normal Skill",
+            "Name": "\n“Flurry”",
+            "Description": "Deals damage equal to 168% of Attack to the target.\n\nGrants Chaotic Barrage to self for 3s each time this skill deals damage to an enemy.\n\n \n\n[Chaotic Barrage]\n\nIncreases final Attack by 3% and Attack Speed by 7.5% (Up to 10 stack(s))"
+        },
+        "Special_Skill": {
+            "Category": "Special Move",
+            "Name": "“Giga Pick”",
+            "Description": "35% chance to deal damage equal to 292% of Attack to the target and inflicts the target with Lv. 2 Petrify for 1s.\n\nRestores 5 Energy and grants Patience to [The Ten Commandments] heroes for 5s upon attack.\n\n \n\n[Lv. 2 Petrify]\n\nUnable to move or attack for the duration of the effect and decreases Crit Resistance by 6%\n\n[Patience]\n\nIncreases final Defense by 35% and final Accuracy by 35%"
+        },
+        "Ultimate_Move": {
+            "Category": "Ultimate Move",
+            "Name": "“Ground Impact”",
+            "Description": "Deals damage equal to 1014% of Attack to all enemies within 3m x 10m area in front of self.\n\nGrants Normal Skills Damage Increase to [The Ten Commandments] heroes for 10s and decreases cooldowns by 2.5s upon successful attack.\n\n \n\n[Normal Skills Damage Increase]\n\nIncreases damage dealt by Normal Skills by 30%"
+        },
+        "image_path": "assets/characters/Martial_Artist_of_Earth_Drole.jpg",
+        "Build_Recommendations": {
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
+        }
     }
 ]
