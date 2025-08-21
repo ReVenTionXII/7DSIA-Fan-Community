@@ -1566,5 +1566,33 @@
             "P2P": "Nothing at this time.",
             "F2P": "Nothing at this time."
         }
+    },
+    {
+        "id": 381,
+        "name": "The One Escanor",
+        "Affiliation": "Awaken, [Seven Deadly Sins]",
+        "Rank": "Legendary",
+        "Attribute": "DEX",
+        "Type": "SUPPORT",
+        "Normal_Skill": {
+            "Category": "Normal Skill",
+            "Name": "“Super Slash”",
+            "Description": "Deals damage equal to 225% of Attack to the target.\n\nFinal damage is increased by 2% for each 1% of the caster’s diminished HP upon attack."
+        },
+        "Special_Skill": {
+            "Category": "Special Move",
+            "Name": "“Acid Tower”",
+            "Description": "“Supernova”\n40% chance to deal damage equal to 248% of Attack to the target.\n\nMakes the target Flinch upon successful attack.\n\nDeals damage equal to 372% of Attack to all enemies in a 3m x 8m area in front of self.\n\nFinal damage increases by 30% for every 1 buffs applied to the target upon attack.\n\nDeals damage equal to 372% of Attack to all enemies in a 3m x 8m area in front of self.\n\nFinal damage increases by 30% for every 1 buffs applied to the target upon attack.\n\n“The One”\nDeals damage equal to 2% of the target’s remaining HP within 5m of self every 1s and this damage does not reflect.\n\nGrants Lv. 5 Onslaught and Debuff Block to self at all times.\n\n(This effect cannot be removed.)\n\n \n\n[Lv. 5 Onslaught]\n\nIncreases final Attack by 20%\n\n[Debuff Block]\n\nImmune to debuffs for the duration of the buff."
+        },
+        "Ultimate_Move": {
+            "Category": "Ultimate Move",
+            "Name": "“Divine Sword Escanor”",
+            "Description": "Deals damage equal to 1317% of Attack to all enemies in a 4m x 6m area in front of self and this damage does not reflect.\n\nFinal damage is increased by 4% for each 1% of the caster’s remaining HP upon attack."
+        },
+        "image_path": "assets/characters/The_One_Escanor.jpg",
+        "Build_Recommendations": {
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
+        }
     }
 ]
