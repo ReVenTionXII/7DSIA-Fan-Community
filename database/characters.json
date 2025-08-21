@@ -1581,7 +1581,7 @@
         },
         "Special_Skill": {
             "Category": "Special Move",
-            "Name": "“Acid Tower”",
+            "Name": "",
             "Description": "“Supernova”\n40% chance to deal damage equal to 248% of Attack to the target.\n\nMakes the target Flinch upon successful attack.\n\nDeals damage equal to 372% of Attack to all enemies in a 3m x 8m area in front of self.\n\nFinal damage increases by 30% for every 1 buffs applied to the target upon attack.\n\nDeals damage equal to 372% of Attack to all enemies in a 3m x 8m area in front of self.\n\nFinal damage increases by 30% for every 1 buffs applied to the target upon attack.\n\n“The One”\nDeals damage equal to 2% of the target’s remaining HP within 5m of self every 1s and this damage does not reflect.\n\nGrants Lv. 5 Onslaught and Debuff Block to self at all times.\n\n(This effect cannot be removed.)\n\n \n\n[Lv. 5 Onslaught]\n\nIncreases final Attack by 20%\n\n[Debuff Block]\n\nImmune to debuffs for the duration of the buff."
         },
         "Ultimate_Move": {
