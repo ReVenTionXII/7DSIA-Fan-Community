@@ -1632,7 +1632,7 @@
         "Type": "SUPPORT",
         "Normal_Skill": {
             "Category": "Normal Skill",
-            "Name": "\n“Heavy Strike”",
+            "Name": "“Heavy Strike”",
             "Description": "Deals damage equal to 255% of Attack to the target.\n\n50% chance to grant Lv. 5 Regeneration to allies for 2s upon successful attack.\n\n \n\n[Lv. 5 Regeneration]\n\nRestores HP by an amount equal to 26% of the caster’s Attack every 1 second(s)"
         },
         "Special_Skill": {
