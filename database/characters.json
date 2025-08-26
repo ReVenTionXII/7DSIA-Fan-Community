@@ -1594,5 +1594,61 @@
             "P2P": "Nothing at this time.",
             "F2P": "Nothing at this time."
         }
+    },
+    {
+        "id": 382,
+        "name": "Armor of the Abyss Galland",
+        "Affiliation": "Another Side of the [Ten Commandments]",
+        "Rank": "Legendary",
+        "Attribute": "STR",
+        "Type": "DEBUFFER",
+        "Normal_Skill": {
+            "Category": "Normal Skill",
+            "Name": "“Bomb”",
+            "Description": "Deals damage equal to 205% of Attack to the target."
+        },
+        "Special_Skill": {
+            "Category": "Special Move",
+            "Name": "“Conflagration”",
+            "Description": "Every 5s, deal damage equal to 339% of Attack to the target and prioritizes attacking heroes with the highest attack.\n\nRemoves all buffs from the target and inflicts the target with Buff Block for 2s, and Armor Breaker for 1s upon successful attack.\n\n \n\n[Buff Block]\n\nCannot obtain buffs for the duration of the debuff\n\n[Armor Breaker]\n\nDeals damage equal to 3% of the target’s remaining HP every 1s"
+        },
+        "Ultimate_Move": {
+            "Category": "Ultimate Move",
+            "Name": "\n“Absolute Helter Skelter”",
+            "Description": "Deals damage equal to 1172% of Attack to all enemies in a 4m x 6m area in front of self.\n\nInflicts the target with Brand of Perjury for 5s each time this skill deals damage to an enemy, and inflicts various debuffs for 2s on targets hit upon successful attack.\n\n- 1st hit (Bind): Unable to move for the duration of the effect\n\n- 2nd hit (Bleed): Takes damage equal to 24% of Attack every 1s\n\n- 3rd hit (Infection): Unable to restore HP for the duration of the effect\n\n- 4th hit (Break): Decreases Crit Defense by 24%\n\n- This skill’s final damage is increased by 30% for each Brand of Perjury inflicted on the target upon successful 4th hit.\n\n \n\n[Brand of Perjury]\n\nDecreases final Evasion by 6%, and decreases Crit Resistance by 6% (Stacks up to 4 times)"
+        },
+        "image_path": "assets/characters/Armor_of_the_Abyss_Galland.jpg",
+        "Build_Recommendations": {
+            "P2P": "Nothing at this time.",
+            "F2P": "Nothing at this time."
+        }
+    },
+    {
+        "id": 383,
+        "name": "Fox Sin of Greed Ban: Transcendent",
+        "Affiliation": "Transcendent [Seven Deadly Sins]",
+        "Rank": "Legendary",
+        "Attribute": "VIT",
+        "Type": "SUPPORT",
+        "Normal_Skill": {
+            "Category": "Normal Skill",
+            "Name": "\n“Heavy Strike”",
+            "Description": "Deals damage equal to 255% of Attack to the target.\n\n50% chance to grant Lv. 5 Regeneration to allies for 2s upon successful attack.\n\n \n\n[Lv. 5 Regeneration]\n\nRestores HP by an amount equal to 26% of the caster’s Attack every 1 second(s)"
+        },
+        "Special_Skill": {
+            "Category": "Special Move",
+            "Name": "“Rage Attack”",
+            "Description": "35% chance to deal damage equal to 400% of Attack to the target.\n\nRestores 3 Energy each time this skill deals damage to an enemy."
+        },
+        "Ultimate_Move": {
+            "Category": "Ultimate Move",
+            "Name": "“Vanishing Kill”",
+            "Description": "Deals damage equal to 1256% of Attack to all enemies in a 3m x 6m area in front of self.\n\nRemoves 2 buffs on all enemies upon attack.\n\nInflicts the target with Snatch for 10s, and grants Snatch to self for 10s upon successful attack.\n\n \n\n[Snatch]\n\nDecreases final Attack by 20%\n\n[Snatch]\n\nIncreases final Attack by 25%"
+        },
+        "image_path": "assets/characters/Fox_Sin_of_Greed_Ban_Transcendent2.jpg",
+        "Build_Recommendations": {
+            "P2P": "",
+            "F2P": "Trait:\n“Fatal Strike”\nIncreases the Normal Skill Damage of [The Seven Deadly Sins] heroes assigned to the team by 35%, and increases Crit Damage by 35%."
+        }
     }
 ]
